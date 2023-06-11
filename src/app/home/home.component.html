@@ -1,0 +1,19 @@
+<app-navbar></app-navbar>
+<div class="container-search">
+    <mat-form-field class="search" appearance="outline" fxFlexFill subscriptSizing="dynamic">
+        <mat-label class="input">Buscar un lugar</mat-label>
+        <input matInput placeholder="Que esta buscando" [(ngModel)]="searchBar" (input)="typing()">
+        <button *ngIf="clearInput" mat-icon-button matPrefix (click)="btn_clear()">
+            <mat-icon>clear</mat-icon>
+        </button>
+        <button mat-icon-button matSuffix (click)="btn_search()">
+            <mat-icon>search</mat-icon>
+        </button>
+    </mat-form-field>
+    <div class="container-grid">
+        <mat-grid-list [cols]="gridItems" rowHeight="2:1" [gutterSize]="gridSize">
+            <mat-grid-tile class="grid" *ngFor="let bar of bars"><mat-card class="card">{{bar}}</mat-card></mat-grid-tile>
+        </mat-grid-list>
+    </div>
+
+</div>

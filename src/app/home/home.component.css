@@ -1,0 +1,52 @@
+.container-search {
+    align-items: center;
+    text-align: center;
+    margin-top: 80px;
+
+}
+
+.search {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-items: center;
+}
+
+
+.btn {
+    margin-right: 10px;
+    background-color: black;
+}
+
+.btn-clear {
+    margin-left: 10px;
+    background-color: grey;
+}
+
+.container-grid {
+    background-color: blueviolet;
+    padding: 50px;
+}
+
+.grid {
+    background-color: rgb(63, 181, 227);
+}
+
+.card{
+    width: 95%;
+    height: 95%;
+}
+
+@media (min-width: 768px) {
+    .search {
+        width: 500px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .container-grid {
+        padding: 20px;
+    }
+
+
+}
