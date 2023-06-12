@@ -15,6 +15,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -30,6 +31,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
