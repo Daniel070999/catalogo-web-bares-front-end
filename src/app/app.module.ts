@@ -16,16 +16,27 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
-
-
-
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
+import { BarMainComponent } from './bar-main/bar-main.component';
+import {MatListModule} from '@angular/material/list';
+import {MatTabsModule} from '@angular/material/tabs';
+import { BarMainMenuComponent } from './bar-main-menu/bar-main-menu.component';
+import { BarMainPromotionsComponent } from './bar-main-promotions/bar-main-promotions.component';
+import { BarMainEventsComponent } from './bar-main-events/bar-main-events.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    BottomSheetComponent,
+    BarMainComponent,
+    BarMainMenuComponent,
+    BarMainPromotionsComponent,
+    BarMainEventsComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +51,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatDividerModule,
     MatSelectModule,
     FormsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatBottomSheetModule,
+    MatListModule,
+    MatTabsModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

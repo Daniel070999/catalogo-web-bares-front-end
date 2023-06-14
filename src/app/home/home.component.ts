@@ -1,5 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ServicesService } from '../services.service';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +18,7 @@ export class HomeComponent implements OnInit {
   gridSize: string = "";
   bars: any = [];
 
-
-  constructor(private barServices: ServicesService) { }
+  constructor(private barServices: ServicesService, private btnSheet: MatBottomSheet, private route: Router) { }
 
   ngOnInit(): void {
 
@@ -25,8 +27,16 @@ export class HomeComponent implements OnInit {
 
   };
 
+  goBar(bar: any) {
+    this.route.navigate(['bar', bar]);
+  }
+
+  openBottomSheet(): void {
+    this.btnSheet.open(BottomSheetComponent);
+  }
+
   loadBars() {
-    
+
     this.barServices.getBars().subscribe(response => {
       console.log(response);
       this.bars = response;
