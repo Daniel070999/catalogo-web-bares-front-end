@@ -25,6 +25,7 @@ import { BarMainMenuComponent } from './bar-main-menu/bar-main-menu.component';
 import { BarMainPromotionsComponent } from './bar-main-promotions/bar-main-promotions.component';
 import { BarMainEventsComponent } from './bar-main-events/bar-main-events.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     BarMainComponent,
     BarMainMenuComponent,
     BarMainPromotionsComponent,
-    BarMainEventsComponent
+    BarMainEventsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
