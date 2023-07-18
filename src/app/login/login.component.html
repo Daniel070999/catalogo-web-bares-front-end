@@ -1,1 +1,82 @@
-<p>login works!</p>
+<div class="container">
+    <mat-card class="card">
+        <mat-card-header>
+            <mat-card-title>Iniciar sesión o Registrarse</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-tab-group>
+                <mat-tab label="Inicio de sesión">
+                    <form class="form" (ngSubmit)="login()">
+                        <mat-form-field>
+                            <input matInput placeholder="Usuario" [(ngModel)]="loginUsername" name="loginUsername"
+                                required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="password" placeholder="Contraseña" [(ngModel)]="loginPassword"
+                                name="loginPassword" required>
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" type="submit">Iniciar sesión</button>
+                    </form>
+                </mat-tab>
+                <mat-tab label="Registro">
+                    <form class="form" (ngSubmit)="register()">
+                        <div class="registration-form">
+                            <div class="form-column">
+                                <mat-form-field>
+                                    <input matInput placeholder="Nombres" [(ngModel)]="registerName" name="registerName"
+                                        required>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input matInput placeholder="Usuario" [(ngModel)]="registerUser" name="registerUser"
+                                        required>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-column">
+                                <mat-form-field>
+                                    <input matInput placeholder="Apellidos" [(ngModel)]="registerLastName"
+                                        name="registerLastName" required>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input matInput placeholder="Correo electrónico" [(ngModel)]="registerEmail"
+                                        name="registerEmail" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-column">
+                                <mat-form-field>
+                                    <input matInput placeholder="Género" [(ngModel)]="registerGenero"
+                                        name="registerGenero" required>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input matInput placeholder="Teléfono" [(ngModel)]="registerPhone"
+                                        name="registerPhone" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-column">
+                                <mat-form-field>
+                                    <input matInput placeholder="Fecha de nacimiento" [(ngModel)]="registerDateBirth"
+                                        name="registerDateBirth" required>
+                                </mat-form-field>
+                                
+                            </div>
+                            <div class="form-column">
+                               
+                                <mat-form-field>
+                                    <input matInput placeholder="Contraseña" [(ngModel)]="registerPassword"
+                                        name="registerPassword" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-column">
+                               
+                                <mat-form-field>
+                                    <input matInput placeholder="Confirmar Contraseña" [(ngModel)]="registerPasswordValidate"
+                                        name="registerPasswordValidate" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <button mat-raised-button color="primary" type="submit">Registrarse</button>
+                    </form>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card-content>
+    </mat-card>
+</div>
