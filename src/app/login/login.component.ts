@@ -1,11 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ServicesService } from '../services.service';
+import { RegisterModel } from '../utils';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+
+  constructor(private registerService: ServicesService) { }
+  ngOnInit(): void {
+  }
   //variables de login
   loginUsername: string = "";
   loginPassword: string = "";
@@ -21,20 +27,25 @@ export class LoginComponent {
   registerPasswordValidate: string = "";
 
   login() {
-    // Aquí puedes agregar la lógica para autenticar al usuario
     console.log('Iniciando sesión...');
   }
 
   register() {
-    // Aquí puedes agregar la lógica para registrar al usuario
-    console.log(this.registerName + '\n'
-      + this.registerLastName + '\n'
-      + this.registerUser + '\n'
-      + this.registerEmail + '\n'
-      + this.registerGenero + '\n'
-      + this.registerDateBirth + '\n'
-      + this.registerPhone + '\n'
-      + this.registerPassword + '\n'
-      + this.registerPasswordValidate + '\n');
+    const newUser: RegisterModel = {
+      usuario: this.registerUser,
+      clave: this.registerPassword,
+      email: this.registerEmail,
+      nombre: `${this.registerName} ${this.registerLastName}`,
+      genero: this.registerGenero,
+      telefono: this.registerPhone,
+      fechanacimiento: this.registerDateBirth,
+      tipopersona: 'cliente',
+      id_registro: ''
+    };
+    this.registerService.postRegister(newUser).subscribe(response => {
+      console.log(response);
+    }, error => {
+      console.log(error);
+    });
   }
 }
