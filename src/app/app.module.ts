@@ -18,14 +18,16 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
-import { BarMainComponent } from './bar-main/bar-main.component';
-import {MatListModule} from '@angular/material/list';
-import {MatTabsModule} from '@angular/material/tabs';
-import { BarMainMenuComponent } from './bar-main-menu/bar-main-menu.component';
-import { BarMainPromotionsComponent } from './bar-main-promotions/bar-main-promotions.component';
-import { BarMainEventsComponent } from './bar-main-events/bar-main-events.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import { LoginComponent } from './login/login.component';
+import { BarMainComponent } from './barfolder/bar-main/bar-main.component';
+import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { LoginComponent } from './loginfolder/login/login.component';
+import { BarMainMenuComponent } from './barfolder/bar-main-menu/bar-main-menu.component';
+import { BarMainPromotionsComponent } from './barfolder/bar-main-promotions/bar-main-promotions.component';
+import { BarMainEventsComponent } from './barfolder/bar-main-events/bar-main-events.component';
+import { HomeAdminComponent } from './adminfolder/home-admin/home-admin.component';
+import { NavbarAdminComponent } from './adminfolder/navbar-admin/navbar-admin.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { LoginComponent } from './login/login.component';
     BarMainMenuComponent,
     BarMainPromotionsComponent,
     BarMainEventsComponent,
-    LoginComponent
+    LoginComponent,
+    HomeAdminComponent,
+    NavbarAdminComponent
   ],
   imports: [
     BrowserModule,

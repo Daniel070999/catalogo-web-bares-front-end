@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RegisterModel } from './utils';
+import { LoginData, RegisterModel } from './utils';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,8 @@ export class ServicesService {
   mainUrl = 'http://localhost:3000';
 
   urlBar = `${this.mainUrl}/bar/bars`;
-  urlRegister = `${this.mainUrl}/register/singup`;
+  urlRegister = `${this.mainUrl}/login/singup`;
+  urlLogin = `${this.mainUrl}/login/singin`;
 
   getBars() {
     return this.http.get(this.urlBar);
@@ -26,6 +27,10 @@ export class ServicesService {
   postRegister(registro: RegisterModel) {
     const json = { ...registro }
     return this.http.post(this.urlRegister, json);
+  }
+  postLogin(loginData: LoginData) {
+    const json = { ...loginData }
+    return this.http.post(this.urlLogin, json);
   }
 
 

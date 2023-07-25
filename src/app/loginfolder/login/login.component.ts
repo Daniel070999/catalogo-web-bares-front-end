@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ServicesService } from '../services.service';
-import { RegisterModel } from '../utils';
+import { ServicesService } from '../../services.service';
+import { LoginData, RegisterModel } from '../../utils';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,10 @@ import { RegisterModel } from '../utils';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private registerService: ServicesService) { }
+  messageResponse: any = [];
+
+  constructor(private service: ServicesService, private route: Router) { }
+
   ngOnInit(): void {
   }
   //variables de login
@@ -28,6 +32,21 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log('Iniciando sesión...');
+    const loginData: LoginData = {
+      usuario: this.loginUsername,
+      email: this.loginUsername,
+      clave: this.loginPassword
+    };
+    this.service.postLogin(loginData).subscribe(response => {
+      this.messageResponse = response;
+      const rol = this.messageResponse.message[0].rol;
+      console.log(rol);
+      if (rol == '2') {
+        this.route.navigate(['admin']);
+      }
+    }, error => {
+      console.log(error)
+    });
   }
 
   register() {
@@ -42,7 +61,7 @@ export class LoginComponent implements OnInit {
       tipopersona: 'cliente',
       id_registro: ''
     };
-    this.registerService.postRegister(newUser).subscribe(response => {
+    this.service.postRegister(newUser).subscribe(response => {
       console.log(response);
     }, error => {
       console.log(error);

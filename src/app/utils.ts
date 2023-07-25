@@ -9,3 +9,10 @@ export class RegisterModel {
     tipopersona?: String;
     id_registro?: String;
 }
+
+export class LoginData {
+    usuario?: String;
+    email?: String;
+    clave?: String;
+
+}
