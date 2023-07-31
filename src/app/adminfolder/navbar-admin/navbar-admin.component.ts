@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServicesService } from 'src/app/services.service';
 
 @Component({
   selector: 'app-navbar-admin',
@@ -8,11 +9,22 @@ import { Router } from '@angular/router';
 })
 export class NavbarAdminComponent implements OnInit {
 
-  constructor(private route: Router) { }
+  constructor(private service: ServicesService, private route: Router) { }
 
   ngOnInit(): void {
+    this.service.getHeaders();
+    
   }
   goLogin() {
     this.route.navigate(['login']);
+  }
+
+  logOut() {
+    this.service.postLogout().subscribe(response => {
+      console.log(response);
+      this.route.navigate(['']);
+    }, error => {
+      console.log(error);
+    });
   }
 }

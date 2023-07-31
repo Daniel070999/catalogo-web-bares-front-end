@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../services.service';
 import { LoginData, RegisterModel } from '../../utils';
 import { Router } from '@angular/router';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -32,21 +33,36 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log('Iniciando sesión...');
-    const loginData: LoginData = {
+    const loginData = {
       usuario: this.loginUsername,
       email: this.loginUsername,
       clave: this.loginPassword
     };
-    this.service.postLogin(loginData).subscribe(response => {
-      this.messageResponse = response;
-      const rol = this.messageResponse.message[0].rol;
-      console.log(rol);
-      if (rol == '2') {
-        this.route.navigate(['admin']);
+
+    this.service.postLogin(loginData).subscribe(
+      (response: any) => { // Cambio el tipo del parámetro a 'any'
+        this.messageResponse = response;
+        const rol = this.messageResponse.message[0].rol;
+        console.log(rol);
+        console.log(this.messageResponse);
+        // Obtener los valores del token y la cookie de la respuesta
+        const authToken = this.messageResponse.message[0].Authorization;
+        const cookieValue = this.messageResponse.message[0].cookie;
+
+     
+        // Guardar el encabezado en el servicio para su uso en otras solicitudes
+        this.service.setHeaders('application/json',`Bearer ${authToken}`,`access_token=${cookieValue}`);
+
+        if (rol === 2) {
+          // Si la solicitud de inicio de sesión fue exitosa y el rol es igual a 2, redirige al componente 'admin'
+          this.route.navigate(['admin']);
+        }
+      },
+      (error: any) => {
+        console.log(error);
+        // Manejar el error de la solicitud, por ejemplo, mostrar un mensaje de error en el inicio de sesión
       }
-    }, error => {
-      console.log(error)
-    });
+    );
   }
 
   register() {

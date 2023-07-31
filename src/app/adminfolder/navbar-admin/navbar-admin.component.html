@@ -15,7 +15,7 @@
                                 <button mat-menu-item (click)="goLogin()" >Iniciar Sesion</button>
                                 <button mat-menu-item>Inicio</button>
                                 <button mat-menu-item>Promociones</button>
-                                <button mat-menu-item>Eventos</button>
+                                <button mat-menu-item (click)="logOut()" >Cerrar Sesión</button>
                                 <button mat-menu-item [matMenuTriggerFor]="conf">Idioma</button>
                                 <mat-menu #conf="matMenu">
                                     <button mat-menu-item>Español</button>

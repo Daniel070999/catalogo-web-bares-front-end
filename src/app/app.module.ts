@@ -42,7 +42,7 @@ import { NavbarAdminComponent } from './adminfolder/navbar-admin/navbar-admin.co
     BarMainEventsComponent,
     LoginComponent,
     HomeAdminComponent,
-    NavbarAdminComponent
+    NavbarAdminComponent,
   ],
   imports: [
     BrowserModule,

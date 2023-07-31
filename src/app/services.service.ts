@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginData, RegisterModel } from './utils';
 
@@ -14,24 +14,45 @@ export class ServicesService {
    * https://webbrowsertools.com/test-cors/
    * habilitar la extension y recargar
    */
-
+  private headersConfig?: HttpHeaders;
   mainUrl = 'http://localhost:3000';
 
   urlBar = `${this.mainUrl}/bar/bars`;
   urlRegister = `${this.mainUrl}/login/singup`;
   urlLogin = `${this.mainUrl}/login/singin`;
+  urlLogout = `${this.mainUrl}/login/logout`;
+
+  urlCheck = `${this.mainUrl}/check/verifySession`;
 
   getBars() {
     return this.http.get(this.urlBar);
   }
+
   postRegister(registro: RegisterModel) {
-    const json = { ...registro }
-    return this.http.post(this.urlRegister, json);
-  }
-  postLogin(loginData: LoginData) {
-    const json = { ...loginData }
-    return this.http.post(this.urlLogin, json);
+    return this.http.post(this.urlRegister, registro);
   }
 
+  postLogin(loginData: LoginData) {
+    return this.http.post(this.urlLogin, loginData);
+  }
+
+  postLogout() {
+    return this.http.post(this.urlLogout, null);
+  }
+
+  getCheck() {
+    return this.http.get(this.urlCheck);
+  }
+
+  setHeaders(h1: any, h2: any, h3: any,) {
+    this.headersConfig = new HttpHeaders();
+    this.headersConfig = this.headersConfig.append('Content-Type', h1);
+    this.headersConfig = this.headersConfig.append('Authorization', h2);
+    this.headersConfig = this.headersConfig.append('Cookie', h3);
+  }
+
+  getHeaders() {
+    return this.headersConfig;
+  }
 
 }
