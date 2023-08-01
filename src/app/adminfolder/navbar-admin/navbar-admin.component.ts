@@ -12,7 +12,6 @@ export class NavbarAdminComponent implements OnInit {
   constructor(private service: ServicesService, private route: Router) { }
 
   ngOnInit(): void {
-    this.service.getHeaders();
     
   }
   goLogin() {
@@ -22,6 +21,7 @@ export class NavbarAdminComponent implements OnInit {
   logOut() {
     this.service.postLogout().subscribe(response => {
       console.log(response);
+      sessionStorage.clear();
       this.route.navigate(['']);
     }, error => {
       console.log(error);

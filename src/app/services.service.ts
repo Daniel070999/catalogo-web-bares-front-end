@@ -40,15 +40,15 @@ export class ServicesService {
     return this.http.post(this.urlLogout, null);
   }
 
-  getCheck() {
-    return this.http.get(this.urlCheck);
+  getCheck(data: any) {
+    return this.http.post(this.urlCheck, data);
   }
 
   setHeaders(h1: any, h2: any, h3: any,) {
     this.headersConfig = new HttpHeaders();
-    this.headersConfig = this.headersConfig.append('Content-Type', h1);
-    this.headersConfig = this.headersConfig.append('Authorization', h2);
-    this.headersConfig = this.headersConfig.append('Cookie', h3);
+    this.headersConfig = this.headersConfig.set('Content-Type', h1);
+    this.headersConfig = this.headersConfig.set('Authorization', h2);
+    this.headersConfig = this.headersConfig.set('Cookie', h3);
   }
 
   getHeaders() {

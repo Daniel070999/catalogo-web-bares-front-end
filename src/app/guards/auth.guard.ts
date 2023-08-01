@@ -8,25 +8,33 @@ import { ServicesService } from '../services.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(private service: ServicesService, private router: Router) { }
+  message:any=[];
+  check(): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      const authToken = sessionStorage.getItem('authToken');
+      const cookieValue = sessionStorage.getItem('cookieValue');
+      console.log(authToken);
+      console.log(cookieValue);
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
+      this.service.getCheck({auth:authToken,cookie:cookieValue}).subscribe(response => {
+        this.message = response;
+        console.log(this.message);
+        resolve(this.message.message === 'Ok');
+      }, error => {
+        console.log(error);
+        resolve(false);
+      });
+    });
+  }
 
-    /*this.service.getCheck().subscribe(response => {
-      console.log(response);
-    }, error => {
-      console.log(error);
-    });*/
-    console.log(this.service.getHeaders());
-    /**
-     * logica de autenticcion desde NODEjs
-     */
-    const isAuthorized = true;
-
-    if (isAuthorized) {
-      return true; // Permite el acceso a la ruta
-    } else {
-      // Redirige a otra ruta si el acceso no está permitido
-      return this.router.parseUrl('login');
-    }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
+    return this.check().then(isAuthorized => {
+      if (isAuthorized) {
+        return true; // Permite el acceso a la ruta
+      } else {
+        // Redirige a otra ruta si el acceso no está permitido
+        return this.router.parseUrl('login');
+      }
+    });
   }
 }

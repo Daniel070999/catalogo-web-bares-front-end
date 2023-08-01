@@ -48,10 +48,12 @@ export class LoginComponent implements OnInit {
         // Obtener los valores del token y la cookie de la respuesta
         const authToken = this.messageResponse.message[0].Authorization;
         const cookieValue = this.messageResponse.message[0].cookie;
+        // Guardar el authToken y el cookieValue en sessionStorage
+        sessionStorage.setItem('authToken', authToken);
+        sessionStorage.setItem('cookieValue', cookieValue);
 
-     
         // Guardar el encabezado en el servicio para su uso en otras solicitudes
-        this.service.setHeaders('application/json',`Bearer ${authToken}`,`access_token=${cookieValue}`);
+        this.service.setHeaders('application/json', `${authToken}`, `access_token=${cookieValue}`);
 
         if (rol === 2) {
           // Si la solicitud de inicio de sesión fue exitosa y el rol es igual a 2, redirige al componente 'admin'
