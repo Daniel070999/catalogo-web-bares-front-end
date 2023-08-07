@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  form {
+    width: 100%;
+    max-width: 100%;
+    padding: 5%;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  .card {
+    width: 100%;
+  }
+  

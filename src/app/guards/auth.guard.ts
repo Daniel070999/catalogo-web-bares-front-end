@@ -8,33 +8,32 @@ import { ServicesService } from '../services.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(private service: ServicesService, private router: Router) { }
-  message:any=[];
-  check(): Promise<boolean> {
-    return new Promise<boolean>((resolve, reject) => {
-      const authToken = sessionStorage.getItem('authToken');
-      const cookieValue = sessionStorage.getItem('cookieValue');
-      console.log(authToken);
-      console.log(cookieValue);
-
-      this.service.getCheck({auth:authToken,cookie:cookieValue}).subscribe(response => {
-        this.message = response;
-        console.log(this.message);
-        resolve(this.message.message === 'Ok');
-      }, error => {
-        console.log(error);
-        resolve(false);
-      });
-    });
-  }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
-    return this.check().then(isAuthorized => {
-      if (isAuthorized) {
-        return true; // Permite el acceso a la ruta
+
+    const token = sessionStorage.getItem('authToken');
+    if (route.routeConfig?.path === '' && !token) {
+      return Promise.resolve(true);
+    }
+
+    return this.service.getCheck().toPromise().then(response => {
+      const message: any = response;
+      const role = message.message;
+      console.log(role);
+
+      const adminRoutes = ['admin','newmenu'];
+      const userRoutes = [''];
+
+      if (role === 1 && userRoutes.includes(route.routeConfig?.path || '')) {
+        return true;
+      } else if (role === 2 && adminRoutes.includes(route.routeConfig?.path || '')) {
+        return true;
       } else {
-        // Redirige a otra ruta si el acceso no está permitido
-        return this.router.parseUrl('login');
+        return this.router.parseUrl('/login');
       }
+    }).catch(error => {
+      console.log(error);
+      return this.router.parseUrl('/login');
     });
   }
 }

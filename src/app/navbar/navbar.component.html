@@ -21,6 +21,7 @@
                                     <button mat-menu-item>Español</button>
                                     <button mat-menu-item>Inglés</button>
                                 </mat-menu>
+                                <button mat-menu-item *ngIf="loggin" (click)="logOut()">Cerrar sesión</button>
                             </mat-menu>
                         </div>
                     </button>

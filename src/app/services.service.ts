@@ -9,12 +9,13 @@ export class ServicesService {
 
   constructor(private http: HttpClient) { }
 
+  private authToken: string = '';
+
   /**
    * Para solucionar el problema de conexión local por http://localhost:... de CORS usar la extension: 
    * https://webbrowsertools.com/test-cors/
    * habilitar la extension y recargar
    */
-  private headersConfig?: HttpHeaders;
   mainUrl = 'http://localhost:3000';
 
   urlBar = `${this.mainUrl}/bar/bars`;
@@ -40,19 +41,14 @@ export class ServicesService {
     return this.http.post(this.urlLogout, null);
   }
 
-  getCheck(data: any) {
-    return this.http.post(this.urlCheck, data);
+  getCheck() {
+    const httpOptions = {
+      headers: {
+        'Authorization': `${sessionStorage.getItem('authToken')}`
+      },
+    };
+    return this.http.post(this.urlCheck, null, httpOptions);
   }
 
-  setHeaders(h1: any, h2: any, h3: any,) {
-    this.headersConfig = new HttpHeaders();
-    this.headersConfig = this.headersConfig.set('Content-Type', h1);
-    this.headersConfig = this.headersConfig.set('Authorization', h2);
-    this.headersConfig = this.headersConfig.set('Cookie', h3);
-  }
-
-  getHeaders() {
-    return this.headersConfig;
-  }
 
 }

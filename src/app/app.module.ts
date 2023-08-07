@@ -28,6 +28,7 @@ import { BarMainPromotionsComponent } from './barfolder/bar-main-promotions/bar-
 import { BarMainEventsComponent } from './barfolder/bar-main-events/bar-main-events.component';
 import { HomeAdminComponent } from './adminfolder/home-admin/home-admin.component';
 import { NavbarAdminComponent } from './adminfolder/navbar-admin/navbar-admin.component';
+import { NewMenuComponent } from './adminfolder/new-menu/new-menu.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { NavbarAdminComponent } from './adminfolder/navbar-admin/navbar-admin.co
     LoginComponent,
     HomeAdminComponent,
     NavbarAdminComponent,
+    NewMenuComponent,
   ],
   imports: [
     BrowserModule,

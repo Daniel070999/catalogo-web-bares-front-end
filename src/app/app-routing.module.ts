@@ -5,10 +5,12 @@ import { BarMainComponent } from './barfolder/bar-main/bar-main.component';
 import { LoginComponent } from './loginfolder/login/login.component';
 import { HomeAdminComponent } from './adminfolder/home-admin/home-admin.component';
 import { AuthGuard } from './guards/auth.guard';
+import { NewMenuComponent } from './adminfolder/new-menu/new-menu.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'bar/:id', component: BarMainComponent },
+  { path: 'newmenu', component: NewMenuComponent, canActivate:[AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: HomeAdminComponent, canActivate: [AuthGuard] },
 ];

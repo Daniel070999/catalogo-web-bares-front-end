@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../services.service';
-import { LoginData, RegisterModel } from '../../utils';
+import { RegisterModel } from '../../utils';
 import { Router } from '@angular/router';
-import { HttpHeaders, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -47,17 +46,14 @@ export class LoginComponent implements OnInit {
         console.log(this.messageResponse);
         // Obtener los valores del token y la cookie de la respuesta
         const authToken = this.messageResponse.message[0].Authorization;
-        const cookieValue = this.messageResponse.message[0].cookie;
         // Guardar el authToken y el cookieValue en sessionStorage
         sessionStorage.setItem('authToken', authToken);
-        sessionStorage.setItem('cookieValue', cookieValue);
-
-        // Guardar el encabezado en el servicio para su uso en otras solicitudes
-        this.service.setHeaders('application/json', `${authToken}`, `access_token=${cookieValue}`);
-
+        console.log(rol);
         if (rol === 2) {
           // Si la solicitud de inicio de sesión fue exitosa y el rol es igual a 2, redirige al componente 'admin'
           this.route.navigate(['admin']);
+        }else if(rol === 1){
+          this.route.navigate(['/']);
         }
       },
       (error: any) => {
