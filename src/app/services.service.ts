@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginData, RegisterModel } from './utils';
+import { LoginData, RegisterModel, RegisterNewMenu } from './utils';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,8 @@ export class ServicesService {
   urlRegister = `${this.mainUrl}/login/singup`;
   urlLogin = `${this.mainUrl}/login/singin`;
   urlLogout = `${this.mainUrl}/login/logout`;
+  urlFindById = `${this.mainUrl}/find/byid`;
+  urlRegisterNewMenu = `${this.mainUrl}/register/newmenu`;
 
   urlCheck = `${this.mainUrl}/check/verifySession`;
 
@@ -48,6 +50,12 @@ export class ServicesService {
       },
     };
     return this.http.post(this.urlCheck, null, httpOptions);
+  }
+  getFindById(id: any) {
+    return this.http.post(this.urlFindById, null, { headers: { 'Authorization': id } });
+  }
+  postRegisterNewMenu(registro: RegisterNewMenu) {
+    return this.http.post(this.urlRegisterNewMenu, registro);
   }
 
 

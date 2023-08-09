@@ -6,7 +6,6 @@ export class RegisterModel {
     genero?: String;
     telefono?: String;
     fechanacimiento?: String;
-    tipopersona?: String;
     id_registro?: String;
 }
 
@@ -14,5 +13,13 @@ export class LoginData {
     usuario?: String;
     email?: String;
     clave?: String;
+
+}
+
+export class RegisterNewMenu {
+    nombre?: String;
+    descripcion?: String;
+    precio?: String;
+    id_bar?: String;
 
 }

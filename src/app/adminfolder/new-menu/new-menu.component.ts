@@ -1,43 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { find } from 'rxjs';
 import { ServicesService } from 'src/app/services.service';
-import { RegisterModel } from 'src/app/utils';
+import { RegisterModel, RegisterNewMenu } from 'src/app/utils';
 
 @Component({
   selector: 'app-new-menu',
   templateUrl: './new-menu.component.html',
   styleUrls: ['./new-menu.component.css']
 })
-export class NewMenuComponent {
+export class NewMenuComponent implements OnInit {
   constructor(private service: ServicesService) { }
-  //variables de login
-  loginUsername: string = "";
-  loginPassword: string = "";
-  //variables de registro
-  registerName: string = "";
-  registerLastName: string = "";
-  registerUser: string = "";
-  registerEmail: string = "";
-  registerGenero: string = "";
-  registerDateBirth: string = "";
-  registerPhone: string = "";
-  registerPassword: string = "";
-  registerPasswordValidate: string = "";
-  register() {
-    const newUser: RegisterModel = {
-      usuario: this.registerUser,
-      clave: this.registerPassword,
-      email: this.registerEmail,
-      nombre: `${this.registerName} ${this.registerLastName}`,
-      genero: this.registerGenero,
-      telefono: this.registerPhone,
-      fechanacimiento: this.registerDateBirth,
-      tipopersona: 'cliente',
-      id_registro: ''
-    };
-    this.service.postRegister(newUser).subscribe(response => {
-      console.log(response);
-    }, error => {
-      console.log(error);
-    });
+
+  token = sessionStorage.getItem('authToken');
+  id_bar: any;
+
+  ngOnInit(): void {
+    if (this.token) {
+      this.findById(this.token);
+    }
   }
+
+  findById(token: any) {
+    this.service.getFindById(token).subscribe(response => {
+      const id_bar_aux: any = response;
+      this.id_bar = id_bar_aux[0].id_bar;
+  }, err => {
+  console.log(err);
+});
+
+  }
+
+registerName: string = "";
+registerDescription: string = "";
+registerPrice: string = "";
+register() {
+  const newMenu: RegisterNewMenu = {
+    nombre: this.registerName,
+    descripcion: this.registerDescription,
+    precio: this.registerPrice,
+    id_bar: this.id_bar,
+  };
+  this.service.postRegisterNewMenu(newMenu).subscribe(response => {
+    console.log(response);
+  }, error => {
+    console.log(error);
+  });
+}
 }
