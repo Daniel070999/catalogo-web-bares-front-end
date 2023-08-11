@@ -24,6 +24,8 @@ export class ServicesService {
   urlLogout = `${this.mainUrl}/login/logout`;
   urlFindById = `${this.mainUrl}/find/byid`;
   urlRegisterNewMenu = `${this.mainUrl}/register/newmenu`;
+  urlFindBarDataById = `${this.mainUrl}/find/bar`;
+  urlFindMenuById = `${this.mainUrl}/find/menu`;
 
   urlCheck = `${this.mainUrl}/check/verifySession`;
 
@@ -54,6 +56,14 @@ export class ServicesService {
   getFindById(id: any) {
     return this.http.post(this.urlFindById, null, { headers: { 'Authorization': id } });
   }
+
+  getBarDataById(id: any) {
+    return this.http.post(this.urlFindBarDataById, { id_bar: id });
+  }
+  getMenuDataById(id: any) {
+    return this.http.post(this.urlFindMenuById, { id_bar: id });
+  }
+
   postRegisterNewMenu(registro: RegisterNewMenu) {
     return this.http.post(this.urlRegisterNewMenu, registro);
   }

@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   };
 
   goBar(bar: any) {
-    this.route.navigate(['bar', bar]);
+    this.route.navigate(['bar',bar]);
   }
 
   openBottomSheet(): void {

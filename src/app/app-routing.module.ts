@@ -9,8 +9,8 @@ import { NewMenuComponent } from './adminfolder/new-menu/new-menu.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'bar/:id', component: BarMainComponent },
-  { path: 'newmenu', component: NewMenuComponent, canActivate:[AuthGuard] },
+  { path: 'bar/:id', component: BarMainComponent, canActivate: [AuthGuard] },
+  { path: 'newmenu', component: NewMenuComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: HomeAdminComponent, canActivate: [AuthGuard] },
 ];
