@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
       sessionStorage.clear();
       this.route.navigate(['']);
       this.loggin = false;
-      window.location.reload();
+      this.route.navigate(['']);
     }, error => {
       console.log(error);
     });

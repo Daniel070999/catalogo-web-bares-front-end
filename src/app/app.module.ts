@@ -27,8 +27,11 @@ import { BarMainMenuComponent } from './barfolder/bar-main-menu/bar-main-menu.co
 import { BarMainPromotionsComponent } from './barfolder/bar-main-promotions/bar-main-promotions.component';
 import { BarMainEventsComponent } from './barfolder/bar-main-events/bar-main-events.component';
 import { HomeAdminComponent } from './adminfolder/home-admin/home-admin.component';
-import { NavbarAdminComponent } from './adminfolder/navbar-admin/navbar-admin.component';
 import { NewMenuComponent } from './adminfolder/new-menu/new-menu.component';
+import { HomeRootComponent } from './rootfolder/home-root/home-root.component';
+import { AdminBarRootComponent } from './rootfolder/admin-bar-root/admin-bar-root.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -43,8 +46,9 @@ import { NewMenuComponent } from './adminfolder/new-menu/new-menu.component';
     BarMainEventsComponent,
     LoginComponent,
     HomeAdminComponent,
-    NavbarAdminComponent,
     NewMenuComponent,
+    HomeRootComponent,
+    AdminBarRootComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,9 @@ import { NewMenuComponent } from './adminfolder/new-menu/new-menu.component';
     MatBottomSheetModule,
     MatListModule,
     MatTabsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatButtonToggleModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

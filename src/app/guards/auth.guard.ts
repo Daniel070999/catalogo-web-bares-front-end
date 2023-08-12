@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { ServicesService } from '../services.service';
 
 @Injectable({
@@ -12,7 +11,8 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
 
     const token = sessionStorage.getItem('authToken');
-    if (route.routeConfig?.path === '' && !token) {
+    const routes = ['', 'bar/:id'];
+    if (routes.includes(route.routeConfig?.path || '') && !token) {
       return Promise.resolve(true);
     }
 
@@ -21,12 +21,15 @@ export class AuthGuard implements CanActivate {
       const role = message.message;
       console.log(role);
 
-      const adminRoutes = ['admin','newmenu'];
-      const userRoutes = ['','bar/:id'];
+      const rootRoutes = ['root','adminbar'];
+      const adminRoutes = ['admin', 'newmenu'];
+      const userRoutes = ['', 'bar/:id'];
 
       if (role === 1 && userRoutes.includes(route.routeConfig?.path || '')) {
         return true;
       } else if (role === 2 && adminRoutes.includes(route.routeConfig?.path || '')) {
+        return true;
+      } else if (role === 3 && rootRoutes.includes(route.routeConfig?.path || '')) {
         return true;
       } else {
         return this.router.parseUrl('/login');

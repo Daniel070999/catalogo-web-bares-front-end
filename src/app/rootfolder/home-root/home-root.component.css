@@ -1,0 +1,53 @@
+.container-main {
+    align-items: center;
+    text-align: center;
+    padding-top: 80px;
+
+}
+.search {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-items: center;
+}
+
+.container-grid {
+    padding: 50px;
+}
+
+.card {
+    background-color: blanchedalmond;
+    display: flex;
+    align-items: center;
+    width: 95%;
+    height: 95%;
+    padding: 10px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    height: 95%;
+    overflow: auto;
+}
+
+@media (min-width: 768px) {
+    .search {
+        width: 500px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .container-grid {
+        padding: 20px;
+    }
+
+
+}

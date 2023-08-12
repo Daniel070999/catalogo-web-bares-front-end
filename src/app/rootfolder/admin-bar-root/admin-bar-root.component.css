@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.search {
+    margin: 20px;
+}
+
+.card {
+    margin: 25px;
+    padding: 10px;
+    align-items: center;
+}
+
+.menu-container {
+    text-align: center;
+  }
+  mat-form-field{
+    margin-top: 5px;
+    margin-inline: 10px;
+  }
+

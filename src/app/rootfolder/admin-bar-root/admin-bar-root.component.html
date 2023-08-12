@@ -1,0 +1,42 @@
+<div class="container">
+  <div>
+    <mat-form-field class="search" appearance="outline" subscriptSizing="dynamic">
+      <mat-label class="input">Buscar un usuario</mat-label>
+      <input matInput placeholder="Que esta buscando" [(ngModel)]="searchUser" (input)="search()" (input)="typing()">
+      <button *ngIf="clearInput" mat-icon-button matPrefix (click)="btn_clear()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="card-container">
+    <div *ngFor="let item of filteredData">
+      <mat-card class="card">
+        <mat-card-content>
+          <p>{{item.usuario}} | {{item.email}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="menu-container">
+            <mat-form-field>
+              <mat-label>Bar o Licorera</mat-label>
+              <mat-select [(ngModel)]="item.selectedValueBar" name="bar">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let dataBar of bar" [value]="dataBar.value">
+                  {{dataBar.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Rol</mat-label>
+              <mat-select [(ngModel)]="item.selectedValueRol" name="rol">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let dataRol of rol" [value]="dataRol.value">
+                  {{dataRol.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

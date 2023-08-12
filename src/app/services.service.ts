@@ -26,6 +26,7 @@ export class ServicesService {
   urlRegisterNewMenu = `${this.mainUrl}/register/newmenu`;
   urlFindBarDataById = `${this.mainUrl}/find/bar`;
   urlFindMenuById = `${this.mainUrl}/find/menu`;
+  urlFindAllUser = `${this.mainUrl}/find/alluser`;
 
   urlCheck = `${this.mainUrl}/check/verifySession`;
 
@@ -54,9 +55,21 @@ export class ServicesService {
     return this.http.post(this.urlCheck, null, httpOptions);
   }
   getFindById(id: any) {
-    return this.http.post(this.urlFindById, null, { headers: { 'Authorization': id } });
+    const httpOptions = {
+      headers: {
+        'Authorization': `${id}`
+      },
+    };
+    return this.http.post(this.urlFindById, null, httpOptions);
   }
-
+  getAllUser() {
+    const httpOptions = {
+      headers: {
+        'Authorization': `${sessionStorage.getItem('authToken')}`
+      },
+    };
+    return this.http.post(this.urlFindAllUser, null, httpOptions);
+  }
   getBarDataById(id: any) {
     return this.http.post(this.urlFindBarDataById, { id_bar: id });
   }

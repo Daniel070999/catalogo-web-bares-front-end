@@ -12,7 +12,7 @@
                     <button mat-button [matMenuTriggerFor]="menu">
                         <div class="button-menu"><mat-icon>menu</mat-icon>
                             <mat-menu #menu="matMenu" xPosition="before">
-                                <button mat-menu-item (click)="goLogin()" >Iniciar Sesion</button>
+                                <button mat-menu-item *ngIf="!loggin"  (click)="goLogin()" >Iniciar Sesion</button>
                                 <button mat-menu-item>Inicio</button>
                                 <button mat-menu-item>Promociones</button>
                                 <button mat-menu-item>Eventos</button>

@@ -49,8 +49,12 @@ export class LoginComponent implements OnInit {
         console.log(rol);
         if (rol === 2) {
           this.route.navigate(['admin']);
-        }else if(rol === 1){
+        } else if (rol === 1) {
           this.route.navigate(['/']);
+        } else if (rol === 3) {
+          this.route.navigate(['root']);
+        } else{
+          this.route.navigate(['']);
         }
       },
       (error: any) => {
