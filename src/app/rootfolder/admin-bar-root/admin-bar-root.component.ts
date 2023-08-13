@@ -55,13 +55,27 @@ export class AdminBarRootComponent implements OnInit {
     });
   }
 
-  obtainDataBar(item: any, id_bar: any) {
-    console.log('id_registro:', item.id_registro ?? '');
-    console.log('id_bar:', id_bar.id_bar ?? '');
+  obtainDataBar(registro: any, bar: any) {
+    const data = {
+      id_registro: registro.id_registro ?? 'null',
+      id_bar: bar.id_bar ?? 'null'
+    }
+    this.service.postUpdateAdminBar(data).subscribe(response => {
+      console.log(response);
+    }, err => {
+      console.log(err);
+    });
   }
-  obtainDataRol(item: any, rol: any) {
-    console.log('id_registro:', item.id_registro);
-    console.log('rol:', rol.rol);
+  obtainDataRol(registro: any, rol: any) {
+    const data = {
+      id_registro: registro.id_registro ?? 'null',
+      rol: rol.rol ?? 'null'
+    }
+    this.service.postUpdateAdminRol(data).subscribe(response => {
+      console.log(response);
+    }, err => {
+      console.log(err);
+    });
   }
 
   typing() {
