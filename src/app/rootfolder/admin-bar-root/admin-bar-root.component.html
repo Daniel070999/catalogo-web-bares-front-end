@@ -17,20 +17,21 @@
         <mat-card-actions>
           <div class="menu-container">
             <mat-form-field>
-              <mat-label>Bar o Licorera</mat-label>
-              <mat-select [(ngModel)]="item.selectedValueBar" name="bar">
+              <mat-label>Asignar Bar</mat-label>
+              <mat-select [(ngModel)]="item.selectedValueBar" name="bar"
+                (selectionChange)="obtainDataBar(item??'', $event.value??'')">
                 <mat-option>None</mat-option>
-                <mat-option *ngFor="let dataBar of bar" [value]="dataBar.value">
-                  {{dataBar.viewValue}}
+                <mat-option *ngFor="let dataBar of bar" [value]="dataBar">
+                  {{dataBar.nombre}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field>
               <mat-label>Rol</mat-label>
-              <mat-select [(ngModel)]="item.selectedValueRol" name="rol">
-                <mat-option>None</mat-option>
-                <mat-option *ngFor="let dataRol of rol" [value]="dataRol.value">
-                  {{dataRol.viewValue}}
+              <mat-select [(ngModel)]="item.selectedValueRol" name="rol"
+                (selectionChange)="obtainDataRol(item, $event.value)">
+                <mat-option *ngFor="let dataRol of rol" [value]="dataRol">
+                  {{dataRol.descripcion}}
                 </mat-option>
               </mat-select>
             </mat-form-field>

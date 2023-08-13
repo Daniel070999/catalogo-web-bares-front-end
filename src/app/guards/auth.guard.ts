@@ -25,11 +25,11 @@ export class AuthGuard implements CanActivate {
       const adminRoutes = ['admin', 'newmenu'];
       const userRoutes = ['', 'bar/:id'];
 
-      if (role === 1 && userRoutes.includes(route.routeConfig?.path || '')) {
+      if (role === '1' && userRoutes.includes(route.routeConfig?.path || '')) {
         return true;
-      } else if (role === 2 && adminRoutes.includes(route.routeConfig?.path || '')) {
+      } else if (role === '2' && adminRoutes.includes(route.routeConfig?.path || '')) {
         return true;
-      } else if (role === 3 && rootRoutes.includes(route.routeConfig?.path || '')) {
+      } else if (role === '3' && rootRoutes.includes(route.routeConfig?.path || '')) {
         return true;
       } else {
         return this.router.parseUrl('/login');

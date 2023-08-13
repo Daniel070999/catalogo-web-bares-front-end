@@ -27,6 +27,8 @@ export class ServicesService {
   urlFindBarDataById = `${this.mainUrl}/find/bar`;
   urlFindMenuById = `${this.mainUrl}/find/menu`;
   urlFindAllUser = `${this.mainUrl}/find/alluser`;
+  urlFindAllRoles = `${this.mainUrl}/find/allroles`;
+  urlFindAllAdminBarRol = `${this.mainUrl}/find/baradminrol`;
 
   urlCheck = `${this.mainUrl}/check/verifySession`;
 
@@ -69,6 +71,22 @@ export class ServicesService {
       },
     };
     return this.http.post(this.urlFindAllUser, null, httpOptions);
+  }
+  getRoles() {
+    const httpOptions = {
+      headers: {
+        'Authorization': `${sessionStorage.getItem('authToken')}`
+      },
+    };
+    return this.http.post(this.urlFindAllRoles, null, httpOptions);
+  }
+  getBarAdminRol() {
+    const httpOptions = {
+      headers: {
+        'Authorization': `${sessionStorage.getItem('authToken')}`
+      },
+    };
+    return this.http.post(this.urlFindAllAdminBarRol, null, httpOptions);
   }
   getBarDataById(id: any) {
     return this.http.post(this.urlFindBarDataById, { id_bar: id });

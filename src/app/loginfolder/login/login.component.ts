@@ -47,11 +47,11 @@ export class LoginComponent implements OnInit {
         const authToken = this.messageResponse.message[0].Authorization;
         sessionStorage.setItem('authToken', authToken);
         console.log(rol);
-        if (rol === 2) {
+        if (rol === '2') {
           this.route.navigate(['admin']);
-        } else if (rol === 1) {
+        } else if (rol === '1') {
           this.route.navigate(['/']);
-        } else if (rol === 3) {
+        } else if (rol === '3') {
           this.route.navigate(['root']);
         } else{
           this.route.navigate(['']);
