@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   gridItems: number = 0;
   gridSize: string = "";
   bars: any = [];
+  filteredData: any = [];
 
   constructor(private barServices: ServicesService, private btnSheet: MatBottomSheet, private route: Router) { }
 
@@ -28,7 +29,7 @@ export class HomeComponent implements OnInit {
   };
 
   goBar(bar: any) {
-    this.route.navigate(['bar',bar]);
+    this.route.navigate(['bar', bar]);
   }
 
   openBottomSheet(): void {
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit {
     this.barServices.getBars().subscribe(response => {
       console.log(response);
       this.bars = response;
+      this.filteredData = response;
     }, error => {
       console.log(error);
     });
@@ -63,15 +65,20 @@ export class HomeComponent implements OnInit {
   }
 
   btn_search() {
-
-    console.log(this.searchBar);
-
+    this.filteredData = this.filteredData.filter((item: { nombre: any; lema: any; descripcion: any; }) => {
+      return (item.nombre.toLowerCase().includes(this.searchBar.toLowerCase()) ||
+        item.lema.toLowerCase().includes(this.searchBar.toLowerCase()) ||
+        item.descripcion.toLowerCase().includes(this.searchBar.toLowerCase())
+      );
+    });
+    this.filteredData = this.filteredData;
   }
 
   btn_clear() {
 
     this.searchBar = "";
     this.clearInput = false;
+    this.loadBars();
 
   }
 
@@ -79,8 +86,10 @@ export class HomeComponent implements OnInit {
 
     if (this.searchBar == "") {
       this.clearInput = false;
+      this.loadBars();
     } else {
       this.clearInput = true;
+      this.btn_search();
     }
 
   }

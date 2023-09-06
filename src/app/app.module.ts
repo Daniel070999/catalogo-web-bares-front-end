@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -32,6 +31,16 @@ import { HomeRootComponent } from './rootfolder/home-root/home-root.component';
 import { AdminBarRootComponent } from './rootfolder/admin-bar-root/admin-bar-root.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 
 
 @NgModule({
@@ -69,7 +78,18 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatTabsModule,
     MatToolbarModule,
     MatButtonToggleModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatProgressBarModule,
+    MatSnackBarModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ScrollingModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatProgressSpinnerModule,
+    MatSidenavModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

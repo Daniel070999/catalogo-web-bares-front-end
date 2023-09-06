@@ -1,32 +1,20 @@
-<div class="container-navbar  fixed-top">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                [LOGO]
-            </div>
-            <div class="col-5">
-                <div class="container-title">Título</div>
-            </div>
-            <div class="col">
-                <div class="container-menu">
-                    <button mat-button [matMenuTriggerFor]="menu">
-                        <div class="button-menu"><mat-icon>menu</mat-icon>
-                            <mat-menu #menu="matMenu" xPosition="before">
-                                <button mat-menu-item *ngIf="!loggin"  (click)="goLogin()" >Iniciar Sesion</button>
-                                <button mat-menu-item>Inicio</button>
-                                <button mat-menu-item>Promociones</button>
-                                <button mat-menu-item>Eventos</button>
-                                <button mat-menu-item [matMenuTriggerFor]="conf">Idioma</button>
-                                <mat-menu #conf="matMenu">
-                                    <button mat-menu-item>Español</button>
-                                    <button mat-menu-item>Inglés</button>
-                                </mat-menu>
-                                <button mat-menu-item *ngIf="loggin" (click)="logOut()">Cerrar sesión</button>
-                            </mat-menu>
-                        </div>
-                    </button>
-                </div>
-            </div>
+<mat-toolbar color="primary">
+    <span>My App</span>
+    <span class="spacer"></span>
+    <button mat-button [matMenuTriggerFor]="menu">
+        <div class="button-menu"><mat-icon>more_vert</mat-icon>
+            <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item *ngIf="!loggin" (click)="goLogin()">Iniciar Sesion</button>
+                <button mat-menu-item>Inicio</button>
+                <button mat-menu-item>Promociones</button>
+                <button mat-menu-item>Eventos</button>
+                <button mat-menu-item [matMenuTriggerFor]="conf">Idioma</button>
+                <mat-menu #conf="matMenu">
+                    <button mat-menu-item>Español</button>
+                    <button mat-menu-item>Inglés</button>
+                </mat-menu>
+                <button mat-menu-item *ngIf="loggin" (click)="logOut()">Cerrar sesión</button>
+            </mat-menu>
         </div>
-    </div>
-</div>
+    </button>
+</mat-toolbar>

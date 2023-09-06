@@ -1,82 +1,177 @@
 <div class="container">
     <mat-card class="card">
-        <mat-card-header>
-            <mat-card-title>Iniciar sesión o Registrarse</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <mat-tab-group>
-                <mat-tab label="Inicio de sesión">
-                    <form class="form" (ngSubmit)="login()">
-                        <mat-form-field>
-                            <input matInput placeholder="Usuario" [(ngModel)]="loginUsername" name="loginUsername"
-                                required>
-                        </mat-form-field>
-                        <mat-form-field>
-                            <input matInput type="password" placeholder="Contraseña" [(ngModel)]="loginPassword"
-                                name="loginPassword" required>
-                        </mat-form-field>
-                        <button mat-raised-button color="primary" type="submit">Iniciar sesión</button>
-                    </form>
-                </mat-tab>
-                <mat-tab label="Registro">
-                    <form class="form" (ngSubmit)="register()">
-                        <div class="registration-form">
-                            <div class="form-column">
-                                <mat-form-field>
-                                    <input matInput placeholder="Nombres" [(ngModel)]="registerName" name="registerName"
-                                        required>
-                                </mat-form-field>
-                                <mat-form-field>
-                                    <input matInput placeholder="Usuario" [(ngModel)]="registerUser" name="registerUser"
-                                        required>
-                                </mat-form-field>
-                            </div>
-                            <div class="form-column">
-                                <mat-form-field>
-                                    <input matInput placeholder="Apellidos" [(ngModel)]="registerLastName"
-                                        name="registerLastName" required>
-                                </mat-form-field>
-                                <mat-form-field>
-                                    <input matInput placeholder="Correo electrónico" [(ngModel)]="registerEmail"
-                                        name="registerEmail" required>
-                                </mat-form-field>
-                            </div>
-                            <div class="form-column">
-                                <mat-form-field>
-                                    <input matInput placeholder="Género" [(ngModel)]="registerGenero"
-                                        name="registerGenero" required>
-                                </mat-form-field>
-                                <mat-form-field>
-                                    <input matInput placeholder="Teléfono" [(ngModel)]="registerPhone"
-                                        name="registerPhone" required>
-                                </mat-form-field>
-                            </div>
-                            <div class="form-column">
-                                <mat-form-field>
-                                    <input matInput placeholder="Fecha de nacimiento" [(ngModel)]="registerDateBirth"
-                                        name="registerDateBirth" required>
-                                </mat-form-field>
-                                
-                            </div>
-                            <div class="form-column">
-                               
-                                <mat-form-field>
-                                    <input matInput placeholder="Contraseña" [(ngModel)]="registerPassword"
-                                        name="registerPassword" required>
-                                </mat-form-field>
-                            </div>
-                            <div class="form-column">
-                               
-                                <mat-form-field>
-                                    <input matInput placeholder="Confirmar Contraseña" [(ngModel)]="registerPasswordValidate"
-                                        name="registerPasswordValidate" required>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                        <button mat-raised-button color="primary" type="submit">Registrarse</button>
-                    </form>
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card-content>
+      <mat-card-content>
+        <mat-tab-group dynamicHeight [(selectedIndex)]="demo1TabIndex">
+          <mat-tab label="Iniciar sesión">
+            <div class="container-login">
+              <div class="small-box mat-elevation-z4">
+                <form class="form" [formGroup]="FormLoginValidateGroup" (ngSubmit)="login()">
+                  <div class="content-form-left">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Usuario / Email</mat-label>
+                      <input matInput placeholder="Usuario / Email" [(ngModel)]="loginUsername"
+                        formControlName="ControlloginUsername">
+                      <mat-icon matPrefix color="primary">account_circle</mat-icon>
+                      <mat-error *ngIf="ControlloginUsername.hasError('required')">
+                        <span>Campo requerido</span>
+                      </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Clave</mat-label>
+                      <input matInput type="password" placeholder="Clave" [(ngModel)]="loginPassword"
+                        formControlName="ControlloginPassword">
+                      <mat-icon matPrefix color="primary">lock</mat-icon>
+                      <mat-error *ngIf="ControlloginPassword.hasError('required')">
+                        <span>Campo requerido</span>
+                      </mat-error>
+                    </mat-form-field>
+                    <button mat-fab extended color="primary" style="width: 100%;" *ngIf="!loading">Aceptar</button>
+                    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+                    <p class="go-register" (click)="demo1TabIndex=1">Registrarse</p>
+                  </div>
+                </form>
+              </div>
+              <a class="content-form-rigth"></a>
+            </div>
+          </mat-tab>
+          <mat-tab label="Registrarse">
+            <div class="large-box mat-elevation-z4">
+              <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="viewport">
+                <form class="form" [formGroup]="FormRegisterValidateGroup" (ngSubmit)="register()">
+                  <div class="content-form-register">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Nombres</mat-label>
+                      <input matInput placeholder="Nombres" [(ngModel)]="registerName"
+                        formControlName="ControlregisterName">
+                      <mat-icon matSuffix color="primary">text_fields</mat-icon>
+                      <mat-error *ngIf="ControlregisterName.hasError('required')">
+                        <span>Campo requerido</span>
+                      </mat-error>
+                      <mat-error *ngIf="ControlregisterName.hasError('maxlength')">
+                        <span>Demasiados caracteres</span>
+                      </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Apellidos</mat-label>
+                      <input matInput placeholder="Apellidos" [(ngModel)]="registerLastName"
+                        formControlName="ControlregisterLastName">
+                      <mat-icon matSuffix color="primary">text_fields</mat-icon>
+                      <mat-error *ngIf="ControlregisterLastName.hasError('required')">
+                        <span>Campo requerido</span>
+                      </mat-error>
+                      <mat-error *ngIf="ControlregisterLastName.hasError('maxlength')">
+                        <span>Demasiados caracteres</span>
+                      </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Usuario</mat-label>
+                      <input matInput placeholder="Usuario" [(ngModel)]="registerUser"
+                        formControlName="ControlregisterUser">
+                      <mat-icon matSuffix color="primary">account_circle</mat-icon>
+                      <mat-error *ngIf="ControlregisterUser.hasError('required')">
+                        <span>Campo requerido</span>
+                      </mat-error>
+                      <mat-error *ngIf="ControlregisterUser.hasError('maxlength')">
+                        <span>Demasiados caracteres</span>
+                      </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Email</mat-label>
+                      <input matInput placeholder="Email" [(ngModel)]="registerEmail"
+                        formControlName="ControlregisterEmail">
+                      <mat-icon matSuffix color="primary">email</mat-icon>
+                      <mat-error *ngIf="ControlregisterEmail.hasError('required')">
+                        <span>Campo requerido</span>
+                      </mat-error>
+                      <mat-error *ngIf="ControlregisterEmail.hasError('email')">
+                        <span>Correo no válido</span>
+                      </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Genero</mat-label>
+                      <mat-select [(value)]="registerGenero" formControlName="ControlregisterGenero">
+                        <mat-option [value]="option.value" *ngFor="let option of genero">{{ option.viewValue
+                          }}</mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="ControlregisterGenero.hasError('required')">
+                        <span>Campo requerido</span>
+                      </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Celular</mat-label>
+                      <input type="tel" matInput placeholder="+593 123456789" [(ngModel)]="registerPhone"
+                        formControlName="ControlregisterPhone">
+                      <mat-icon matSuffix color="primary">phone_iphone</mat-icon>
+                      <mat-error *ngIf="ControlregisterPhone.hasError('required')">
+                        <span>Campo requerido</span>
+                      </mat-error>
+                      <mat-error *ngIf="ControlregisterPhone.hasError('pattern')">
+                        <span>Número no válido</span>
+                      </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Fecha de nacimiento</mat-label>
+                      <input matInput [matDatepicker]="datepicker" [(ngModel)]="registerDateBirth"
+                        formControlName="ControlregisterDateBirth">
+                      <mat-error *ngIf="ControlregisterDateBirth.hasError('required')">
+                        <span>Campo requerido</span>
+                      </mat-error>
+                      <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                      <mat-datepicker #datepicker>
+                        <mat-datepicker-actions>
+                          <button mat-button matDatepickerCancel>Cancelar</button>
+                          <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
+                        </mat-datepicker-actions>
+                      </mat-datepicker>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Clave</mat-label>
+                      <input matInput type="password" placeholder="Clave" [(ngModel)]="registerPassword"
+                        formControlName="ControlregisterPassword">
+                      <mat-icon matSuffix color="primary">lock</mat-icon>
+                      <mat-error *ngIf="ControlregisterPassword.hasError('required')">
+                        <span>Campo requerido</span>
+                      </mat-error>
+                      <mat-error *ngIf="ControlregisterPassword.hasError('especial')">
+                        <span>Debe incluir un caracter especial</span>
+                      </mat-error>
+                      <mat-error *ngIf="ControlregisterPassword.hasError('number')">
+                        <span>Debe incluir un número</span>
+                      </mat-error>
+                      <mat-error *ngIf="ControlregisterPassword.hasError('minus')">
+                        <span>Debe incluir al menos una letra</span>
+                      </mat-error>
+                      <mat-error *ngIf="ControlregisterPassword.hasError('mayus')">
+                        <span>Debe incluir una mayúscula</span>
+                      </mat-error>
+                      <mat-error *ngIf="ControlregisterPassword.hasError('min')">
+                        <span>Clave demasiada corta</span>
+                      </mat-error>
+                      <mat-error *ngIf="ControlregisterPassword.hasError('max')">
+                        <span>Clave demasiado larga</span>
+                      </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Confirmar clave</mat-label>
+                      <input matInput type="password" placeholder="Confirmar clave" [(ngModel)]="registerPasswordValidate"
+                        formControlName="ControlregisterPasswordValidate">
+                      <mat-icon matSuffix color="primary">lock</mat-icon>
+                      <mat-error *ngIf="ControlregisterPasswordValidate.hasError('required')">
+                        <span>Campo requerido</span>
+                      </mat-error>
+                      <mat-error *ngIf="ControlregisterPasswordValidate.hasError('noCoincide')">
+                        <span>La clave no es la misma</span>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <button mat-fab extended color="primary" style="width: 100%;" *ngIf="!loading">Aceptar</button>
+                  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+                </form>
+              </cdk-virtual-scroll-viewport>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
     </mat-card>
-</div>
+  </div>

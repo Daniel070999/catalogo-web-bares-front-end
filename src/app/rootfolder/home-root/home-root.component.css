@@ -4,11 +4,6 @@
     padding-top: 80px;
 
 }
-.search {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    align-items: center;
-}
 
 .container-grid {
     padding: 50px;
@@ -37,12 +32,6 @@
     overflow: auto;
 }
 
-@media (min-width: 768px) {
-    .search {
-        width: 500px;
-    }
-
-}
 
 @media (max-width: 768px) {
     .container-grid {

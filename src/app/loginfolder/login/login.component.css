@@ -1,34 +1,130 @@
 .container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    align-items: center;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    background-image: url('https://www.wallpaperup.com/uploads/wallpapers/2016/03/30/918988/d29264bc683df42ae189a351116ce0da.jpg');
+    background-size: cover;
 }
 
 .card {
-    max-width: 600px;
-    width: 100%;
+    text-align: center;
+    border-radius: 12px;
+    background-color: rgba(240, 248, 255, 0.3);
+    backdrop-filter: blur(5px);
 }
 
-.form {
+.container-login {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    margin-top: 32px;
 }
 
-.mat-form-field {
-    width: 100%;
-    margin-bottom: 16px;
+.content-form-rigth {
+    display: grid;
+    background-image: url('https://th.bing.com/th/id/OIP.bDT2VoIW1OBX37PFDat_JgHaQB?pid=ImgDet&rs=1');
+    background-size: cover;
+    background-position: center;
+    width: 107%;
+    height: 315px;
+    border-radius: 50%;
 }
 
-.registration-form {
+.content-form-left {
+    display: grid;
+    padding: 25px 0 25px 0;
+}
+
+.content-form-register {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+mat-form-field {
+    margin-inline: 10px;
+}
+
+mat-error {
+    font-size: small;
+    font-style: italic;
+}
+
+
+
+.go-register {
+    font-size: 10px;
+    text-align: right;
+}
+
+.go-register:hover {
+    cursor: pointer;
+}
+
+.small-box,
+.large-box {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 12px;
 }
 
-.form-column {
-    flex-basis: calc(50% - 16px);
-    margin-bottom: 16px;
+.small-box {
+    display: grid;
+    height: 250px;
+    width: 600px;
+    background-color: rgba(240, 248, 255, 0.75);
+    backdrop-filter: blur(5px);
+}
+
+.large-box {
+    display: grid;
+    height: 450px;
+    width: 600px;
+    background-color: rgba(240, 248, 255, 0.75);
+    backdrop-filter: blur(5px);
+}
+
+.viewport {
+    height: 100%;
+    width: 600px;
+}
+
+@media screen and (min-width: 480px) {
+    .large-box {
+        height: 450px;
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .viewport {
+        width: 280px;
+    }
+
+    .large-box {
+        width: 280px;
+    }
+
+    .small-box {
+        width: 280px;
+    }
+
+    .content-form-rigth {
+        width: 0px;
+    }
+}
+
+@media screen and (max-height: 480px) {
+    .large-box {
+        height: 250px;
+        width: 600px;
+    }
 }

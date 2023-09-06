@@ -1,26 +1,5 @@
-.container-navbar {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: bisque;
-}
-
-.container-menu {
-    text-align: end;
-}
-
-.container-title {
-    text-align: center;
-}
-
-
-.button-menu {
-    display: inline-flex;
-    align-items: center;
-}
-
-.container-menu-bar{
+.container-menu-bar {
     background-color: aqua;
-    padding-top: 57px;
     width: 100%;
     height: 100%;
 }

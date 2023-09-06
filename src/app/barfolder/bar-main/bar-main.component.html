@@ -1,33 +1,4 @@
-<div class="container-navbar  fixed-top">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                [LOGO]
-            </div>
-            <div class="col-5">
-                <div class="container-title">{{dataBar.nombre}}</div>
-            </div>
-            <div class="col">
-                <div class="container-menu">
-                    <button mat-button [matMenuTriggerFor]="menu">
-                        <div class="button-menu"><mat-icon>menu</mat-icon>
-                            <mat-menu #menu="matMenu" xPosition="before">
-                                <button mat-menu-item>Inicio</button>
-                                <button mat-menu-item>Promociones</button>
-                                <button mat-menu-item>Eventos</button>
-                                <button mat-menu-item [matMenuTriggerFor]="conf">Idioma</button>
-                                <mat-menu #conf="matMenu">
-                                    <button mat-menu-item>Español</button>
-                                    <button mat-menu-item>Inglés</button>
-                                </mat-menu>
-                            </mat-menu>
-                        </div>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<app-navbar></app-navbar>
 <div class="container-menu-bar">
     <mat-tab-group>
         <mat-tab>
@@ -35,7 +6,7 @@
                 <mat-icon class="example-tab-icon">restaurant_menu</mat-icon>
                 Menu
             </ng-template>
-                <app-bar-main-menu [menuData]="dataMenu"></app-bar-main-menu>
+            <app-bar-main-menu [menuData]="dataMenu"></app-bar-main-menu>
         </mat-tab>
 
         <mat-tab>

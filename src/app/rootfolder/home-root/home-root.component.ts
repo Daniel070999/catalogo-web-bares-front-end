@@ -40,5 +40,7 @@ export class HomeRootComponent implements OnInit {
     this.route.navigate(['adminbar']);
   }
 
-
+  goCreateBar() {
+    this.route.navigate(['createbar']);
+  }
 }

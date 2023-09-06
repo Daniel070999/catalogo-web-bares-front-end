@@ -1,19 +1,20 @@
 <div class="container">
-    <mat-card class="card">
+    <mat-card>
         <form class="form" (ngSubmit)="register()">
             <div class="registration-form">
                 <mat-form-field>
-                    <input matInput placeholder="Nombre del menú" [(ngModel)]="registerName" name="registerName" required>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Descripción" [(ngModel)]="registerDescription" name="registerUser" required>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Precio" [(ngModel)]="registerPrice" name="registerLastName"
+                    <input matInput placeholder="Nombre del menú" [(ngModel)]="registerName" name="registerName"
                         required>
                 </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Descripción" [(ngModel)]="registerDescription" name="registerUser"
+                        required>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Precio" [(ngModel)]="registerPrice" name="registerLastName" required>
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit" *ngIf="id_bar!=null">Registrar</button>
             </div>
-            <button mat-raised-button color="primary" type="submit" *ngIf="id_bar!=null">Registrar</button>
         </form>
     </mat-card>
 </div>
