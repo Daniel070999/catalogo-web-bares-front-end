@@ -40,7 +40,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
+import { MatExpansionModule } from '@angular/material/expansion';
+import {CdkMenuModule} from '@angular/cdk/menu';
+import { CreateBarComponent } from './rootfolder/create-bar/create-bar.component';
 
 
 @NgModule({
@@ -58,6 +60,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     NewMenuComponent,
     HomeRootComponent,
     AdminBarRootComponent,
+    CreateBarComponent
   ],
   imports: [
     BrowserModule,
@@ -88,8 +91,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatNativeDateModule,
     MatDatepickerModule,
     MatProgressSpinnerModule,
-    MatSidenavModule
-
+    MatSidenavModule,
+    MatExpansionModule,
+    CdkMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

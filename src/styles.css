@@ -10,9 +10,12 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+mat-error {
+    font-size: small;
+    font-style: italic;
+}
+
 .mat-mdc-snack-bar-container {
-
-
     &.app-notification-error {
         --mat-mdc-snack-bar-button-color: #000000;
         --mdc-snackbar-supporting-text-color: #ffffff;
@@ -30,4 +33,18 @@ body {
         --mdc-snackbar-supporting-text-color: #ffffff;
         --mdc-snackbar-container-color: rgba(160, 160, 160, 0.75);
     }
+}
+
+button {
+    margin-bottom: 10px;
+}
+
+button:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+button:active {
+    box-shadow: none;
+    transform: translateY(1px);
 }

@@ -18,16 +18,22 @@ export class HomeComponent implements OnInit {
   gridSize: string = "";
   bars: any = [];
   filteredData: any = [];
+  loggin: boolean = false;
 
   constructor(private barServices: ServicesService, private btnSheet: MatBottomSheet, private route: Router) { }
 
   ngOnInit(): void {
-
+    let token = sessionStorage.getItem('authToken');
+    if (token) {
+      this.loggin = true;
+    }
     this.onResize(['$event']);
     this.loadBars();
 
   };
-
+  goLogin() {
+    this.route.navigate(['login']);
+  }
   goBar(bar: any) {
     this.route.navigate(['bar', bar]);
   }
@@ -48,6 +54,19 @@ export class HomeComponent implements OnInit {
 
   }
 
+  logOut() {
+    this.barServices.postLogout().subscribe(response => {
+      console.log(response);
+      sessionStorage.clear();
+      this.route.navigate(['']);
+      this.loggin = false;
+      this.route.navigate(['']);
+    }, error => {
+      console.log(error);
+    });
+  }
+
+
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
 
@@ -65,6 +84,8 @@ export class HomeComponent implements OnInit {
   }
 
   btn_search() {
+    console.log(this.filteredData);
+    
     this.filteredData = this.filteredData.filter((item: { nombre: any; lema: any; descripcion: any; }) => {
       return (item.nombre.toLowerCase().includes(this.searchBar.toLowerCase()) ||
         item.lema.toLowerCase().includes(this.searchBar.toLowerCase()) ||
@@ -83,7 +104,6 @@ export class HomeComponent implements OnInit {
   }
 
   typing() {
-
     if (this.searchBar == "") {
       this.clearInput = false;
       this.loadBars();

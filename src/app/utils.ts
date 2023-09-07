@@ -23,3 +23,11 @@ export class RegisterNewMenu {
     id_bar?: String;
 
 }
+
+export class RegisterNewBar {
+    nombre?: String;
+    lema?: String;
+    descripcion?: String;
+    logo?: Blob;
+
+}

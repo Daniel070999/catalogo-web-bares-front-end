@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginData, RegisterModel, RegisterNewMenu } from './utils';
+import { LoginData, RegisterModel, RegisterNewBar, RegisterNewMenu } from './utils';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,7 @@ export class ServicesService {
   urlLogout = `${this.mainUrl}/login/logout`;
   urlFindById = `${this.mainUrl}/find/byid`;
   urlRegisterNewMenu = `${this.mainUrl}/register/newmenu`;
+  urlRegisterNewBar = `${this.mainUrl}/register/newbar`;
   urlFindBarDataById = `${this.mainUrl}/find/bar`;
   urlFindMenuById = `${this.mainUrl}/find/menu`;
   urlFindAllUser = `${this.mainUrl}/find/alluser`;
@@ -116,6 +117,8 @@ export class ServicesService {
   postRegisterNewMenu(registro: RegisterNewMenu) {
     return this.http.post(this.urlRegisterNewMenu, registro);
   }
-
+  postRegisterNewBar(registro: RegisterNewBar) {
+    return this.http.post(this.urlRegisterNewBar, registro);
+  }
 
 }

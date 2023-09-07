@@ -1,1 +1,54 @@
-<p>create-bar works!</p>
+<div class="container">
+    <mat-card>
+        <form (ngSubmit)="registerNew()" [formGroup]="FormValidaeRegister">
+            <mat-card-header>
+                <mat-card-title>
+                    <h3>Nuevo Registro</h3>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="card">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput placeholder="Nombre" [(ngModel)]="nameRegister"
+                            formControlName="ControlNameRegister">
+                        <mat-error *ngIf="ControlNameRegister.hasError('required')">
+                            <span>Campo requerido</span>
+                        </mat-error>
+                        <mat-icon matSuffix>text_fields</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Lema</mat-label>
+                        <input matInput placeholder="Lema" [(ngModel)]="lemaRegister"
+                            formControlName="ControlLemaRegister">
+                        <mat-error *ngIf="ControlLemaRegister.hasError('required')">
+                            <span>Campo requerido</span>
+                        </mat-error>
+                        <mat-icon matSuffix>text_fields</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Descripción</mat-label>
+                        <input matInput placeholder="Descripción" [(ngModel)]="descriptionRegister"
+                            formControlName="ControlDescriptionRegister">
+                        <mat-error *ngIf="ControlDescriptionRegister.hasError('required')">
+                            <span>Campo requerido</span>
+                        </mat-error>
+                        <mat-icon matSuffix>text_fields</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Logo</mat-label>
+                        <input matInput placeholder="Logo" [(ngModel)]="logoRegister"
+                            formControlName="ControlLogoRegister">
+                        <mat-error *ngIf="ControlLogoRegister.hasError('required')">
+                            <span>Campo requerido</span>
+                        </mat-error>
+                        <mat-icon matSuffix>text_fields</mat-icon>
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-fab extended color="primary">Aceptar</button>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>

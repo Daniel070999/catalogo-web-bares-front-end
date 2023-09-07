@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { HomeComponent } from '../home/home.component';
+import { Component } from "@angular/core";
+import { MatBottomSheetRef } from "@angular/material/bottom-sheet";
+import { HomeComponent } from "../home/home.component";
+
 
 @Component({
   selector: 'app-bottom-sheet',
@@ -10,7 +11,7 @@ import { HomeComponent } from '../home/home.component';
 export class BottomSheetComponent {
 
   constructor(private btnSheet: MatBottomSheetRef<HomeComponent>) { }
-
+  panelOpenState = false;
   openLink(event: MouseEvent): void {
     this.btnSheet.dismiss();
     event.preventDefault();

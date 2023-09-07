@@ -1,0 +1,55 @@
+.container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://www.wallpaperup.com/uploads/wallpapers/2016/03/30/918988/d29264bc683df42ae189a351116ce0da.jpg');
+    background-size: cover;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+
+mat-card {
+    width: 50%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.2) 0px 30px 30px 0px,
+        rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    border-radius: 15px;
+    background-color: rgba(240, 248, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+@media screen and (max-width: 480px) {
+    mat-card {
+        width: 90%;
+    }
+}
+
+button {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+button:active {
+    box-shadow: none;
+    transform: translateY(1px);
+}
