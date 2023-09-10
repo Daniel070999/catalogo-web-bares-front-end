@@ -25,9 +25,7 @@ export class RegisterNewMenu {
 }
 
 export class RegisterNewBar {
-    nombre?: String;
-    lema?: String;
-    descripcion?: String;
-    logo?: Blob;
-
+    nombre?: any;
+    lema?: any;
+    descripcion?: any;
 }

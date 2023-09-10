@@ -35,15 +35,10 @@
                         </mat-error>
                         <mat-icon matSuffix>text_fields</mat-icon>
                     </mat-form-field>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Logo</mat-label>
-                        <input matInput placeholder="Logo" [(ngModel)]="logoRegister"
-                            formControlName="ControlLogoRegister">
-                        <mat-error *ngIf="ControlLogoRegister.hasError('required')">
-                            <span>Campo requerido</span>
-                        </mat-error>
-                        <mat-icon matSuffix>text_fields</mat-icon>
-                    </mat-form-field>
+                    <p>
+                        <input type="file" id="logo" name="logo" (change)="onFileSelected($event)" accept="image/*">
+                    </p>
+                    <div class="imagen-container" #imagenDiv></div>
                 </div>
             </mat-card-content>
             <mat-card-actions>

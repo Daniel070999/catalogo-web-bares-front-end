@@ -58,8 +58,8 @@
                     <mat-grid-tile *ngFor="let bar of filteredData">
                         <mat-card>
                             <mat-card-header class="header">
-                                <img mat-card-avatar
-                                    src="https://th.bing.com/th/id/OIP.11eqQE-pMXLyzgJ8GECVWQHaE7?pid=ImgDet&rs=1"><!--Aquó iria el path {{bar.logo}}-->
+                                <img mat-card-avatar #logoBar style="background-image: url('http://localhost:3000/files/images/{{bar.logo}}');
+                                background-size: cover;">
                                 <mat-card-title>{{bar.nombre}}</mat-card-title>
                                 <mat-card-subtitle>{{bar.lema}}</mat-card-subtitle>
                             </mat-card-header>

@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { ServicesService } from '../services.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
@@ -17,10 +17,12 @@ export class HomeComponent implements OnInit {
   gridItems: number = 0;
   gridSize: string = "";
   bars: any = [];
+  images: any = [];
   filteredData: any = [];
   loggin: boolean = false;
+  @ViewChild('logoBar') logoBar?: ElementRef;
 
-  constructor(private barServices: ServicesService, private btnSheet: MatBottomSheet, private route: Router) { }
+  constructor(private service: ServicesService, private btnSheet: MatBottomSheet, private route: Router) { }
 
   ngOnInit(): void {
     let token = sessionStorage.getItem('authToken');
@@ -29,6 +31,7 @@ export class HomeComponent implements OnInit {
     }
     this.onResize(['$event']);
     this.loadBars();
+
 
   };
   goLogin() {
@@ -43,19 +46,22 @@ export class HomeComponent implements OnInit {
   }
 
   loadBars() {
-
-    this.barServices.getBars().subscribe(response => {
-      console.log(response);
-      this.bars = response;
-      this.filteredData = response;
-    }, error => {
-      console.log(error);
-    });
-
+    this.service.getBars().subscribe(
+      (response) => {
+        this.bars = response;
+        this.filteredData = response;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    
   }
 
+  
+
   logOut() {
-    this.barServices.postLogout().subscribe(response => {
+    this.service.postLogout().subscribe(response => {
       console.log(response);
       sessionStorage.clear();
       this.route.navigate(['']);
@@ -85,7 +91,7 @@ export class HomeComponent implements OnInit {
 
   btn_search() {
     console.log(this.filteredData);
-    
+
     this.filteredData = this.filteredData.filter((item: { nombre: any; lema: any; descripcion: any; }) => {
       return (item.nombre.toLowerCase().includes(this.searchBar.toLowerCase()) ||
         item.lema.toLowerCase().includes(this.searchBar.toLowerCase()) ||
