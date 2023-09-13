@@ -1,42 +1,27 @@
-.container-main {
-    align-items: center;
-    text-align: center;
-    padding-top: 80px;
-
-}
-
-.container-grid {
-    padding: 50px;
-}
-
-.card {
-    background-color: blanchedalmond;
-    display: flex;
-    align-items: center;
-    width: 95%;
-    height: 95%;
-    padding: 10px;
-}
-
-.header {
-    display: flex;
-    align-items: center;
-}
-
-.content {
-    display: flex;
-    align-items: center;
+.container {
+    background-image: url('https://www.wallpaperup.com/uploads/wallpapers/2016/03/30/918988/d29264bc683df42ae189a351116ce0da.jpg');
+    background-size: cover;
     justify-content: center;
-    width: 95%;
-    height: 95%;
-    overflow: auto;
-}
+    height: 100%;
+  }
+  .container-card{
+    padding: 15px;
+  }
+  
+  mat-card {
+    display: flex;
+    width: 100%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 10px 20px -10px,
+      rgba(0, 0, 0, 0.2) 0px 10px 10px 0px,
+      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    border-radius: 15px;
+    background-color: rgba(219, 219, 219, 0.5);
+    backdrop-filter: blur(5px);
+  }
+  
+  mat-expansion-panel {
+    border-radius: 15px;
+    background-color: transparent;
+  }
 
-
-@media (max-width: 768px) {
-    .container-grid {
-        padding: 20px;
-    }
-
-
-}
+  

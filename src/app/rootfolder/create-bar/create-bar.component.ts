@@ -33,11 +33,24 @@ export class CreateBarComponent {
 
   onFileSelected(event: any) {
     const files = event.target.files;
-    if (files.length > 0) {
-      this.logoRegister = files[0];
-    }
-    console.log(this.logoRegister);
 
+    if (files.length > 0) {
+      const selectedFile = files[0];
+      const image = new Image();
+
+      image.onload = () => {
+        if (image.width === 512 && image.height === 512) {
+          // La imagen tiene las dimensiones correctas, puedes asignarla.
+          this.logoRegister = selectedFile;
+          console.log(this.logoRegister);
+        } else {
+          this.snacBar.error('La imagen debe ser de 512 x 512 pixeles', null);
+        }
+      };
+
+      // Carga la imagen para obtener sus dimensiones.
+      image.src = URL.createObjectURL(selectedFile);
+    }
   }
 
 
@@ -45,7 +58,7 @@ export class CreateBarComponent {
   registerNew() {
     if (this.FormValidaeRegister.status == 'VALID') {
       if (this.logoRegister == undefined) {
-        this.snacBar.warning('Seleccione una imagen', null);
+        this.snacBar.warning('Seleccione una imagen adecuada', null);
       } else {
         const newBar = {
           nombre: this.nameRegister,
@@ -67,6 +80,7 @@ export class CreateBarComponent {
     Object.keys(this.FormValidaeRegister.controls).forEach(key => {
       this.FormValidaeRegister.get(key)?.setErrors(null);
     });
+    this.logoRegister = undefined;
   }
 
 }
