@@ -1,20 +1,49 @@
 <div class="container">
     <mat-card>
-        <form class="form" (ngSubmit)="register()">
-            <div class="registration-form">
-                <mat-form-field>
-                    <input matInput placeholder="Nombre del menú" [(ngModel)]="registerName" name="registerName"
-                        required>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Descripción" [(ngModel)]="registerDescription" name="registerUser"
-                        required>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Precio" [(ngModel)]="registerPrice" name="registerLastName" required>
-                </mat-form-field>
-                <button mat-raised-button color="primary" type="submit" *ngIf="id_bar!=null">Registrar</button>
-            </div>
+        <form (ngSubmit)="register()" [formGroup]="FormValidaeRegister">
+            <mat-card-header>
+                <mat-card-title>
+                    <h3>Nuevo Registro</h3>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="card">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput placeholder="Nombre" [(ngModel)]="nameRegister"
+                            formControlName="ControlNameRegister">
+                        <mat-error *ngIf="ControlNameRegister.hasError('required')">
+                            <span>Campo requerido</span>
+                        </mat-error>
+                        <mat-icon matSuffix>text_fields</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Descripción</mat-label>
+                        <input matInput placeholder="Descripcion" [(ngModel)]="descriptionRegister"
+                            formControlName="ControlDescriptionRegister">
+                        <mat-error *ngIf="ControlDescriptionRegister.hasError('required')">
+                            <span>Campo requerido</span>
+                        </mat-error>
+                        <mat-icon matSuffix>text_fields</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Precio</mat-label>
+                        <input matInput placeholder="Precio" [(ngModel)]="priceRegister"
+                            formControlName="ControlPriceRegister">
+                        <mat-error *ngIf="ControlDescriptionRegister.hasError('required')">
+                            <span>Campo requerido</span>
+                        </mat-error>
+                        <mat-icon matSuffix>text_fields</mat-icon>
+                    </mat-form-field>
+                    <p>
+                        <input type="file" id="image" name="image" (change)="onFileSelected($event)" accept="image/*">
+                    </p>
+                    <div class="imagen-container" #imagenDiv></div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-fab extended color="primary">Aceptar</button>
+            </mat-card-actions>
         </form>
     </mat-card>
 </div>

@@ -115,9 +115,16 @@ export class ServicesService {
     return this.http.post(this.urlFindMenuById, { id_bar: id });
   }
 
-  postRegisterNewMenu(registro: RegisterNewMenu) {
-    return this.http.post(this.urlRegisterNewMenu, registro);
+  postRegisterNewMenu(registro: RegisterNewMenu, image: File) {
+    const data = new FormData();
+    data.append('nombre', registro.nombre);
+    data.append('descripcion', registro.descripcion);
+    data.append('precio', registro.precio);
+    data.append('id_bar', registro.id_bar);
+    data.append('image', image);
+    return this.http.post(this.urlRegisterNewMenu, data);
   }
+  
   postRegisterNewBar(registro: RegisterNewBar, logo: File) {
     const data = new FormData();
     data.append('nombre', registro.nombre);
@@ -128,7 +135,7 @@ export class ServicesService {
   }
 
   getImage(image: any) {
-    return this.http.get(this.urlLoadImages+image);
+    return this.http.get(this.urlLoadImages + image);
   }
 
 }

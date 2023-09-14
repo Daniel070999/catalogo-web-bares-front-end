@@ -17,10 +17,10 @@ export class LoginData {
 }
 
 export class RegisterNewMenu {
-    nombre?: String;
-    descripcion?: String;
-    precio?: String;
-    id_bar?: String;
+    nombre?: any;
+    descripcion?: any;
+    precio?: any;
+    id_bar?: any;
 
 }
 

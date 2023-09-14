@@ -12,9 +12,6 @@ export class CreateBarComponent {
 
   constructor(private service: ServicesService, private snacBar: SnackbarService) { }
 
-  @ViewChild('imagenDiv') imagenDiv?: ElementRef;
-  @ViewChild('fileInput') fileInput?: ElementRef;
-
   nameRegister: any;
   lemaRegister: any;
   descriptionRegister: any;
@@ -40,15 +37,12 @@ export class CreateBarComponent {
 
       image.onload = () => {
         if (image.width === 512 && image.height === 512) {
-          // La imagen tiene las dimensiones correctas, puedes asignarla.
           this.logoRegister = selectedFile;
           console.log(this.logoRegister);
         } else {
           this.snacBar.error('La imagen debe ser de 512 x 512 pixeles', null);
         }
       };
-
-      // Carga la imagen para obtener sus dimensiones.
       image.src = URL.createObjectURL(selectedFile);
     }
   }
