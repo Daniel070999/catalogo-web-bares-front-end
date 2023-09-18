@@ -54,11 +54,11 @@
         
         <div class="container-search">
             <div class="container-grid">
-                <mat-grid-list [cols]="gridItems" rowHeight="2.5:1" [gutterSize]="gridSize">
+                <mat-grid-list [cols]="gridItems" rowHeight="2.30:1" [gutterSize]="gridSize">
                     <mat-grid-tile *ngFor="let bar of filteredData">
                         <mat-card>
                             <mat-card-header class="header">
-                                <img mat-card-avatar #logoBar style="background-image: url('http://localhost:3000/files/images/{{bar.logo}}');
+                                <img mat-card-avatar #logoBar style="background-image: url('http://localhost:3000/files/logobar/{{bar.logo}}');
                                 background-size: cover;">
                                 <mat-card-title>{{bar.nombre}}</mat-card-title>
                                 <mat-card-subtitle>{{bar.lema}}</mat-card-subtitle>

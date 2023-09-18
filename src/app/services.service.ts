@@ -32,7 +32,6 @@ export class ServicesService {
   urlFindAllAdminBarRol = `${this.mainUrl}/find/baradminrol`;
   urlUpdateAdminBar = `${this.mainUrl}/update/adminbar`;
   urlUpdateAdminRol = `${this.mainUrl}/update/adminrol`;
-  urlLoadImages = `${this.mainUrl}/files/images/`;
 
   urlCheck = `${this.mainUrl}/check/verifySession`;
 
@@ -124,7 +123,7 @@ export class ServicesService {
     data.append('image', image);
     return this.http.post(this.urlRegisterNewMenu, data);
   }
-  
+
   postRegisterNewBar(registro: RegisterNewBar, logo: File) {
     const data = new FormData();
     data.append('nombre', registro.nombre);
@@ -134,8 +133,5 @@ export class ServicesService {
     return this.http.post(this.urlRegisterNewBar, data);
   }
 
-  getImage(image: any) {
-    return this.http.get(this.urlLoadImages + image);
-  }
 
 }
