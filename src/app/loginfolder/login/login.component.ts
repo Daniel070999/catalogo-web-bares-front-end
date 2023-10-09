@@ -4,10 +4,7 @@ import { RegisterModel } from '../../utils';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SnackbarService } from 'src/app/snackbar.service';
-interface Genero {
-  value: string;
-  viewValue: string;
-}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -37,25 +34,9 @@ export class LoginComponent {
   ControlregisterGenero = new FormControl('', Validators.required);
   ControlregisterPassword = new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,100}')]);
   ControlregisterPasswordValidate = new FormControl('', Validators.required);
-  /**
-   * Variables para el login
-   */
-  loginUsername: string = "";
-  loginPassword: string = "";
-  /**
-   * Variables para el registro
-   */
-  registerName: string = "";
-  registerLastName: string = "";
-  registerUser: string = "";
-  registerEmail: string = "";
-  registerDateBirth?: Date;
-  registerPhone: string = "";
-  registerGenero: String = '';
-  registerPassword: string = "";
-  registerPasswordValidate: string = "";
 
-  genero: Genero[] = [
+  registerGenero: String = '';
+  genero: any = [
     { value: 'Masculino', viewValue: 'Masculino' },
     { value: 'Femenino', viewValue: 'Femenino' },
   ];
@@ -63,37 +44,35 @@ export class LoginComponent {
      * Valida el formulario del grupo Login
      */
   FormLoginValidateGroup = new FormGroup({
-    ControlloginUsername: this.ControlloginUsername,
-    ControlloginPassword: this.ControlloginPassword
+    usuario: this.ControlloginUsername,
+    email: this.ControlloginUsername,
+    clave: this.ControlloginPassword
   });
   /**
    * Valida el formulario del grupo Register
    */
   FormRegisterValidateGroup = new FormGroup({
-    ControlregisterName: this.ControlregisterName,
-    ControlregisterLastName: this.ControlregisterLastName,
-    ControlregisterUser: this.ControlregisterUser,
-    ControlregisterEmail: this.ControlregisterEmail,
-    ControlregisterDateBirth: this.ControlregisterDateBirth,
-    ControlregisterPhone: this.ControlregisterPhone,
-    ControlregisterGenero: this.ControlregisterGenero,
-    ControlregisterPassword: this.ControlregisterPassword,
-    ControlregisterPasswordValidate: this.ControlregisterPasswordValidate
+    nombre: this.ControlregisterName,
+    apellido: this.ControlregisterLastName,
+    usuario: this.ControlregisterUser,
+    email: this.ControlregisterEmail,
+    fechanacimiento: this.ControlregisterDateBirth,
+    telefono: this.ControlregisterPhone,
+    genero: this.ControlregisterGenero,
+    clave: this.ControlregisterPassword,
+    claveconfirm: this.ControlregisterPasswordValidate
   });
 
 
 
-
   login() {
-    const loginData = {
-      usuario: this.loginUsername,
-      email: this.loginUsername,
-      clave: this.loginPassword
-    };
+
+    const loginData: any = this.FormLoginValidateGroup.value;
+
     this.loading = true;
     if (this.FormLoginValidateGroup.status == 'VALID') {
-      this.service.postLogin(loginData).subscribe(
-        (response: any) => {
+      this.service.postLogin(loginData).subscribe({
+        next: (response) => {
           this.messageResponse = response;
           const rol = this.messageResponse.message[0].rol;
           const authToken = this.messageResponse.message[0].Authorization;
@@ -110,11 +89,12 @@ export class LoginComponent {
           this.clearFormLogin();
           this.loading = false;
         },
-        (error: any) => {
+        error: (error) => {
           console.log(error);
           this.snackbar.error('Algo salio mal', null);
           this.loading = false;
         }
+      }
       );
     } else {
       this.loading = false;
@@ -124,44 +104,40 @@ export class LoginComponent {
   }
 
   register() {
+    const pass: any = this.FormRegisterValidateGroup.value.clave;
+
     this.loading = true;
-    if (this.registerPassword == '') {
-      this.ControlregisterPassword.setErrors({ required: true });
-    } else if (!(/[!@#$%^&*_=+-]/).test(this.registerPassword)) {
-      this.ControlregisterPassword.setErrors({ especial: true });
-    } else if (!(/(?=.*[0-9])/).test(this.registerPassword)) {
-      this.ControlregisterPassword.setErrors({ number: true });
-    } else if (!(/(?=.*[a-z])/).test(this.registerPassword)) {
-      this.ControlregisterPassword.setErrors({ minus: true });
-    } else if (!(/(?=.*[A-Z])/).test(this.registerPassword)) {
-      this.ControlregisterPassword.setErrors({ mayus: true });
-    } else if (this.registerPassword.length <= 8) {
-      this.ControlregisterPassword.setErrors({ min: true });
-    } else if (this.registerPassword.length >= 100) {
-      this.ControlregisterPassword.setErrors({ max: true });
+    if (pass == '') {
+      this.FormRegisterValidateGroup.get(['clave'])?.setErrors({ required: true });
+    } else if (!(/[!@#$%^&*_=+-]/).test(pass)) {
+      this.FormRegisterValidateGroup.get(['clave'])?.setErrors({ especial: true });
+    } else if (!(/(?=.*[0-9])/).test(pass)) {
+      this.FormRegisterValidateGroup.get(['clave'])?.setErrors({ number: true });
+    } else if (!(/(?=.*[a-z])/).test(pass)) {
+      this.FormRegisterValidateGroup.get(['clave'])?.setErrors({ minus: true });
+    } else if (!(/(?=.*[A-Z])/).test(pass)) {
+      this.FormRegisterValidateGroup.get(['clave'])?.setErrors({ mayus: true });
+    } else if (pass.length <= 8) {
+      this.FormRegisterValidateGroup.get(['clave'])?.setErrors({ min: true });
+    } else if (pass.length >= 100) {
+      this.FormRegisterValidateGroup.get(['clave'])?.setErrors({ max: true });
     }
     if (this.FormRegisterValidateGroup.status == 'VALID') {
-      if (this.registerPassword == this.registerPasswordValidate) {
-        const newUser: RegisterModel = {
-          usuario: this.registerUser,
-          clave: this.registerPassword,
-          email: this.registerEmail,
-          nombre: `${this.registerName} ${this.registerLastName}`,
-          genero: this.registerGenero,
-          telefono: this.registerPhone,
-          fechanacimiento: this.registerDateBirth!.toISOString().slice(0,10),
-          id_registro: ''
-        };
-        this.service.postRegister(newUser).subscribe(response => {
-          console.log(response);
-          this.clearFormRegister();
-          this.snackbar.success('Usuario registrado', null);
-          this.loading = false;
-          this.demo1TabIndex = 0;
-        }, error => {
-          console.log(error);
-          this.snackbar.error('Algo salio mal', null);
-          this.loading = false;
+      const confirmPass = this.FormRegisterValidateGroup.value.claveconfirm;
+      if (pass == confirmPass) {
+        const registerData: any = this.FormRegisterValidateGroup.value;
+
+        this.service.postRegister(registerData).subscribe({
+          next: () => {
+            this.snackbar.success('Usuario registrado', null);
+            this.clearFormRegister();
+            this.demo1TabIndex = 0;
+          }, error: (error) => {
+            console.log(error);
+            this.snackbar.error('Algo salio mal', null);
+          }, complete: () => {
+            this.loading = false;
+          }
         });
       } else {
         this.snackbar.error('Las claves no coinciden', null);

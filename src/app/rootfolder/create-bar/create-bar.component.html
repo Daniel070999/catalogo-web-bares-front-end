@@ -10,17 +10,15 @@
                 <div class="card">
                     <mat-form-field appearance="outline">
                         <mat-label>Nombre</mat-label>
-                        <input matInput placeholder="Nombre" [(ngModel)]="nameRegister"
-                            formControlName="ControlNameRegister">
-                        <mat-error *ngIf="ControlNameRegister.hasError('required')">
+                        <input matInput placeholder="Nombre" formControlName="nombre"> <mat-error
+                            *ngIf="ControlNameRegister.hasError('required')">
                             <span>Campo requerido</span>
                         </mat-error>
                         <mat-icon matSuffix>text_fields</mat-icon>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Lema</mat-label>
-                        <input matInput placeholder="Lema" [(ngModel)]="lemaRegister"
-                            formControlName="ControlLemaRegister">
+                        <input matInput placeholder="Lema" formControlName="lema">
                         <mat-error *ngIf="ControlLemaRegister.hasError('required')">
                             <span>Campo requerido</span>
                         </mat-error>
@@ -28,8 +26,7 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Descripción</mat-label>
-                        <input matInput placeholder="Descripción" [(ngModel)]="descriptionRegister"
-                            formControlName="ControlDescriptionRegister">
+                        <input matInput placeholder="Descripción" formControlName="descripcion">
                         <mat-error *ngIf="ControlDescriptionRegister.hasError('required')">
                             <span>Campo requerido</span>
                         </mat-error>

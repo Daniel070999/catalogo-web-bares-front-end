@@ -26,19 +26,27 @@ export class BarMainComponent implements OnInit {
   }
 
   getBarData(id: any) {
-    this.service.getBarDataById(id).subscribe(response => {
-      const data: any = response;
-      this.dataBar = data[0];
-    }, err => {
-      console.log(err);
-    })
+    this.service.getBarDataById(id).subscribe({
+      next: (response) => {
+        const dataAux: any = response;
+        const data: any = dataAux.message;
+        this.dataBar = data[0];
+        console.log(this.dataBar);
+
+      }, error: (err) => {
+        console.log(err);
+      }
+    });
   }
   getMenuData(id: any) {
-    this.service.getMenuDataById(id).subscribe(response => {
-      const data: any = response;
-      this.dataMenu = data;
-    }, err => {
-      console.log(err);
+    this.service.getMenuDataById(id).subscribe({
+      next: (response) => {
+        const responseAux: any = response;
+        const data: any = responseAux.message;
+        this.dataMenu = data;
+      }, error: (err) => {
+        console.log(err);
+      }
     })
   }
 }

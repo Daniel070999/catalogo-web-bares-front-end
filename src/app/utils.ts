@@ -5,7 +5,7 @@ export class RegisterModel {
     nombre?: String;
     genero?: String;
     telefono?: String;
-    fechanacimiento?: String;
+    fechanacimiento?: any;
     id_registro?: String;
 }
 

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { find } from 'rxjs';
 import { ServicesService } from 'src/app/services.service';
 import { SnackbarService } from 'src/app/snackbar.service';
-import { RegisterModel, RegisterNewMenu } from 'src/app/utils';
 
 @Component({
   selector: 'app-new-menu',
@@ -18,18 +16,20 @@ export class NewMenuComponent implements OnInit {
   priceRegister: any;
   imageRegister?: File;
 
+  token = sessionStorage.getItem('authToken');
+  id_bar: any;
+
   ControlNameRegister = new FormControl('', Validators.required);
   ControlDescriptionRegister = new FormControl('', Validators.required);
   ControlPriceRegister = new FormControl('', Validators.required);
 
   FormValidaeRegister = new FormGroup({
-    ControlNameRegister: this.ControlNameRegister,
-    ControlDescriptionRegister: this.ControlDescriptionRegister,
-    ControlPriceRegister: this.ControlPriceRegister
+    nombre: this.ControlNameRegister,
+    descripcion: this.ControlDescriptionRegister,
+    precio: this.ControlPriceRegister,
   });
 
-  token = sessionStorage.getItem('authToken');
-  id_bar: any;
+
 
   ngOnInit(): void {
     if (this.token) {
@@ -38,11 +38,15 @@ export class NewMenuComponent implements OnInit {
   }
 
   findById(token: any) {
-    this.service.getFindById(token).subscribe(response => {
-      const id_bar_aux: any = response;
-      this.id_bar = id_bar_aux[0].id_bar;
-    }, err => {
-      console.log(err);
+    this.service.getFindById(token).subscribe({
+      next: (response) => {
+        const responseAux: any = response;
+        const id_bar_aux: any = responseAux.message;
+        this.id_bar = id_bar_aux[0].id_bar;
+      }, error: (err) => {
+        console.log(err);
+        this.snacBar.error('Algo salio mal', null);
+      }
     });
 
   }
@@ -71,18 +75,16 @@ export class NewMenuComponent implements OnInit {
       if (this.imageRegister == undefined) {
         this.snacBar.warning('Seleccione una imagen adecuada', null);
       } else {
-        const newMenu: RegisterNewMenu = {
-          nombre: this.nameRegister,
-          descripcion: this.descriptionRegister,
-          precio: this.priceRegister,
-          id_bar: this.id_bar,
-        };
-        this.service.postRegisterNewMenu(newMenu, this.imageRegister).subscribe(response => {
-          console.log(response);
-          this.clearFormLogin();
-          this.snacBar.success('Menu registrado', null);
-        }, err => {
-          console.log(err);
+        const newMenu = Object.assign(this.FormValidaeRegister.value, { id_bar: this.id_bar });
+
+        this.service.postRegisterNewMenu(newMenu, this.imageRegister).subscribe({
+          next: (response) => {
+            console.log(response);
+            this.clearFormLogin();
+            this.snacBar.success('Menu registrado', null);
+          }, error: (err) => {
+            console.log(err);
+          }
         });
       }
     }

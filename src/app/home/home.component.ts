@@ -46,29 +46,32 @@ export class HomeComponent implements OnInit {
   }
 
   loadBars() {
-    this.service.getBars().subscribe(
-      (response) => {
-        this.bars = response;
-        this.filteredData = response;
+    this.service.getBars().subscribe({
+      next: (response) => {
+        const resultsAux: any = response;
+        this.bars = resultsAux.message;
+        this.filteredData = resultsAux.message;
+        console.log(this.bars.message);
       },
-      (error) => {
+      error: (error) => {
         console.log(error);
-      }
-    );
-    
+      },
+    });
   }
 
-  
+
 
   logOut() {
-    this.service.postLogout().subscribe(response => {
-      console.log(response);
-      sessionStorage.clear();
-      this.route.navigate(['']);
-      this.loggin = false;
-      this.route.navigate(['']);
-    }, error => {
-      console.log(error);
+    this.service.postLogout().subscribe({
+      next: response => {
+        console.log(response);
+        sessionStorage.clear();
+        this.route.navigate(['']);
+        this.loggin = false;
+        this.route.navigate(['']);
+      }, error: err => {
+        console.log(err);
+      }
     });
   }
 

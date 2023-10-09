@@ -18,25 +18,45 @@ export class ServicesService {
    */
   mainUrl = 'http://localhost:3000';
 
-  urlBar = `${this.mainUrl}/bar/bars`;
-  urlRegister = `${this.mainUrl}/login/singup`;
-  urlLogin = `${this.mainUrl}/login/singin`;
-  urlLogout = `${this.mainUrl}/login/logout`;
-  urlFindById = `${this.mainUrl}/find/byid`;
-  urlRegisterNewMenu = `${this.mainUrl}/register/newmenu`;
-  urlRegisterNewBar = `${this.mainUrl}/register/newbar`;
-  urlFindBarDataById = `${this.mainUrl}/find/bar`;
-  urlFindMenuById = `${this.mainUrl}/find/menu`;
-  urlFindAllUser = `${this.mainUrl}/find/alluser`;
-  urlFindAllRoles = `${this.mainUrl}/find/allroles`;
-  urlFindAllAdminBarRol = `${this.mainUrl}/find/baradminrol`;
-  urlUpdateAdminBar = `${this.mainUrl}/update/adminbar`;
-  urlUpdateAdminRol = `${this.mainUrl}/update/adminrol`;
+  //ruta principal de bar
+  barUrl = `${this.mainUrl}/bar`
+  //rutas relacionadas al bar
+  urlBars = `${this.barUrl}/bars`;//ok
+  urlFindBarByIdSession = `${this.barUrl}/barbysessionid`;//ok
+  urlRegisterNewBar = `${this.barUrl}/newbar`;//ok
+  urlFindBarDataById = `${this.barUrl}/allbarbyid`;//ok
 
-  urlCheck = `${this.mainUrl}/check/verifySession`;
+  //ruta prnicipal de session
+  sessionUrl = `${this.mainUrl}/session`;
+  //rutas relacinoadas a session
+  urlRegister = `${this.sessionUrl}/signup`;//ok
+  urlLogin = `${this.sessionUrl}/login`;//ok
+  urlLogout = `${this.sessionUrl}/logout`;//ok
+
+  //ruta principal de menu
+  menuUrl = `${this.mainUrl}/menu`;
+  urlRegisterNewMenu = `${this.menuUrl}/newmenu`;//ok
+  urlFindMenuById = `${this.menuUrl}/menubybarid`;//ok
+
+  //ruta principal de usuario
+  usuarioUrl = `${this.mainUrl}/user`;
+  urlFindAllUser = `${this.usuarioUrl}/getbyrolsessionpermission`;//ok
+  urlUpdateAdminBar = `${this.usuarioUrl}/updateuseradminbarbyrolsessionpermission`;//ok
+
+  //ruta principal de rol
+  rolUrl = `${this.mainUrl}/rol`;
+  urlFindAllRoles = `${this.rolUrl}/getbyrolsessionpermission`;//ok
+  urlFindAllAdminBarRol = `${this.rolUrl}/getbaradminrolsessionpermission`;//ok
+
+  //ruta principal de registros
+  registroUrl = `${this.mainUrl}/register`;
+  urlUpdateAdminRol = `${this.registroUrl}/updateregisteradminrolbyrolsessionpermission`;//ok
+
+  //Ruta usada por Guard para verificar la sesion activa
+  urlCheck = `${this.mainUrl}/check/verifySession`;//ok
 
   getBars() {
-    return this.http.get(this.urlBar);
+    return this.http.get(this.urlBars);
   }
 
   postRegister(registro: RegisterModel) {
@@ -65,7 +85,7 @@ export class ServicesService {
         'Authorization': `${id}`
       },
     };
-    return this.http.post(this.urlFindById, null, httpOptions);
+    return this.http.post(this.urlFindBarByIdSession, null, httpOptions);
   }
   getAllUser() {
     const httpOptions = {

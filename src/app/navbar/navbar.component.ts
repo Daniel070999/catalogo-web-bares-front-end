@@ -25,14 +25,16 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut() {
-    this.service.postLogout().subscribe(response => {
-      console.log(response);
-      sessionStorage.clear();
-      this.route.navigate(['']);
-      this.loggin = false;
-      this.route.navigate(['']);
-    }, error => {
-      console.log(error);
+    this.service.postLogout().subscribe({
+      next: response => {
+        console.log(response);
+        sessionStorage.clear();
+        this.route.navigate(['']);
+        this.loggin = false;
+        this.route.navigate(['']);
+      }, error: err => {
+        console.log(err);
+      }
     });
   }
 

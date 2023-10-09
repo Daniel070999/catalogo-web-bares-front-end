@@ -12,9 +12,6 @@ export class CreateBarComponent {
 
   constructor(private service: ServicesService, private snacBar: SnackbarService) { }
 
-  nameRegister: any;
-  lemaRegister: any;
-  descriptionRegister: any;
   logoRegister?: File;
 
 
@@ -23,9 +20,9 @@ export class CreateBarComponent {
   ControlDescriptionRegister = new FormControl('', Validators.required);
 
   FormValidaeRegister = new FormGroup({
-    ControlNameRegister: this.ControlNameRegister,
-    ControlLemaRegister: this.ControlLemaRegister,
-    ControlDescriptionRegister: this.ControlDescriptionRegister
+    nombre: this.ControlNameRegister,
+    lema: this.ControlLemaRegister,
+    descripcion: this.ControlDescriptionRegister
   });
 
   onFileSelected(event: any) {
@@ -36,12 +33,12 @@ export class CreateBarComponent {
       const image = new Image();
 
       image.onload = () => {
-        if (image.width === 512 && image.height === 512) {
-          this.logoRegister = selectedFile;
-          console.log(this.logoRegister);
-        } else {
+        //if (image.width === 512 && image.height === 512) {
+        this.logoRegister = selectedFile;
+        console.log(this.logoRegister);
+        /*} else {
           this.snacBar.error('La imagen debe ser de 512 x 512 pixeles', null);
-        }
+        }*/
       };
       image.src = URL.createObjectURL(selectedFile);
     }
@@ -54,17 +51,15 @@ export class CreateBarComponent {
       if (this.logoRegister == undefined) {
         this.snacBar.warning('Seleccione una imagen adecuada', null);
       } else {
-        const newBar = {
-          nombre: this.nameRegister,
-          lema: this.lemaRegister,
-          descripcion: this.descriptionRegister
-        }
-        this.service.postRegisterNewBar(newBar, this.logoRegister).subscribe(response => {
-          console.log(response);
-          this.clearFormLogin();
-          this.snacBar.success('Bar registrado', null);
-        }, err => {
-          console.log(err);
+        const newBar: any = this.FormValidaeRegister.value;
+        this.service.postRegisterNewBar(newBar, this.logoRegister).subscribe({
+          next: response => {
+            console.log(response);
+            this.clearFormLogin();
+            this.snacBar.success('Bar registrado', null);
+          }, error: err => {
+            console.log(err);
+          }
         });
       }
     }

@@ -9,13 +9,16 @@
     justify-content: center;
     background-image: url('https://www.wallpaperup.com/uploads/wallpapers/2016/03/30/918988/d29264bc683df42ae189a351116ce0da.jpg');
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .card {
     text-align: center;
+    backdrop-filter: blur(14px) saturate(113%);
+    -webkit-backdrop-filter: blur(14px) saturate(113%);
+    background-color: rgba(255, 255, 255, 0.34);
     border-radius: 12px;
-    background-color: rgba(240, 248, 255, 0.3);
-    backdrop-filter: blur(5px);
+    border: 1px solid rgba(209, 213, 219, 0.3);
 }
 
 .container-login {
@@ -27,7 +30,7 @@
 
 .content-form-rigth {
     display: grid;
-    background-image: url('https://th.bing.com/th/id/OIP.bDT2VoIW1OBX37PFDat_JgHaQB?pid=ImgDet&rs=1');
+    background-image: url('https://www.xtrafondos.com/wallpapers/vista-aerea-de-pinos-en-el-bosque-3818.jpg');
     background-size: cover;
     background-position: center;
     width: 107%;
@@ -79,16 +82,14 @@ mat-error {
     display: grid;
     height: 250px;
     width: 600px;
-    background-color: rgba(240, 248, 255, 0.75);
-    backdrop-filter: blur(5px);
+    background-color: transparent;
 }
 
 .large-box {
     display: grid;
     height: 450px;
     width: 600px;
-    background-color: rgba(240, 248, 255, 0.75);
-    backdrop-filter: blur(5px);
+    background-color: transparent;
 }
 
 .viewport {

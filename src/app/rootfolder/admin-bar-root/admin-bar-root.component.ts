@@ -24,11 +24,14 @@ export class AdminBarRootComponent implements OnInit {
   rol: any = [];
 
   ngOnInit(): void {
-    this.service.getAllUser().subscribe(response => {
-      this.dataUser = response;
-      this.search();
-    }, err => {
-      console.log(err);
+    this.service.getAllUser().subscribe({
+      next: response => {
+        const responseAux: any = response;
+        this.dataUser = responseAux.message;
+        this.search();
+      }, error: err => {
+        console.log(err);
+      }
     });
     this.getAllBars();
     this.getAllRoles();
@@ -60,10 +63,14 @@ export class AdminBarRootComponent implements OnInit {
       id_registro: registro.id_registro ?? 'null',
       id_bar: bar.id_bar ?? 'null'
     }
-    this.service.postUpdateAdminBar(data).subscribe(response => {
-      console.log(response);
-    }, err => {
-      console.log(err);
+    console.log(data);
+
+    this.service.postUpdateAdminBar(data).subscribe({
+      next: response => {
+        console.log(response);
+      }, error: err => {
+        console.log(err);
+      }
     });
   }
   obtainDataRol(registro: any, rol: any) {
@@ -71,10 +78,14 @@ export class AdminBarRootComponent implements OnInit {
       id_registro: registro.id_registro ?? 'null',
       rol: rol.rol ?? 'null'
     }
-    this.service.postUpdateAdminRol(data).subscribe(response => {
-      console.log(response);
-    }, err => {
-      console.log(err);
+    console.log(data);
+
+    this.service.postUpdateAdminRol(data).subscribe({
+      next: response => {
+        console.log(response);
+      }, error: err => {
+        console.log(err);
+      }
     });
   }
 
@@ -89,29 +100,38 @@ export class AdminBarRootComponent implements OnInit {
   }
 
   getAllBars() {
-    this.service.getBars().subscribe(response => {
-      this.bar = response;
-      console.log(this.bar);
-    }, err => {
-      console.log(err);
+    this.service.getBars().subscribe({
+      next: response => {
+        const responseAux: any = response;
+        this.bar = responseAux.message;
+        console.log(this.bar);
+      }, error: err => {
+        console.log(err);
+      }
     });
   }
   getAllRoles() {
-    this.service.getRoles().subscribe(response => {
-      this.rol = response;
-      console.log(this.rol);
-    }, err => {
-      console.log(err);
+    this.service.getRoles().subscribe({
+      next: response => {
+        const responseAux: any = response;
+        this.rol = responseAux.message;
+        console.log(this.rol);
+      }, error: err => {
+        console.log(err);
+      }
     });
   }
   getBarAdminRol() {
-    this.service.getBarAdminRol().subscribe(response => {
-      this.dataBarAdminRol = response;
-      console.log(this.dataBarAdminRol);
+    this.service.getBarAdminRol().subscribe({
+      next: response => {
+        const responseAux: any = response;
+        this.dataBarAdminRol = responseAux.message;
+        console.log(this.dataBarAdminRol);
 
-      this.initializeFilteredData();
-    }, err => {
-      console.log(err);
+        this.initializeFilteredData();
+      }, error: err => {
+        console.log(err);
+      }
     });
 
   }
