@@ -43,6 +43,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {CdkMenuModule} from '@angular/cdk/menu';
 import { CreateBarComponent } from './rootfolder/create-bar/create-bar.component';
+import { NewPromotionComponent } from './adminfolder/new-promotion/new-promotion.component';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 
 @NgModule({
@@ -60,7 +62,8 @@ import { CreateBarComponent } from './rootfolder/create-bar/create-bar.component
     NewMenuComponent,
     HomeRootComponent,
     AdminBarRootComponent,
-    CreateBarComponent
+    CreateBarComponent,
+    NewPromotionComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +96,8 @@ import { CreateBarComponent } from './rootfolder/create-bar/create-bar.component
     MatProgressSpinnerModule,
     MatSidenavModule,
     MatExpansionModule,
-    CdkMenuModule
+    CdkMenuModule,
+    NgxMaterialTimepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

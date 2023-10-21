@@ -1,0 +1,105 @@
+<div class="container">
+    <mat-card>
+        <form (ngSubmit)="register()" [formGroup]="FormValidaeRegister">
+            <mat-card-header>
+                <mat-card-title>
+                    <h3>Nueva Promoción</h3>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="card">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput placeholder="Nombre" formControlName="nombre">
+                        <mat-error *ngIf="ControlNameRegister.hasError('required')">
+                            <span>Campo requerido</span>
+                        </mat-error>
+                        <mat-icon matSuffix>text_fields</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Descripción</mat-label>
+                        <input matInput placeholder="Descripcion" formControlName="descripcion">
+                        <mat-error *ngIf="ControlDescriptionRegister.hasError('required')">
+                            <span>Campo requerido</span>
+                        </mat-error>
+                        <mat-icon matSuffix>text_fields</mat-icon>
+                    </mat-form-field>
+                    <div class="container-date">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Fecha Inicio</mat-label>
+                            <input matInput [matDatepicker]="datepickerFI" formControlName="fecha_inicio">
+                            <mat-error *ngIf="ControlDateStartRegister.hasError('required')">
+                                <span>Campo requerido</span>
+                            </mat-error>
+                            <mat-datepicker-toggle matIconSuffix [for]="datepickerFI"></mat-datepicker-toggle>
+                            <mat-datepicker #datepickerFI>
+                                <mat-datepicker-actions>
+                                    <button mat-button matDatepickerCancel>Cancelar</button>
+                                    <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
+                                </mat-datepicker-actions>
+                            </mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <input matInput placeholder="Custom buttons" aria-label="Custom buttons"
+                                formControlName="hora_inicio" [ngxTimepicker]="timepickerWithButtonsFI" readonly
+                                [format]="24">
+                            <mat-error *ngIf="ControlDateStartRegister.hasError('required')">
+                                <span>Campo requerido</span>
+                            </mat-error>
+                            <ngx-material-timepicker #timepickerWithButtonsFI [cancelBtnTmpl]="cancelBtn"
+                                [confirmBtnTmpl]="confirmBtn"></ngx-material-timepicker>
+                            <ng-template #cancelBtn>
+                                <button mat-raised-button>Cancelar</button>
+                            </ng-template>
+                            <ng-template #confirmBtn>
+                                <button mat-raised-button color="primary">Aceptar</button>
+                            </ng-template>
+                            <mat-icon matSuffix>watch_later</mat-icon>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div class="container-date">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Fecha Fin</mat-label>
+                            <input matInput [matDatepicker]="datepickerFF" formControlName="fecha_fin">
+                            <mat-error *ngIf="ControlDateFinishRegister.hasError('required')">
+                                <span>Campo requerido</span>
+                            </mat-error>
+                            <mat-datepicker-toggle matIconSuffix [for]="datepickerFF"></mat-datepicker-toggle>
+                            <mat-datepicker #datepickerFF>
+                                <mat-datepicker-actions>
+                                    <button mat-button matDatepickerCancel>Cancelar</button>
+                                    <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
+                                </mat-datepicker-actions>
+                            </mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <input matInput placeholder="Custom buttons" aria-label="Custom buttons"
+                                formControlName="hora_fin" [ngxTimepicker]="timepickerWithButtonsFF" readonly
+                                [format]="24">
+                            <mat-error *ngIf="ControlDateStartRegister.hasError('required')">
+                                <span>Campo requerido</span>
+                            </mat-error>
+                            <ngx-material-timepicker #timepickerWithButtonsFF [cancelBtnTmpl]="cancelBtn"
+                                [confirmBtnTmpl]="confirmBtn"></ngx-material-timepicker>
+                            <ng-template #cancelBtn>
+                                <button mat-raised-button>Cancelar</button>
+                            </ng-template>
+                            <ng-template #confirmBtn>
+                                <button mat-raised-button color="primary">Aceptar</button>
+                            </ng-template>
+                            <mat-icon matSuffix>watch_later</mat-icon>
+                        </mat-form-field>
+                    </div>
+                    <p>
+                        <input type="file" id="image" name="image" (change)="onFileSelected($event)" accept="image/*">
+                    </p>
+                    <div class="imagen-container" #imagenDiv></div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-fab extended color="primary">Aceptar</button>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>

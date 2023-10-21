@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginData, RegisterModel, RegisterNewBar, RegisterNewMenu } from './utils';
+import { LoginData, RegisterModel, RegisterNewBar, RegisterNewMenu, RegisterNewPromotion } from './utils';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +37,10 @@ export class ServicesService {
   menuUrl = `${this.mainUrl}/menu`;
   urlRegisterNewMenu = `${this.menuUrl}/newmenu`;//ok
   urlFindMenuById = `${this.menuUrl}/menubybarid`;//ok
+
+  //ruta principal de promocion
+  promotionUrl = `${this.mainUrl}/promotion`;
+  urlRegisterNewPromotion = `${this.promotionUrl}/newpromotion`;//ok
 
   //ruta principal de usuario
   usuarioUrl = `${this.mainUrl}/user`;
@@ -143,7 +147,14 @@ export class ServicesService {
     data.append('image', image);
     return this.http.post(this.urlRegisterNewMenu, data);
   }
+  postRegisterNewPromotion(info: any, image: File) {
+    const data = new FormData();
+    data.append('data', JSON.stringify(info));
+    data.append('image', image);
+    console.log(data);
 
+    return this.http.post(this.urlRegisterNewPromotion, data);
+  }
   postRegisterNewBar(registro: RegisterNewBar, logo: File) {
     const data = new FormData();
     data.append('nombre', registro.nombre);

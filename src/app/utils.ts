@@ -21,7 +21,14 @@ export class RegisterNewMenu {
     descripcion?: any;
     precio?: any;
     id_bar?: any;
+}
 
+export class RegisterNewPromotion {
+    nombre?: any;
+    descripcion?: any;
+    fecha_inicio?: any;
+    fecha_fin?: any;
+    id_bar?: any;
 }
 
 export class RegisterNewBar {
