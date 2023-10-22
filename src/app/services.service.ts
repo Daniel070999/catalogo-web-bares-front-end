@@ -41,6 +41,8 @@ export class ServicesService {
   //ruta principal de promocion
   promotionUrl = `${this.mainUrl}/promotion`;
   urlRegisterNewPromotion = `${this.promotionUrl}/newpromotion`;//ok
+  urlFindPromotionById = `${this.promotionUrl}/promotionbybarid`;//ok
+
 
   //ruta principal de usuario
   usuarioUrl = `${this.mainUrl}/user`;
@@ -137,7 +139,9 @@ export class ServicesService {
   getMenuDataById(id: any) {
     return this.http.post(this.urlFindMenuById, { id_bar: id });
   }
-
+  getPromotionDataById(id: any) {
+    return this.http.post(this.urlFindPromotionById, { id_bar: id });
+  }
   postRegisterNewMenu(registro: RegisterNewMenu, image: File) {
     const data = new FormData();
     data.append('nombre', registro.nombre);
