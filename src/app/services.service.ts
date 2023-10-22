@@ -43,6 +43,9 @@ export class ServicesService {
   urlRegisterNewPromotion = `${this.promotionUrl}/newpromotion`;//ok
   urlFindPromotionById = `${this.promotionUrl}/promotionbybarid`;//ok
 
+  //ruta principal de eventi
+  eventUrl = `${this.mainUrl}/event`;
+  urlRegisterNewEvent = `${this.eventUrl}/newevent`;//ok
 
   //ruta principal de usuario
   usuarioUrl = `${this.mainUrl}/user`;
@@ -158,6 +161,14 @@ export class ServicesService {
     console.log(data);
 
     return this.http.post(this.urlRegisterNewPromotion, data);
+  }
+  postRegisterNewEvent(info: any, image: File) {
+    const data = new FormData();
+    data.append('data', JSON.stringify(info));
+    data.append('image', image);
+    console.log(data);
+
+    return this.http.post(this.urlRegisterNewEvent, data);
   }
   postRegisterNewBar(registro: RegisterNewBar, logo: File) {
     const data = new FormData();

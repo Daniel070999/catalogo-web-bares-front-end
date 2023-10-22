@@ -23,5 +23,8 @@ export class HomeAdminComponent implements OnInit {
   goNewPromotion() {
     this.route.navigate(['newpromotion']);
   }
+  goNewEvent() {
+    this.route.navigate(['newevent']);
+  }
 
 }

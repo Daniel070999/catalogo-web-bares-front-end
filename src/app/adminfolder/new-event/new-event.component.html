@@ -1,0 +1,52 @@
+<div class="container">
+    <mat-card>
+        <form (ngSubmit)="register()" [formGroup]="FormValidaeRegister">
+            <mat-card-header>
+                <mat-card-title>
+                    <h3>Nuevo Evento</h3>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="card">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput placeholder="Nombre" formControlName="nombre">
+                        <mat-error *ngIf="ControlNameRegister.hasError('required')">
+                            <span>Campo requerido</span>
+                        </mat-error>
+                        <mat-icon matSuffix>text_fields</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Descripción</mat-label>
+                        <input matInput placeholder="Descripcion" formControlName="descripcion">
+                        <mat-error *ngIf="ControlDescriptionRegister.hasError('required')">
+                            <span>Campo requerido</span>
+                        </mat-error>
+                        <mat-icon matSuffix>text_fields</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Fecha</mat-label>
+                        <input matInput [matDatepicker]="datepickerFI" formControlName="fecha">
+                        <mat-error *ngIf="ControlDateRegister.hasError('required')">
+                            <span>Campo requerido</span>
+                        </mat-error>
+                        <mat-datepicker-toggle matIconSuffix [for]="datepickerFI"></mat-datepicker-toggle>
+                        <mat-datepicker #datepickerFI>
+                            <mat-datepicker-actions>
+                                <button mat-button matDatepickerCancel>Cancelar</button>
+                                <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
+                            </mat-datepicker-actions>
+                        </mat-datepicker>
+                    </mat-form-field>
+                    <p>
+                        <input type="file" id="image" name="image" (change)="onFileSelected($event)" accept="image/*">
+                    </p>
+                    <div class="imagen-container" #imagenDiv></div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-fab extended color="primary">Aceptar</button>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>

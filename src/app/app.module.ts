@@ -45,6 +45,7 @@ import {CdkMenuModule} from '@angular/cdk/menu';
 import { CreateBarComponent } from './rootfolder/create-bar/create-bar.component';
 import { NewPromotionComponent } from './adminfolder/new-promotion/new-promotion.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { NewEventComponent } from './adminfolder/new-event/new-event.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     HomeRootComponent,
     AdminBarRootComponent,
     CreateBarComponent,
-    NewPromotionComponent
+    NewPromotionComponent,
+    NewEventComponent
   ],
   imports: [
     BrowserModule,

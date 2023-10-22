@@ -10,12 +10,14 @@ import { HomeRootComponent } from './rootfolder/home-root/home-root.component';
 import { AdminBarRootComponent } from './rootfolder/admin-bar-root/admin-bar-root.component';
 import { CreateBarComponent } from './rootfolder/create-bar/create-bar.component';
 import { NewPromotionComponent } from './adminfolder/new-promotion/new-promotion.component';
+import { NewEventComponent } from './adminfolder/new-event/new-event.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'bar/:id', component: BarMainComponent, canActivate: [AuthGuard] },
   { path: 'newmenu', component: NewMenuComponent, canActivate: [AuthGuard] },
   { path: 'newpromotion', component: NewPromotionComponent, canActivate: [AuthGuard] },
+  { path: 'newevent', component: NewEventComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: HomeAdminComponent, canActivate: [AuthGuard] },
   { path: 'root', component: HomeRootComponent, canActivate: [AuthGuard] },
