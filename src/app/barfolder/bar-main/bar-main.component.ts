@@ -15,6 +15,7 @@ export class BarMainComponent implements OnInit {
   dataBar: any = [];
   dataMenu: any = [];
   dataPromotion: any = [];
+  dataEvent: any = [];
 
   ngOnInit(): void {
     this.route.params.subscribe(response => {
@@ -23,6 +24,7 @@ export class BarMainComponent implements OnInit {
         this.getBarData(this.barParam);
         this.getMenuData(this.barParam);
         this.getPromotionData(this.barParam);
+        this.getEventData(this.barParam);
       }
     });
   }
@@ -55,7 +57,17 @@ export class BarMainComponent implements OnInit {
         const responseAux: any = response;
         const data: any = responseAux.message;
         this.dataPromotion = data;
-        
+      }, error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+  getEventData(id: any) {
+    this.service.getEventDataById(id).subscribe({
+      next: (response) => {
+        const responseAux: any = response;
+        const data: any = responseAux.message;
+        this.dataEvent = data;
       }, error: (err) => {
         console.log(err);
       }

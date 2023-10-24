@@ -1,7 +1,23 @@
-<mat-list>
-    <mat-list-item>events</mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>Item 2</mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>Item 3</mat-list-item>
-</mat-list>
+<div class="container-grid">
+    <mat-grid-list [cols]="gridItems" [rowHeight]="height" [gutterSize]="gridSize">
+        <mat-grid-tile *ngFor="let menu of getEventData">
+            <mat-card>
+                <mat-card-header class="header">
+                    <!--<img mat-card-avatar #logoBar style="background-image: url('http://localhost:3000/files/images/{{bar.logo}}');
+                    background-size: cover;">-->
+                    <mat-card-title>{{menu.nombre}} <span>${{menu.precio}}</span></mat-card-title>
+                </mat-card-header>
+                <div class="content-card">
+                    <img class="img-card" src="http://localhost:3000/files/logoevent/{{menu.image}}"
+                        alt="Photo of a Shiba Inu">
+                    <mat-card-content>
+                        <P>{{menu.descripcion}}</P>
+                    </mat-card-content>
+                </div>
+                <mat-card-actions>
+                    <button mat-button>Agregar</button>
+                </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
