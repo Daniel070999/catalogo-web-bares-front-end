@@ -16,6 +16,8 @@ export class BarMainComponent implements OnInit {
   dataMenu: any = [];
   dataPromotion: any = [];
   dataEvent: any = [];
+  dataLogin: any;
+  rol: any;
 
   ngOnInit(): void {
     this.route.params.subscribe(response => {
@@ -26,6 +28,37 @@ export class BarMainComponent implements OnInit {
         this.getPromotionData(this.barParam);
         this.getEventData(this.barParam);
       }
+      let token = sessionStorage.getItem('authToken');
+      if (token) {
+        this.getDataSession();
+        this.getRol();
+      }
+    });
+  }
+
+  getRol() {
+    this.service.getCheck().subscribe({
+      next: response => {
+        const resultsAux: any = response;
+        this.rol = resultsAux.message;
+      },
+      error: err => {
+        console.log(err);
+
+      }
+    });
+  }
+
+  getDataSession() {
+    this.service.getDataSession().subscribe({
+      next: response => {
+        const resultsAux: any = response;
+        this.dataLogin = resultsAux.message[0];
+      },
+      error: err => {
+        console.log(err);
+
+      }
     });
   }
 
@@ -35,6 +68,7 @@ export class BarMainComponent implements OnInit {
         const dataAux: any = response;
         const data: any = dataAux.message;
         this.dataBar = data[0];
+
       }, error: (err) => {
         console.log(err);
       }

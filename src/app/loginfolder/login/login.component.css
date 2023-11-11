@@ -7,9 +7,10 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    background-image: url('https://www.wallpaperup.com/uploads/wallpapers/2016/03/30/918988/d29264bc683df42ae189a351116ce0da.jpg');
+    background-color: #83cbfb;
+    /*background-image: url('https://www.wallpaperup.com/uploads/wallpapers/2016/03/30/918988/d29264bc683df42ae189a351116ce0da.jpg');
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed;*/
 }
 
 .card {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServicesService } from '../services.service';
 
@@ -8,6 +8,10 @@ import { ServicesService } from '../services.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+  @Input() dataBar: any;
+  @Input() dataSession: any;
+  @Input() rol: any;
 
   constructor(private service: ServicesService, private route: Router) { }
   loggin: boolean = false;

@@ -20,7 +20,6 @@ export class ServicesService {
 
   //ruta principal de bar
   barUrl = `${this.mainUrl}/bar`
-  //rutas relacionadas al bar
   urlBars = `${this.barUrl}/bars`;//ok
   urlFindBarByIdSession = `${this.barUrl}/barbysessionid`;//ok
   urlRegisterNewBar = `${this.barUrl}/newbar`;//ok
@@ -28,10 +27,10 @@ export class ServicesService {
 
   //ruta prnicipal de session
   sessionUrl = `${this.mainUrl}/session`;
-  //rutas relacinoadas a session
   urlRegister = `${this.sessionUrl}/signup`;//ok
   urlLogin = `${this.sessionUrl}/login`;//ok
   urlLogout = `${this.sessionUrl}/logout`;//ok
+  urlDataSession = `${this.sessionUrl}/datasession`;//ok
 
   //ruta principal de menu
   menuUrl = `${this.mainUrl}/menu`;
@@ -79,6 +78,16 @@ export class ServicesService {
 
   postLogout() {
     return this.http.post(this.urlLogout, null);
+  }
+
+
+  getDataSession() {
+    const httpOptions = {
+      headers: {
+        'Authorization': `${sessionStorage.getItem('authToken')}`
+      },
+    };
+    return this.http.post(this.urlDataSession, null, httpOptions);
   }
 
   getCheck() {

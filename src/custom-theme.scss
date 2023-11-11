@@ -16,6 +16,11 @@ $login-primary: mat.define-palette(mat.$indigo-palette, 500);
 $login-accent: mat.define-palette(mat.$indigo-palette, 300);
 // The warn palette is optional (defaults to red).
 $login-warn: mat.define-palette(mat.$red-palette);
+$login-primary: (
+  default: #4082fc,
+  lighter: lighten(#4082fc, 0%), // Define el color más claro
+  darker: darken(#4082fc, 0%)   // Define el color más oscuro
+);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".

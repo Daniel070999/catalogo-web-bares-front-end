@@ -41,8 +41,9 @@ export class HomeComponent implements OnInit {
     this.route.navigate(['bar', bar]);
   }
 
-  openBottomSheet(): void {
-    this.btnSheet.open(BottomSheetComponent);
+  openBottomSheet(barData: any): void {
+
+    this.btnSheet.open(BottomSheetComponent, { data: barData });
   }
 
   loadBars() {

@@ -1,7 +1,8 @@
 <mat-toolbar>
     <div>
-        <span>My App</span>
+        <span>{{dataBar?.nombre || 'Bienvenido '+dataSession?.nombre || 'My App'}}</span>
     </div>
+    
 
     <span class="example-spacer"></span>
     <button mat-button [matMenuTriggerFor]="menu">
@@ -9,9 +10,9 @@
             <mat-icon>more_vert</mat-icon>
             <mat-menu #menu="matMenu" xPosition="before">
                 <button mat-menu-item *ngIf="!loggin" (click)="goLogin()">Iniciar Sesion</button>
-                <button mat-menu-item>Inicio</button>
-                <button mat-menu-item>Promociones</button>
-                <button mat-menu-item>Eventos</button>
+                <button mat-menu-item *ngIf="rol==1" >Inicio</button>
+                <button mat-menu-item *ngIf="rol==1" >Promociones</button>
+                <button mat-menu-item *ngIf="rol==1" >Eventos</button>
                 <button mat-menu-item [matMenuTriggerFor]="conf">Idioma</button>
                 <mat-menu #conf="matMenu">
                     <button mat-menu-item>Español</button>

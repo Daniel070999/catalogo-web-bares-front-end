@@ -1,8 +1,8 @@
 <div class="container">
     <mat-card>
         <mat-card-header class="header">
-            <mat-card-title>nombre</mat-card-title>
-            <mat-card-subtitle>lema</mat-card-subtitle>
+            <mat-card-title>{{dataBar.nombre}}</mat-card-title>
+            <mat-card-subtitle>{{dataBar.lema}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
             <p>
@@ -13,7 +13,7 @@
                                 Descripción
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        Descripcion detalla de la página
+                        {{dataBar.descripcion}}
                     </mat-expansion-panel>
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                         <mat-expansion-panel-header>
@@ -22,10 +22,15 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <mat-list role="list">
-                            <mat-list-item role="listitem">Item 1</mat-list-item>
-                            <mat-list-item role="listitem">Item 2</mat-list-item>
-                            <mat-list-item role="listitem">Item 3</mat-list-item>
-                            <mat-list-item role="listitem">Ver más...</mat-list-item>
+                            <ng-container *ngIf="dataEvent.length > 0; else noEvents">
+                                <mat-list-item role="listitem"
+                                    *ngFor="let events of dataEvent.slice(0, 3)">{{events.nombre}}</mat-list-item>
+                                <mat-list-item role="listitem" (click)="goBar(dataBar.id_bar)">Ver
+                                    más...</mat-list-item>
+                            </ng-container>
+                            <ng-template #noEvents>
+                                <mat-list-item role="listitem">Por ahora no hay eventos.</mat-list-item>
+                            </ng-template>
                         </mat-list>
                     </mat-expansion-panel>
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -35,17 +40,23 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <mat-list role="list">
-                            <mat-list-item role="listitem">Item 1</mat-list-item>
-                            <mat-list-item role="listitem">Item 2</mat-list-item>
-                            <mat-list-item role="listitem">Item 3</mat-list-item>
-                            <mat-list-item role="listitem">Ver más...</mat-list-item>
+                            <ng-container *ngIf="dataPromotion.length > 0; else noPromotions">
+                                <mat-list-item role="listitem"
+                                    *ngFor="let promotions of dataPromotion.slice(0, 3)">{{promotions.nombre}}</mat-list-item>
+                                <mat-list-item role="listitem" (click)="goBar(dataBar.id_bar)">Ver
+                                    más...</mat-list-item>
+                            </ng-container>
+                            <ng-template #noPromotions>
+                                <mat-list-item role="listitem">Por ahora no hay promociones.</mat-list-item>
+                            </ng-template>
                         </mat-list>
                     </mat-expansion-panel>
                 </mat-accordion>
             </p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-fab extended color="primary" style="margin-top: 10px; width: 100%;">Ingresar</button>
+            <button mat-fab extended color="primary" style="margin-top: 10px; width: 100%;"
+                (click)="goBar(dataBar.id_bar)">Ingresar</button>
         </mat-card-actions>
     </mat-card>
 </div>
