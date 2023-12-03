@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginData, RegisterModel, RegisterNewBar, RegisterNewMenu, RegisterNewPromotion } from './utils';
+import { LoginData, RegisterModel, RegisterNewBar, RegisterNewMenu } from './utils';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +38,7 @@ export class ServicesService {
   urlFindMenuById = `${this.menuUrl}/menubybarid`;//ok
   urlGetMenu = `${this.menuUrl}/menubyid`;//ok
   urlUpdateMenu = `${this.menuUrl}/update`;//ok
+  urlDeleteMenu = `${this.menuUrl}/delete`;//ok
 
   //ruta principal de promocion
   promotionUrl = `${this.mainUrl}/promotion`;
@@ -163,6 +164,14 @@ export class ServicesService {
       },
     };
     return this.http.post(this.urlUpdateMenu, data, httpOptions);
+  }
+  postDeleteMenu(data: any) {
+    const httpOptions = {
+      headers: {
+        'Authorization': `${sessionStorage.getItem('authToken')}`
+      },
+    };
+    return this.http.post(this.urlDeleteMenu, data, httpOptions);
   }
   getBarDataById(id: any) {
     return this.http.post(this.urlFindBarDataById, { id_bar: id });

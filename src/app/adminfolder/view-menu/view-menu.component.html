@@ -22,7 +22,7 @@
     </div>
     <div class="menu-data">
         <mat-card class="main-card-form">
-            <form [formGroup]="FormValidaeRegister">
+            <form [formGroup]="FormValidaeRegister" *ngIf="!!id_menu">
                 <mat-card-header>
                     <mat-card-title>
                         <h3>Detalles del menu</h3>

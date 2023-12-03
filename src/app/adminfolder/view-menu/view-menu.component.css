@@ -9,7 +9,6 @@
     background-size: cover;*/
 }
 
-/**/
 .menu-list-container {
     overflow-x: auto;
     white-space: nowrap;
@@ -81,6 +80,16 @@
     justify-content: center;
 }
 
+@keyframes animation-main-card-form {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
 .btn-actualizar {
     background-color: deepskyblue;
 }
@@ -88,11 +97,12 @@
 .btn-eliminar {
     background-color: brown;
 }
+
 .btn-cancelar {
     background-color: grey;
 }
 
-.btn-form button {
+.btn-form>button {
     width: 25%;
     margin: 10px;
 }
@@ -102,7 +112,8 @@
     background-repeat: no-repeat;
     width: 150px;
 }
-.container-img{
+
+.container-img {
     display: flex;
     flex-direction: column;
     align-items: center;

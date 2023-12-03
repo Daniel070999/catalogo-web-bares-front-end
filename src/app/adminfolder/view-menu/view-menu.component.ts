@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ServicesService } from 'src/app/services.service';
 import { SnackbarService } from 'src/app/snackbar.service';
@@ -147,8 +147,7 @@ export class ViewMenuComponent implements OnInit {
       console.log(formData);
 
       this.service.postUpdateMenu(formData).subscribe({
-        next: (response) => {
-          console.log(response);
+        next: () => {
           this.cancelRegister();
           this.getMenuData(this.id_bar);
           this.snacBar.success('Menu actualizado', null);
@@ -159,7 +158,16 @@ export class ViewMenuComponent implements OnInit {
     }
   }
   deleteRegister() {
-
+    this.service.postDeleteMenu({ id_menu: this.id_menu }).subscribe({
+      next: () => {
+        this.cancelRegister();
+        this.getMenuData(this.id_bar);
+        this.snacBar.success('Menu deleted', null);
+      },
+      error: () => {
+        this.snacBar.error('Error in deleted menu', null);
+      },
+    });
   }
   cancelRegister() {
     this.FormValidaeRegister.reset();
