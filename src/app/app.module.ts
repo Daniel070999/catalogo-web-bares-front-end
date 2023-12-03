@@ -46,6 +46,7 @@ import { CreateBarComponent } from './rootfolder/create-bar/create-bar.component
 import { NewPromotionComponent } from './adminfolder/new-promotion/new-promotion.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { NewEventComponent } from './adminfolder/new-event/new-event.component';
+import { ViewMenuComponent } from './adminfolder/view-menu/view-menu.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { NewEventComponent } from './adminfolder/new-event/new-event.component';
     AdminBarRootComponent,
     CreateBarComponent,
     NewPromotionComponent,
-    NewEventComponent
+    NewEventComponent,
+    ViewMenuComponent
   ],
   imports: [
     BrowserModule,

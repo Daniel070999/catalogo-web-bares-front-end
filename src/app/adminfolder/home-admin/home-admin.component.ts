@@ -51,6 +51,9 @@ export class HomeAdminComponent implements OnInit {
   goNewMenu() {
     this.route.navigate(['newmenu']);
   }
+  goViewMenu() {
+    this.route.navigate(['viewmenu']);
+  }
   goNewPromotion() {
     this.route.navigate(['newpromotion']);
   }

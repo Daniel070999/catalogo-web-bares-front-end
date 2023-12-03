@@ -36,6 +36,8 @@ export class ServicesService {
   menuUrl = `${this.mainUrl}/menu`;
   urlRegisterNewMenu = `${this.menuUrl}/newmenu`;//ok
   urlFindMenuById = `${this.menuUrl}/menubybarid`;//ok
+  urlGetMenu = `${this.menuUrl}/menubyid`;//ok
+  urlUpdateMenu = `${this.menuUrl}/update`;//ok
 
   //ruta principal de promocion
   promotionUrl = `${this.mainUrl}/promotion`;
@@ -146,6 +148,22 @@ export class ServicesService {
     };
     return this.http.post(this.urlUpdateAdminRol, data, httpOptions);
   }
+  getMenuById(data: any) {
+    const httpOptions = {
+      headers: {
+        'Authorization': `${sessionStorage.getItem('authToken')}`
+      },
+    };
+    return this.http.post(this.urlGetMenu, data, httpOptions);
+  }
+  postUpdateMenu(data: any) {
+    const httpOptions = {
+      headers: {
+        'Authorization': `${sessionStorage.getItem('authToken')}`
+      },
+    };
+    return this.http.post(this.urlUpdateMenu, data, httpOptions);
+  }
   getBarDataById(id: any) {
     return this.http.post(this.urlFindBarDataById, { id_bar: id });
   }
@@ -167,12 +185,11 @@ export class ServicesService {
     data.append('image', image);
     return this.http.post(this.urlRegisterNewMenu, data);
   }
+
   postRegisterNewPromotion(info: any, image: File) {
     const data = new FormData();
     data.append('data', JSON.stringify(info));
     data.append('image', image);
-    console.log(data);
-
     return this.http.post(this.urlRegisterNewPromotion, data);
   }
   postRegisterNewEvent(info: any, image: File) {

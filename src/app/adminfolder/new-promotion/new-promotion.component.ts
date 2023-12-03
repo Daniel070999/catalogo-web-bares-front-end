@@ -37,7 +37,6 @@ export class NewPromotionComponent implements OnInit {
   ngOnInit(): void {
     if (this.token) {
       this.findById(this.token);
-
     }
   }
 

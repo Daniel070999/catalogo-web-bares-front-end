@@ -14,10 +14,14 @@
                                     Menú
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
-                            Ingresar un nuevo menú
-                            <button mat-fab (click)="goNewMenu()"
-                                style="background-color: transparent; scale: 0.75;"><mat-icon style="scale: 1.5;"
-                                    color="primary">fastfood</mat-icon></button>
+                            <div class="btn-container">
+                                <button mat-raised-button (click)="goNewMenu()"
+                                    style="background-color: green; scale: 0.75;"><mat-icon style="scale: 1.5;"
+                                        color="primary">add_circle_outline</mat-icon>Agregar</button>
+                                <button mat-raised-button (click)="goViewMenu()"
+                                    style="background-color: goldenrod; scale: 0.75;"><mat-icon style="scale: 1.5;"
+                                        color="primary">search</mat-icon>Ver menús</button>
+                            </div>
                         </mat-expansion-panel>
                         <mat-expansion-panel>
                             <mat-expansion-panel-header>

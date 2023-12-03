@@ -23,6 +23,10 @@ mat-card {
     overflow: auto;
 }
 
+.container-grid {
+    height: 60vh;
+    overflow-x: auto;
+}
 
 @media (max-width: 768px) {
     .container-grid {

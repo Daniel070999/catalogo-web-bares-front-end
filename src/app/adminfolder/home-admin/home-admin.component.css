@@ -33,3 +33,8 @@ mat-expansion-panel {
     border-radius: 15px;
     background-color: transparent;
 }
+
+.btn-container{
+    display: flex;
+    justify-content: center;
+}
