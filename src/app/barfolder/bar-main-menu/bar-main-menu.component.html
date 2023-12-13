@@ -1,25 +1,19 @@
-<div class="container-search">
-    <div class="container-grid">
-        <mat-grid-list [cols]="gridItems" rowHeight="1.2:1" [gutterSize]="gridSize">
-            <mat-grid-tile *ngFor="let menu of getMenuData">
-                <mat-card>
-                    <mat-card-header class="header">
-                        <!--<img mat-card-avatar #logoBar style="background-image: url('http://localhost:3000/files/images/{{bar.logo}}');
-                        background-size: cover;">-->
-                        <mat-card-title>{{menu.nombre}} <span>${{menu.precio}}</span></mat-card-title>
-                    </mat-card-header>
-                    <div class="content-card">
-                        <img class="img-card" src="http://localhost:3000/files/logomenu/{{menu.image}}"
-                            alt="Photo of a Shiba Inu">
-                        <mat-card-content>
-                            <P>{{menu.descripcion}}</P>
-                        </mat-card-content>
-                    </div>
-                    <mat-card-actions>
-                        <button mat-button>Agregar</button>
-                    </mat-card-actions>
-                </mat-card>
-            </mat-grid-tile>
-        </mat-grid-list>
+<section class="section">
+    <div class="container-list">
+        <h3>General</h3>
+        <mat-list class="container-main" *ngFor="let menu of getMenuData">
+            <div class="container-register">
+                <span>${{menu.precio}}</span>
+                <div>
+                    <mat-list-item>
+                        <span matListItemTitle>{{menu.nombre}}</span>
+                        {{menu.descripcion}}
+                    </mat-list-item>
+                </div>
+                <img class="image" src="http://localhost:3000/files/logomenu/{{menu.image}}" alt="{{menu.image}}"
+                    (click)="openFullScreen(menu.image)">
+            </div>
+            <mat-divider></mat-divider>
+        </mat-list>
     </div>
-</div>
+</section>

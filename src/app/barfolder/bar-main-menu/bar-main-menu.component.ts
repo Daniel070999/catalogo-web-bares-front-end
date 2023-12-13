@@ -1,4 +1,6 @@
 import { Component, HostListener, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewImageComponent } from 'src/app/view-image/view-image.component';
 
 @Component({
   selector: 'app-bar-main-menu',
@@ -6,6 +8,8 @@ import { Component, HostListener, Input, OnChanges, OnInit, SimpleChanges } from
   styleUrls: ['./bar-main-menu.component.css']
 })
 export class BarMainMenuComponent implements OnChanges, OnInit {
+
+  constructor(public dialog: MatDialog) { }
 
   @Input() menuData: any;
 
@@ -24,7 +28,11 @@ export class BarMainMenuComponent implements OnChanges, OnInit {
       console.log(this.getMenuData);
     }
   }
-
+  openFullScreen(imageUrl: any): void {
+    this.dialog.open(ViewImageComponent, {
+      data: { imageUrl: `http://localhost:3000/files/logomenu/${imageUrl}` }
+    });
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {

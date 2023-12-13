@@ -1,4 +1,6 @@
 import { Component, HostListener, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewImageComponent } from 'src/app/view-image/view-image.component';
 
 @Component({
   selector: 'app-bar-main-events',
@@ -8,42 +10,21 @@ import { Component, HostListener, Input, OnChanges, OnInit, SimpleChanges } from
 export class BarMainEventsComponent implements OnChanges, OnInit {
 
   @Input() eventData: any;
+  constructor(public dialog: MatDialog) { }
 
   getEventData: any = [];
-  gridItems: number = 0;
-  gridSize: string = "";
-  height: string = "";
-  screenWidth: number = 0;
 
   ngOnInit(): void {
-    this.onResize(['$event']);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['eventData']) {
       this.getEventData = changes['eventData'].currentValue;
-      console.log(this.height);
     }
   }
-
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-
-    this.screenWidth = window.innerWidth;
-    if (this.screenWidth > 768 && this.screenWidth < 1499) {
-      this.gridItems = 1;
-      this.gridSize = "1";
-      this.height = "2:1";
-    } else if (this.screenWidth > 1500) {
-      this.gridItems = 2;
-      this.gridSize = "1";
-      this.height = "2:1";
-    } else {
-      this.gridItems = 1;
-      this.gridSize = "1";
-      this.height = "1:1";
-    }
-
+  openFullScreen(imageUrl: any): void {
+    this.dialog.open(ViewImageComponent, {
+      data: { imageUrl: `http://localhost:3000/files/logoevent/${imageUrl}` }
+    });
   }
 }

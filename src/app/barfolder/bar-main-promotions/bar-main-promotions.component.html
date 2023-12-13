@@ -1,23 +1,15 @@
-    <div class="container-grid">
-        <mat-grid-list [cols]="gridItems" [rowHeight]="height" [gutterSize]="gridSize">
-            <mat-grid-tile *ngFor="let menu of getPromotionData">
-                <mat-card>
-                    <mat-card-header class="header">
-                        <!--<img mat-card-avatar #logoBar style="background-image: url('http://localhost:3000/files/images/{{bar.logo}}');
-                        background-size: cover;">-->
-                        <mat-card-title>{{menu.nombre}} <span>${{menu.precio}}</span></mat-card-title>
-                    </mat-card-header>
-                    <div class="content-card">
-                        <img class="img-card" src="http://localhost:3000/files/logopromotion/{{menu.image}}"
-                            alt="Photo of a Shiba Inu">
-                        <mat-card-content>
-                            <P>{{menu.descripcion}}</P>
-                        </mat-card-content>
-                    </div>
-                    <mat-card-actions>
-                        <button mat-button>Agregar</button>
-                    </mat-card-actions>
-                </mat-card>
-            </mat-grid-tile>
-        </mat-grid-list>
+<div class="container-grid">
+    <div *ngFor="let promotion of getPromotionData">
+        <mat-card>
+            <div class="card-row">
+                <div>
+                    <h3>{{promotion.nombre}}</h3>
+                    <p>{{promotion.descripcion}}</p>
+                    <span>{{formatFecha(promotion.fecha_inicio)}} - {{formatFecha(promotion.fecha_fin)}}</span>
+                </div>
+                <img class="img-card" src="http://localhost:3000/files/logopromotion/{{promotion.image}}"
+                    alt="imagen {{promotion.nombre}}" (click)="openFullScreen(promotion.image)">
+            </div>
+        </mat-card>
     </div>
+</div>

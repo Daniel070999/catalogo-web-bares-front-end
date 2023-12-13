@@ -1,4 +1,6 @@
-import { Component, HostListener, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewImageComponent } from 'src/app/view-image/view-image.component';
 
 @Component({
   selector: 'app-bar-main-promotions',
@@ -9,41 +11,29 @@ export class BarMainPromotionsComponent implements OnChanges, OnInit {
 
   @Input() promotionData: any;
 
+  constructor(public dialog: MatDialog) { }
+
+
   getPromotionData: any = [];
-  gridItems: number = 0;
-  gridSize: string = "";
-  height: string = "";
-  screenWidth: number = 0;
 
   ngOnInit(): void {
-    this.onResize(['$event']);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['promotionData']) {
       this.getPromotionData = changes['promotionData'].currentValue;
-      console.log(this.height);
+
     }
   }
-
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-
-    this.screenWidth = window.innerWidth;
-    if (this.screenWidth > 768 && this.screenWidth < 1499) {
-      this.gridItems = 1;
-      this.gridSize = "1";
-      this.height = "2:1";
-    } else if (this.screenWidth > 1500) {
-      this.gridItems = 2;
-      this.gridSize = "1";
-      this.height = "2:1";
-    } else {
-      this.gridItems = 1;
-      this.gridSize = "1";
-      this.height = "1:1";
-    }
-
+  formatFecha(fecha: string): string {
+    const fechaDate = new Date(fecha);
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+    return fechaDate.toLocaleString(undefined, options);
   }
+  openFullScreen(imageUrl: any): void {
+    this.dialog.open(ViewImageComponent, {
+      data: { imageUrl: `http://localhost:3000/files/logopromotion/${imageUrl}` }
+    });
+  }
+
 }

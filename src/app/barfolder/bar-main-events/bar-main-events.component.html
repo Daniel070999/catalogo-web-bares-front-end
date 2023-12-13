@@ -1,23 +1,15 @@
 <div class="container-grid">
-    <mat-grid-list [cols]="gridItems" [rowHeight]="height" [gutterSize]="gridSize">
-        <mat-grid-tile *ngFor="let menu of getEventData">
-            <mat-card>
-                <mat-card-header class="header">
-                    <!--<img mat-card-avatar #logoBar style="background-image: url('http://localhost:3000/files/images/{{bar.logo}}');
-                    background-size: cover;">-->
-                    <mat-card-title>{{menu.nombre}} <span>${{menu.precio}}</span></mat-card-title>
-                </mat-card-header>
-                <div class="content-card">
-                    <img class="img-card" src="http://localhost:3000/files/logoevent/{{menu.image}}"
-                        alt="Photo of a Shiba Inu">
-                    <mat-card-content>
-                        <P>{{menu.descripcion}}</P>
-                    </mat-card-content>
+    <div *ngFor="let event of getEventData">
+        <mat-card>
+            <div class="card-row">
+                <div>
+                    <h3>{{event.nombre}}</h3>
+                    <p>{{event.descripcion}}</p>
+                    <span>{{event.fecha}}</span>
                 </div>
-                <mat-card-actions>
-                    <button mat-button>Agregar</button>
-                </mat-card-actions>
-            </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
+                <img class="img-card" src="http://localhost:3000/files/logoevent/{{event.image}}"
+                    alt="imagen {{event.nombre}}" (click)="openFullScreen(event.image)">
+            </div>
+        </mat-card>
+    </div>
 </div>

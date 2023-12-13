@@ -47,6 +47,8 @@ import { NewPromotionComponent } from './adminfolder/new-promotion/new-promotion
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { NewEventComponent } from './adminfolder/new-event/new-event.component';
 import { ViewMenuComponent } from './adminfolder/view-menu/view-menu.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ViewImageComponent } from './view-image/view-image.component';
 
 
 @NgModule({
@@ -67,7 +69,8 @@ import { ViewMenuComponent } from './adminfolder/view-menu/view-menu.component';
     CreateBarComponent,
     NewPromotionComponent,
     NewEventComponent,
-    ViewMenuComponent
+    ViewMenuComponent,
+    ViewImageComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +104,8 @@ import { ViewMenuComponent } from './adminfolder/view-menu/view-menu.component';
     MatSidenavModule,
     MatExpansionModule,
     CdkMenuModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
