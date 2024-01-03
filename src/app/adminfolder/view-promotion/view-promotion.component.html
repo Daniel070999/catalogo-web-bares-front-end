@@ -1,0 +1,138 @@
+<div class="container">
+    <div class="menu-search">
+        <mat-form-field class="search" appearance="outline" subscriptSizing="dynamic">
+            <mat-label class="input">Buscar una promoción</mat-label>
+            <input matInput placeholder="Que esta buscando" [(ngModel)]="searchPromocion" (input)="search()"
+                (input)="typing()">
+            <button *ngIf="clearInput" mat-icon-button matPrefix (click)="btn_clear()">
+                <mat-icon>clear</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <div class="menu-list-container">
+        <div class="menu-list">
+            <div class="horizontal-scroll" *ngIf="filteredData && filteredData.length > 0">
+                <div *ngFor="let item of filteredData">
+                    <mat-card class="card" (click)="promocionSelect(item.id_promocion)">
+                        <p>{{item.nombre}}</p>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menu-data">
+        <mat-card class="main-card-form">
+            <form [formGroup]="FormValidaeRegister" *ngIf="!!id_promocion">
+                <mat-card-header>
+                    <mat-card-title>
+                        <h3>Nueva Promoción</h3>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="card-form">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput placeholder="Nombre" formControlName="nombre">
+                            <mat-error *ngIf="ControlNameRegister.hasError('required')">
+                                <span>Campo requerido</span>
+                            </mat-error>
+                            <mat-icon matSuffix>text_fields</mat-icon>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Descripción</mat-label>
+                            <input matInput placeholder="Descripcion" formControlName="descripcion">
+                            <mat-error *ngIf="ControlDescriptionRegister.hasError('required')">
+                                <span>Campo requerido</span>
+                            </mat-error>
+                            <mat-icon matSuffix>text_fields</mat-icon>
+                        </mat-form-field>
+                        <div class="container-date">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Fecha Inicio</mat-label>
+                                <input matInput [matDatepicker]="datepickerFI" formControlName="fecha_inicio">
+                                <mat-error *ngIf="ControlDateStartRegister.hasError('required')">
+                                    <span>Campo requerido</span>
+                                </mat-error>
+                                <mat-datepicker-toggle matIconSuffix [for]="datepickerFI"></mat-datepicker-toggle>
+                                <mat-datepicker #datepickerFI>
+                                    <mat-datepicker-actions>
+                                        <button mat-button matDatepickerCancel>Cancelar</button>
+                                        <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
+                                    </mat-datepicker-actions>
+                                </mat-datepicker>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Custom buttons" aria-label="Custom buttons"
+                                    formControlName="hora_inicio" [ngxTimepicker]="timepickerWithButtonsFI" readonly
+                                    [format]="24">
+                                <mat-error *ngIf="ControlScheduleStartRegister.hasError('required')">
+                                    <span>Campo requerido</span>
+                                </mat-error>
+                                <ngx-material-timepicker #timepickerWithButtonsFI [cancelBtnTmpl]="cancelBtn"
+                                    [confirmBtnTmpl]="confirmBtn"></ngx-material-timepicker>
+                                <ng-template #cancelBtn>
+                                    <button mat-raised-button>Cancelar</button>
+                                </ng-template>
+                                <ng-template #confirmBtn>
+                                    <button mat-raised-button color="primary">Aceptar</button>
+                                </ng-template>
+                                <mat-icon matSuffix>watch_later</mat-icon>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="container-date">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Fecha Fin</mat-label>
+                                <input matInput [matDatepicker]="datepickerFF" formControlName="fecha_fin">
+                                <mat-error *ngIf="ControlDateFinishRegister.hasError('required')">
+                                    <span>Campo requerido</span>
+                                </mat-error>
+                                <mat-datepicker-toggle matIconSuffix [for]="datepickerFF"></mat-datepicker-toggle>
+                                <mat-datepicker #datepickerFF>
+                                    <mat-datepicker-actions>
+                                        <button mat-button matDatepickerCancel>Cancelar</button>
+                                        <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
+                                    </mat-datepicker-actions>
+                                </mat-datepicker>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Custom buttons" aria-label="Custom buttons"
+                                    formControlName="hora_fin" [ngxTimepicker]="timepickerWithButtonsFF" readonly
+                                    [format]="24">
+                                <mat-error *ngIf="ControlScheduleFinishRegister.hasError('required')">
+                                    <span>Campo requerido</span>
+                                </mat-error>
+                                <ngx-material-timepicker #timepickerWithButtonsFF [cancelBtnTmpl]="cancelBtn"
+                                    [confirmBtnTmpl]="confirmBtn"></ngx-material-timepicker>
+                                <ng-template #cancelBtn>
+                                    <button mat-raised-button>Cancelar</button>
+                                </ng-template>
+                                <ng-template #confirmBtn>
+                                    <button mat-raised-button color="primary">Aceptar</button>
+                                </ng-template>
+                                <mat-icon matSuffix>watch_later</mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <p>
+                            <input type="file" id="image" name="image" (change)="onFileSelected($event)"
+                                accept="image/*">
+                        </p>
+                        <div class="container-img">
+                            <img *ngIf="!!oldImage" src='http://localhost:3000/files/logopromotion/{{oldImage}}'
+                                style="background-size: cover; height: 150px; width: 150px;" alt="{{oldImage}}">
+                            <p>
+                                <input type="file" id="image" name="image" (change)="onFileSelected($event)"
+                                    accept="image/*">
+                            </p>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button class="btn-cancelar" mat-fab extended (click)="cancelRegister()">Cancelar</button>
+                    <button class="btn-eliminar" mat-fab extended (click)="deleteRegister()">Eliminar</button>
+                    <button class="btn-actualizar" mat-fab extended (click)="updateRegister()">Modificar</button>
+                </mat-card-actions>
+            </form>
+        </mat-card>
+    </div>
+</div>

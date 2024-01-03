@@ -44,6 +44,9 @@ export class ServicesService {
   promotionUrl = `${this.mainUrl}/promotion`;
   urlRegisterNewPromotion = `${this.promotionUrl}/newpromotion`;//ok
   urlFindPromotionById = `${this.promotionUrl}/promotionbybarid`;//ok
+  urlGetPromotion = `${this.promotionUrl}/promotionbyid`;//ok
+  urlUpdatePromotion = `${this.promotionUrl}/update`;//ok
+  urlDeletePromotion = `${this.promotionUrl}/delete`;//ok
 
   //ruta principal de evento
   eventUrl = `${this.mainUrl}/event`;
@@ -172,6 +175,30 @@ export class ServicesService {
       },
     };
     return this.http.post(this.urlDeleteMenu, data, httpOptions);
+  }
+  getPromotionById(data: any) {
+    const httpOptions = {
+      headers: {
+        'Authorization': `${sessionStorage.getItem('authToken')}`
+      },
+    };
+    return this.http.post(this.urlGetPromotion, data, httpOptions);
+  }
+  postUpdatePromotion(data: any) {
+    const httpOptions = {
+      headers: {
+        'Authorization': `${sessionStorage.getItem('authToken')}`
+      },
+    };
+    return this.http.post(this.urlUpdatePromotion, data, httpOptions);
+  }
+  postDeletePromotion(data: any) {
+    const httpOptions = {
+      headers: {
+        'Authorization': `${sessionStorage.getItem('authToken')}`
+      },
+    };
+    return this.http.post(this.urlDeletePromotion, data, httpOptions);
   }
   getBarDataById(id: any) {
     return this.http.post(this.urlFindBarDataById, { id_bar: id });

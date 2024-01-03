@@ -29,10 +29,14 @@
                                     Promoción
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
-                            Ingresar una nueva promoción
-                            <button mat-fab (click)="goNewPromotion()"
-                                style="background-color: transparent; scale: 0.75;"><mat-icon style="scale: 1.5;"
-                                    color="primary">attach_money</mat-icon></button>
+                            <div class="btn-container">
+                                <button mat-raised-button (click)="goNewPromotion()"
+                                    style="background-color: green; scale: 0.75;"><mat-icon style="scale: 1.5;"
+                                        color="primary">add_circle_outline</mat-icon>Agregar</button>
+                                <button mat-raised-button (click)="goViewPromotion()"
+                                    style="background-color: goldenrod; scale: 0.75;"><mat-icon style="scale: 1.5;"
+                                        color="primary">search</mat-icon>Ver menús</button>
+                            </div>
                         </mat-expansion-panel>
                         <mat-expansion-panel>
                             <mat-expansion-panel-header>

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewImageComponent } from 'src/app/view-image/view-image.component';
 
@@ -7,7 +7,7 @@ import { ViewImageComponent } from 'src/app/view-image/view-image.component';
   templateUrl: './bar-main-promotions.component.html',
   styleUrls: ['./bar-main-promotions.component.css']
 })
-export class BarMainPromotionsComponent implements OnChanges, OnInit {
+export class BarMainPromotionsComponent implements OnChanges {
 
   @Input() promotionData: any;
 
@@ -15,9 +15,6 @@ export class BarMainPromotionsComponent implements OnChanges, OnInit {
 
 
   getPromotionData: any = [];
-
-  ngOnInit(): void {
-  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['promotionData']) {

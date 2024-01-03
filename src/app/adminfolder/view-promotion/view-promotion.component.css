@@ -1,0 +1,119 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: #393e6f;
+    /* Enable vertical scrolling if needed */
+    /*background-image: url('https://www.wallpaperup.com/uploads/wallpapers/2016/03/30/918988/d29264bc683df42ae189a351116ce0da.jpg');
+    background-size: cover;*/
+}
+
+.menu-list-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: 80%;
+}
+
+.horizontal-scroll {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.search {
+    margin: 20px;
+}
+
+.card {
+    margin: 10px;
+    padding-inline: 10px;
+    align-items: center;
+    backdrop-filter: blur(14px) saturate(113%);
+    -webkit-backdrop-filter: blur(14px) saturate(113%);
+    background-color: rgba(255, 255, 255, 0.34);
+    border-radius: 12px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+.menu-data {
+    width: 100%;
+    margin: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.card-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+
+.main-card-form {
+    width: 50%;
+    backdrop-filter: blur(14px) saturate(113%);
+    -webkit-backdrop-filter: blur(14px) saturate(113%);
+    background-color: rgba(255, 255, 255, 0.34);
+    border-radius: 12px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        height: 100vh;
+    }
+
+    .main-card-form {
+        width: 90%;
+    }
+}
+
+.btn-form {
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes animation-main-card-form {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+.btn-actualizar {
+    background-color: deepskyblue;
+}
+
+.btn-eliminar {
+    background-color: brown;
+}
+
+.btn-cancelar {
+    background-color: grey;
+}
+
+.btn-form>button {
+    width: 25%;
+    margin: 10px;
+}
+
+.imagen-container {
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 150px;
+}
+
+.container-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

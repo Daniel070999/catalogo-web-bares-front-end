@@ -49,6 +49,7 @@ import { NewEventComponent } from './adminfolder/new-event/new-event.component';
 import { ViewMenuComponent } from './adminfolder/view-menu/view-menu.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ViewImageComponent } from './view-image/view-image.component';
+import { ViewPromotionComponent } from './adminfolder/view-promotion/view-promotion.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { ViewImageComponent } from './view-image/view-image.component';
     NewPromotionComponent,
     NewEventComponent,
     ViewMenuComponent,
-    ViewImageComponent
+    ViewImageComponent,
+    ViewPromotionComponent
   ],
   imports: [
     BrowserModule,

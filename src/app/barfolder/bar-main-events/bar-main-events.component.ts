@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewImageComponent } from 'src/app/view-image/view-image.component';
 
@@ -7,15 +7,12 @@ import { ViewImageComponent } from 'src/app/view-image/view-image.component';
   templateUrl: './bar-main-events.component.html',
   styleUrls: ['./bar-main-events.component.css']
 })
-export class BarMainEventsComponent implements OnChanges, OnInit {
+export class BarMainEventsComponent implements OnChanges {
 
   @Input() eventData: any;
   constructor(public dialog: MatDialog) { }
 
   getEventData: any = [];
-
-  ngOnInit(): void {
-  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['eventData']) {

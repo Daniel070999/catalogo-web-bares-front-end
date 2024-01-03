@@ -12,6 +12,7 @@ import { CreateBarComponent } from './rootfolder/create-bar/create-bar.component
 import { NewPromotionComponent } from './adminfolder/new-promotion/new-promotion.component';
 import { NewEventComponent } from './adminfolder/new-event/new-event.component';
 import { ViewMenuComponent } from './adminfolder/view-menu/view-menu.component';
+import { ViewPromotionComponent } from './adminfolder/view-promotion/view-promotion.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'newmenu', component: NewMenuComponent, canActivate: [AuthGuard] },
   { path: 'viewmenu', component: ViewMenuComponent, canActivate: [AuthGuard] },
   { path: 'newpromotion', component: NewPromotionComponent, canActivate: [AuthGuard] },
+  { path: 'viewpromotion', component: ViewPromotionComponent, canActivate: [AuthGuard] },
   { path: 'newevent', component: NewEventComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: HomeAdminComponent, canActivate: [AuthGuard] },
