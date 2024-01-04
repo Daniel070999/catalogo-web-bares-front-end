@@ -36,6 +36,10 @@ export class BarMainComponent implements OnInit {
     });
   }
 
+  /**
+   * The function `getRol()` makes an HTTP request to the `getCheck()` service and assigns the response
+   * message to the `rol` variable.
+   */
   getRol() {
     this.service.getCheck().subscribe({
       next: response => {
@@ -44,11 +48,14 @@ export class BarMainComponent implements OnInit {
       },
       error: err => {
         console.log(err);
-
       }
     });
   }
 
+  /**
+   * The function `getDataSession` makes an HTTP request to retrieve session data and assigns the first
+   * message from the response to the `dataLogin` variable.
+   */
   getDataSession() {
     this.service.getDataSession().subscribe({
       next: response => {
@@ -57,23 +64,33 @@ export class BarMainComponent implements OnInit {
       },
       error: err => {
         console.log(err);
-
       }
     });
   }
 
+  /**
+   * The function `getBarData` retrieves bar data by ID from a service and assigns it to a variable.
+   * @param {any} id - The `id` parameter is used to identify the specific bar data that needs to be
+   * retrieved. It is passed to the `getBarDataById` method of the `service` object.
+   */
   getBarData(id: any) {
     this.service.getBarDataById(id).subscribe({
       next: (response) => {
         const dataAux: any = response;
         const data: any = dataAux.message;
         this.dataBar = data[0];
-
       }, error: (err) => {
         console.log(err);
       }
     });
   }
+
+  /**
+   * The `getMenuData` function retrieves menu data from a service based on a given ID and assigns it to
+   * the `dataMenu` variable.
+   * @param {any} id - The `id` parameter is of type `any`, which means it can accept any data type. It
+   * is used as an identifier to retrieve menu data from the service.
+   */
   getMenuData(id: any) {
     this.service.getMenuDataById(id).subscribe({
       next: (response) => {
@@ -85,6 +102,13 @@ export class BarMainComponent implements OnInit {
       }
     })
   }
+
+  /**
+   * The function `getPromotionData` retrieves promotion data from a service based on the provided ID and
+   * assigns it to the `dataPromotion` variable.
+   * @param {any} id - The `id` parameter is the identifier of the promotion data that you want to
+   * retrieve. It can be of any type.
+   */
   getPromotionData(id: any) {
     this.service.getPromotionDataById(id).subscribe({
       next: (response) => {
@@ -96,6 +120,13 @@ export class BarMainComponent implements OnInit {
       }
     })
   }
+
+  /**
+ * The function `getEventData` retrieves event data from a service based on the provided ID and
+ * assigns it to the `dataEvent` variable.
+ * @param {any} id - The `id` parameter is the identifier of the event data that you want to
+ * retrieve. It can be of any type.
+ */
   getEventData(id: any) {
     this.service.getEventDataById(id).subscribe({
       next: (response) => {

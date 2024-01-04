@@ -49,6 +49,10 @@ export class ViewMenuComponent implements OnInit {
   }
 
 
+  /* The `search()` function is used to filter the `filteredData` array based on the `searchMenu` value.
+  It filters the array by checking if the `id_menu` or `nombre` properties of each item in the array
+  contain the `searchMenu` value (case-insensitive). The filtered results are then assigned back to
+  the `filteredData` array. */
   search(): void {
     this.filteredData = this.filteredData.filter((item: { nombre: any; id_menu: any; }) => {
       return (
@@ -62,9 +66,14 @@ export class ViewMenuComponent implements OnInit {
     this.searchMenu = "";
     this.clearInput = false;
     this.search();
-
   }
 
+  /**
+   * The function `menuSelect` is used to select a menu item by its ID and retrieve its details from the
+   * server.
+   * @param {any} id - The parameter "id" is of type "any", which means it can accept any data type. It
+   * is used as an identifier for selecting a menu item.
+   */
   menuSelect(id: any) {
     const data = {
       id_menu: id
@@ -88,6 +97,12 @@ export class ViewMenuComponent implements OnInit {
     });
   }
 
+  /**
+   * The `findById` function retrieves data from a service using a token, extracts the `id_bar` value
+   * from the response, and calls another function to get menu data based on the `id_bar`.
+   * @param {any} token - The token parameter is used to identify a specific item or resource in the
+   * system. It is passed to the service's getFindById method to retrieve the corresponding data.
+   */
   findById(token: any) {
     this.service.getFindById(token).subscribe({
       next: (response) => {
@@ -100,9 +115,14 @@ export class ViewMenuComponent implements OnInit {
         this.snacBar.error('Algo salio mal', null);
       }
     });
-
   }
 
+  /**
+   * The `getMenuData` function retrieves menu data from a service based on an ID and assigns it to the
+   * `dataMenu` and `filteredData` variables.
+   * @param {any} id - The `id` parameter is of type `any`, which means it can accept any data type. It
+   * is used as an identifier to retrieve menu data from the service.
+   */
   getMenuData(id: any) {
     this.service.getMenuDataById(id).subscribe({
       next: (response) => {
@@ -115,6 +135,13 @@ export class ViewMenuComponent implements OnInit {
       }
     })
   }
+
+  /**
+   * The function `onFileSelected` checks if the selected image file meets the size requirements and
+   * assigns it to `this.imageRegister` if it does, otherwise it displays an error message.
+   * @param {any} event - The event parameter is the event object that is triggered when a file is
+   * selected. It contains information about the selected file(s), such as the file name, size, and type.
+   */
   onFileSelected(event: any) {
     const files = event.target.files;
 
@@ -132,10 +159,13 @@ export class ViewMenuComponent implements OnInit {
       image.src = URL.createObjectURL(selectedFile);
     }
   }
+
+  /**
+   * The function `updateRegister()` updates a menu item by sending a POST request with the updated data
+   * and image (if any) to the server.
+   */
   updateRegister() {
     if (this.FormValidaeRegister.status == 'VALID' && this.id_menu) {
-
-
       const data: any = this.FormValidaeRegister.value;
       data.old_image = this.oldImage;
       data.id_menu = this.id_menu;
@@ -145,7 +175,6 @@ export class ViewMenuComponent implements OnInit {
         formData.append('image', this.imageRegister);
       }
       console.log(formData);
-
       this.service.postUpdateMenu(formData).subscribe({
         next: () => {
           this.cancelRegister();
@@ -157,6 +186,11 @@ export class ViewMenuComponent implements OnInit {
       });
     }
   }
+
+  /**
+   * The `deleteRegister` function sends a request to delete a menu item, cancels the current
+   * registration, retrieves updated menu data, and displays a success or error message.
+   */
   deleteRegister() {
     this.service.postDeleteMenu({ id_menu: this.id_menu }).subscribe({
       next: () => {
@@ -169,6 +203,11 @@ export class ViewMenuComponent implements OnInit {
       },
     });
   }
+
+  /**
+   * The function "cancelRegister" resets the form, clears the old image, sets the menu ID to null,
+   * clears any validation errors, and clears the image register.
+   */
   cancelRegister() {
     this.FormValidaeRegister.reset();
     this.oldImage = null;

@@ -46,6 +46,10 @@ export class ViewPromotionComponent implements OnInit {
     }
   }
 
+  /**
+   * The function checks if the searchPromocion variable is empty and sets the clearInput variable
+   * accordingly.
+   */
   typing() {
     if (this.searchPromocion == "") {
       this.clearInput = false;
@@ -55,6 +59,10 @@ export class ViewPromotionComponent implements OnInit {
   }
 
 
+  /* The `search()` function is used to filter the `filteredData` array based on the `searchPromocion`
+  value. It filters the array by checking if the `id_promocion` or `nombre` properties of each item in
+  the array contain the `searchPromocion` value (case-insensitive). The filtered results are then
+  assigned back to the `filteredData` array. */
   search(): void {
     this.filteredData = this.filteredData.filter((item: { nombre: any; id_promocion: any; }) => {
       return (
@@ -63,14 +71,24 @@ export class ViewPromotionComponent implements OnInit {
       );
     });
   }
+
+  /**
+   * The function `btn_clear()` clears the search input and reloads the promotion data for a specific
+   * bar.
+   */
   btn_clear() {
     this.getPromocionData(this.id_bar);
     this.searchPromocion = "";
     this.clearInput = false;
     this.search();
-
   }
 
+  /**
+   * The function "promocionSelect" retrieves a promotion by its ID and sets the retrieved data to a
+   * form for editing.
+   * @param {any} id - The parameter "id" is of type "any", which means it can accept any data type. It
+   * is used as an identifier to retrieve a specific promotion by its ID.
+   */
   promocionSelect(id: any) {
     console.log(id);
     const data = {
@@ -80,7 +98,6 @@ export class ViewPromotionComponent implements OnInit {
     this.service.getPromotionById(data).subscribe({
       next: (response) => {
         const responseAux: any = response;
-        console.log(responseAux.message[0]);
         this.oldImage = responseAux.message[0].image;
         const fechaInicio = new Date(responseAux.message[0].fecha_inicio);
         const fechaFin = new Date(responseAux.message[0].fecha_fin);
@@ -90,9 +107,6 @@ export class ViewPromotionComponent implements OnInit {
         const hora_inicio_aux = fechaInicio.toISOString().split('T')[1].split('.')[0].substring(0, 5);;
         const fecha_fin_aux = fechaFin.toISOString().split('T')[0];
         const hora_fin_aux = fechaFin.toISOString().split('T')[1].split('.')[0].substring(0, 5);;
-        console.log(hora_inicio_aux);
-        console.log(hora_fin_aux);
-
         let data = {
           'nombre': responseAux.message[0].nombre,
           'descripcion': responseAux.message[0].descripcion,
@@ -110,6 +124,12 @@ export class ViewPromotionComponent implements OnInit {
     });
   }
 
+  /**
+   * The `findById` function makes an API call to retrieve data based on a given token and handles the
+   * response accordingly.
+   * @param {any} token - The token parameter is a variable that represents some kind of identifier or
+   * key used to retrieve data from the service.
+   */
   findById(token: any) {
     this.service.getFindById(token).subscribe({
       next: (response) => {
@@ -122,9 +142,14 @@ export class ViewPromotionComponent implements OnInit {
         this.snacBar.error('Algo salio mal', null);
       }
     });
-
   }
 
+  /**
+   * The function "getPromocionData" retrieves promotion data from a service based on the provided ID and
+   * assigns it to the "dataPromocion" and "filteredData" variables.
+   * @param {any} id - The `id` parameter is of type `any`, which means it can accept any data type. It
+   * is used as an identifier to retrieve promotion data from the service.
+   */
   getPromocionData(id: any) {
     this.service.getPromotionDataById(id).subscribe({
       next: (response) => {
@@ -137,13 +162,18 @@ export class ViewPromotionComponent implements OnInit {
       }
     })
   }
+
+  /**
+   * The function `onFileSelected` checks if the selected image file meets the size requirements and
+   * assigns it to `this.imageRegister` if it does, otherwise it displays an error message.
+   * @param {any} event - The event parameter is the event object that is triggered when a file is
+   * selected. It contains information about the selected file(s), such as the file name, size, and type.
+   */
   onFileSelected(event: any) {
     const files = event.target.files;
-
     if (files.length > 0) {
       const selectedFile = files[0];
       const image = new Image();
-
       image.onload = () => {
         if (image.width <= 1080 && image.height <= 1080) {
           this.imageRegister = selectedFile;
@@ -154,6 +184,11 @@ export class ViewPromotionComponent implements OnInit {
       image.src = URL.createObjectURL(selectedFile);
     }
   }
+
+  /**
+   * The function `updateRegister()` updates a promotion by sending a POST request with the updated data
+   * and image (if any) to the server.
+   */
   updateRegister() {
     if (this.FormValidaeRegister.status == 'VALID' && this.id_promocion) {
       const data: any = this.FormValidaeRegister.value;
@@ -175,6 +210,11 @@ export class ViewPromotionComponent implements OnInit {
       });
     }
   }
+
+  /**
+   * The `deleteRegister()` function sends a request to delete a promotion, cancels the current
+   * operation, retrieves updated promotion data, and displays a success or error message.
+   */
   deleteRegister() {
     this.service.postDeletePromotion({ id_promocion: this.id_promocion }).subscribe({
       next: () => {
@@ -187,6 +227,11 @@ export class ViewPromotionComponent implements OnInit {
       },
     });
   }
+
+  /**
+   * The function "cancelRegister" resets the form, clears the old image, sets the promotion ID to null,
+   * clears any validation errors, and clears the image register.
+   */
   cancelRegister() {
     this.FormValidaeRegister.reset();
     this.oldImage = null;

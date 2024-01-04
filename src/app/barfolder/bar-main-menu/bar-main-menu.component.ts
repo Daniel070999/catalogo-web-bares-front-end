@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewImageComponent } from 'src/app/view-image/view-image.component';
 
@@ -19,7 +19,6 @@ export class BarMainMenuComponent implements OnChanges, OnInit {
   screenWidth: number = 0;
 
   ngOnInit(): void {
-    this.onResize(['$event']);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -34,20 +33,4 @@ export class BarMainMenuComponent implements OnChanges, OnInit {
     });
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-
-    this.screenWidth = window.innerWidth;
-    if (this.screenWidth > 768 && this.screenWidth < 1499) {
-      this.gridItems = 2;
-      this.gridSize = "1";
-    } else if (this.screenWidth > 1500) {
-      this.gridItems = 3;
-      this.gridSize = "30";
-    } else {
-      this.gridItems = 1;
-      this.gridSize = "30";
-    }
-
-  }
 }

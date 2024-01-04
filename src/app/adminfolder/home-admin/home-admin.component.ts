@@ -22,6 +22,10 @@ export class HomeAdminComponent implements OnInit {
     }
   }
 
+/**
+ * The function `getRol()` makes an HTTP request to the `getCheck()` service and assigns the response
+ * message to the `rol` variable.
+ */
   getRol() {
     this.service.getCheck().subscribe({
       next: response => {
@@ -30,11 +34,14 @@ export class HomeAdminComponent implements OnInit {
       },
       error: err => {
         console.log(err);
-
       }
     });
   }
 
+/**
+ * The function `getDataSession` makes an HTTP request to retrieve session data and assigns the first
+ * message from the response to the `dataLogin` variable.
+ */
   getDataSession() {
     this.service.getDataSession().subscribe({
       next: response => {
