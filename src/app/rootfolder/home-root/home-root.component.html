@@ -25,10 +25,14 @@
                                     Bar o Licorera
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
-                            Crear nuevo bar o licorera
-                            <button mat-fab (click)="goCreateBar()"
-                                style="background-color: transparent; scale: 0.75;"><mat-icon style="scale: 1.5;"
-                                    color="primary">note_add</mat-icon></button>
+                            <div class="btn-container">
+                                <button mat-raised-button (click)="goCreateBar()"
+                                    style="background-color: green; scale: 0.75;"><mat-icon style="scale: 1.5;"
+                                        color="primary">add_circle_outline</mat-icon>Agregar</button>
+                                <button mat-raised-button (click)="goViewBar()"
+                                    style="background-color: goldenrod; scale: 0.75;"><mat-icon style="scale: 1.5;"
+                                        color="primary">search</mat-icon>Ver Bar o licorera</button>
+                            </div>
                         </mat-expansion-panel>
                     </mat-accordion>
                 </p>

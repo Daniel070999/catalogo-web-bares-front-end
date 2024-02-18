@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
       const role = message.message;
       console.log(role);
 
-      const rootRoutes = ['root','adminbar','createbar'];
+      const rootRoutes = ['root','adminbar','createbar','viewbar'];
       const adminRoutes = ['admin', 'newmenu','newpromotion','newevent','viewmenu','viewpromotion'];
       const userRoutes = ['', 'bar/:id'];
 

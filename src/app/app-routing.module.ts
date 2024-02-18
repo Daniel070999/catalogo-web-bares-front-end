@@ -13,6 +13,7 @@ import { NewPromotionComponent } from './adminfolder/new-promotion/new-promotion
 import { NewEventComponent } from './adminfolder/new-event/new-event.component';
 import { ViewMenuComponent } from './adminfolder/view-menu/view-menu.component';
 import { ViewPromotionComponent } from './adminfolder/view-promotion/view-promotion.component';
+import { ViewBarComponent } from './rootfolder/view-bar/view-bar.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'admin', component: HomeAdminComponent, canActivate: [AuthGuard] },
   { path: 'root', component: HomeRootComponent, canActivate: [AuthGuard] },
   { path: 'adminbar', component: AdminBarRootComponent, canActivate: [AuthGuard] },
+  { path: 'viewbar', component: ViewBarComponent, canActivate: [AuthGuard] },
   { path: 'createbar', component: CreateBarComponent, canActivate: [AuthGuard] },
 ];
 

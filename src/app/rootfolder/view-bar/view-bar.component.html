@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="menu-search">
+        <mat-form-field class="search" appearance="outline" subscriptSizing="dynamic">
+            <mat-label class="input">Buscar un bar</mat-label>
+            <input matInput placeholder="Que esta buscando" [(ngModel)]="searchMenu" (input)="search()"
+                (input)="typing()">
+            <button *ngIf="clearInput" mat-icon-button matPrefix (click)="btn_clear()">
+                <mat-icon>clear</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <div class="menu-list-container">
+        <div class="menu-list">
+            <div class="horizontal-scroll" *ngIf="filteredData && filteredData.length > 0">
+                <div *ngFor="let item of filteredData">
+                    <mat-card class="card" (click)="barSelect(item.id_bar)">
+                        <p>{{item.nombre}}</p>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menu-data">
+        <mat-card class="main-card-form">
+            <form [formGroup]="FormValidaeRegister" *ngIf="!!id_bar">
+                <mat-card-header>
+                    <mat-card-title>
+                        <h3>Detalles del Bar</h3>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="card-form">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput placeholder="Nombre" formControlName="nombre">
+                            <mat-error *ngIf="ControlNameRegister.hasError('required')">
+                                <span>Campo requerido</span>
+                            </mat-error>
+                            <mat-icon matSuffix>text_fields</mat-icon>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Descripción</mat-label>
+                            <input matInput placeholder="Descripcion" formControlName="descripcion">
+                            <mat-error *ngIf="ControlDescriptionRegister.hasError('required')">
+                                <span>Campo requerido</span>
+                            </mat-error>
+                            <mat-icon matSuffix>text_fields</mat-icon>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Lema</mat-label>
+                            <input matInput placeholder="Lema" formControlName="lema">
+                            <mat-error *ngIf="ControlLemaRegister.hasError('required')">
+                                <span>Campo requerido</span>
+                            </mat-error>
+                            <mat-icon matSuffix>text_fields</mat-icon>
+                        </mat-form-field>
+                        <div class="container-img">
+                            <img *ngIf="!!oldImage" src='http://localhost:3000/files/logobar/{{oldImage}}'
+                                style="background-size: cover; height: 150px; width: 150px;" alt="{{oldImage}}">
+                            <p>
+                                <input type="file" id="image" name="image" (change)="onFileSelected($event)"
+                                    accept="image/*">
+                            </p>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions class="btn-form">
+                    <button class="btn-cancelar" mat-fab extended (click)="cancelRegister()">Cancelar</button>
+                    <button class="btn-eliminar" mat-fab extended (click)="deleteRegister()">Eliminar</button>
+                    <button class="btn-actualizar" mat-fab extended (click)="updateRegister()">Modificar</button>
+                </mat-card-actions>
+            </form>
+        </mat-card>
+    </div>
+</div>

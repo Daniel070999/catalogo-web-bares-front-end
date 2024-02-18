@@ -24,6 +24,7 @@ export class ServicesService {
   urlFindBarByIdSession = `${this.barUrl}/barbysessionid`;//ok
   urlRegisterNewBar = `${this.barUrl}/newbar`;//ok
   urlFindBarDataById = `${this.barUrl}/allbarbyid`;//ok
+  urlUpdateBar = `${this.barUrl}/update`;//ok
 
   //ruta prnicipal de session
   sessionUrl = `${this.mainUrl}/session`;
@@ -143,6 +144,14 @@ export class ServicesService {
       },
     };
     return this.http.post(this.urlUpdateAdminBar, data, httpOptions);
+  }
+  postUpdateBar(data: any) {
+    const httpOptions = {
+      headers: {
+        'Authorization': `${sessionStorage.getItem('authToken')}`
+      },
+    };
+    return this.http.post(this.urlUpdateBar, data, httpOptions);
   }
   postUpdateAdminRol(data: any) {
     const httpOptions = {
