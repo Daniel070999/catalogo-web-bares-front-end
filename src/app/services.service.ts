@@ -25,6 +25,7 @@ export class ServicesService {
   urlRegisterNewBar = `${this.barUrl}/newbar`;//ok
   urlFindBarDataById = `${this.barUrl}/allbarbyid`;//ok
   urlUpdateBar = `${this.barUrl}/update`;//ok
+  urlDeleteBar = `${this.barUrl}/delete`;//ok
 
   //ruta prnicipal de session
   sessionUrl = `${this.mainUrl}/session`;
@@ -184,6 +185,14 @@ export class ServicesService {
       },
     };
     return this.http.post(this.urlDeleteMenu, data, httpOptions);
+  }
+  postDeleteBar(data: any) {
+    const httpOptions = {
+      headers: {
+        'Authorization': `${sessionStorage.getItem('authToken')}`
+      },
+    };
+    return this.http.post(this.urlDeleteBar, data, httpOptions);
   }
   getPromotionById(data: any) {
     const httpOptions = {

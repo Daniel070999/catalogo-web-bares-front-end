@@ -179,14 +179,14 @@ export class ViewBarComponent implements OnInit {
    * registration, retrieves updated menu data, and displays a success or error message.
    */
   deleteRegister() {
-    this.service.postDeleteMenu({ id_bar: this.id_bar }).subscribe({
+    this.service.postDeleteBar({ id_bar: this.id_bar }).subscribe({
       next: () => {
         this.cancelRegister();
         this.getBarData();
-        this.snacBar.success('Menu deleted', null);
+        this.snacBar.success('Bar deleted', null);
       },
       error: () => {
-        this.snacBar.error('Error in deleted menu', null);
+        this.snacBar.error('Error in deleted bar', null);
       },
     });
   }
