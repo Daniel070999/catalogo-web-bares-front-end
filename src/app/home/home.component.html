@@ -1,74 +1,52 @@
-<mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="over">
-        <p>Auto-resizing sidenav</p>
-        <br>
-        <hr>
-        <div class="example-menu" cdkMenu>
-            <button class="example-menu-item" cdkMenuItem>Inbox</button>
-            <button class="example-menu-item" cdkMenuItem>Snoozed</button>
-            <button class="example-menu-item" cdkMenuItem>Important</button>
-            <button class="example-menu-item" cdkMenuItem>Sent</button>
-            <button class="example-menu-item" cdkMenuItem>Drafts</button>
-            <button class="example-menu-item" cdkMenuItem>All Mail</button>
+<div class="example-sidenav-content">
+    <mat-toolbar>
+        <div>
+            <span>Bares y licoreras</span>
         </div>
-    </mat-drawer>
-    <div class="example-sidenav-content">
-        <mat-toolbar>
-            <button type="button" mat-button (click)="drawer.toggle()">
-                <div>
-                    <mat-icon>menu</mat-icon>
-                </div>
+
+        <span class="example-spacer"></span>
+
+        <div class="search-box">
+            <button class="btn-search"><mat-icon (click)="btn_search()">search</mat-icon></button>
+            <button *ngIf="clearInput" mat-icon-button matSuffix (click)="btn_clear()">
+                <mat-icon>clear</mat-icon>
             </button>
+            <input matInput type="text" class="input-search" placeholder="Buscar..." [(ngModel)]="searchBar"
+                (input)="typing()">
+        </div>
+        <button mat-button [matMenuTriggerFor]="menu">
             <div>
-                <span>My App</span>
-            </div>
-
-            <span class="example-spacer"></span>
-
-            <div class="search-box">
-                <button class="btn-search"><mat-icon (click)="btn_search()">search</mat-icon></button>
-                <button *ngIf="clearInput" mat-icon-button matSuffix (click)="btn_clear()">
-                    <mat-icon>clear</mat-icon>
-                </button>
-                <input matInput type="text" class="input-search" placeholder="Buscar..." [(ngModel)]="searchBar"
-                    (input)="typing()">
-            </div>
-            <button mat-button [matMenuTriggerFor]="menu">
-                <div>
-                    <mat-icon>more_vert</mat-icon>
-                    <mat-menu #menu="matMenu" xPosition="before">
-                        <button mat-menu-item *ngIf="!loggin" (click)="goLogin()">Iniciar Sesion</button>
-                        <button mat-menu-item>Inicio</button>
-                        <button mat-menu-item>Promociones</button>
-                        <button mat-menu-item>Eventos</button>
-                        <button mat-menu-item [matMenuTriggerFor]="conf">Idioma</button>
-                        <mat-menu #conf="matMenu">
-                            <button mat-menu-item>Español</button>
-                            <button mat-menu-item>Inglés</button>
-                        </mat-menu>
-                        <button mat-menu-item *ngIf="loggin" (click)="logOut()">Cerrar sesión</button>
+                <mat-icon>more_vert</mat-icon>
+                <mat-menu #menu="matMenu" xPosition="before">
+                    <button mat-menu-item *ngIf="!loggin" (click)="goLogin()">Iniciar Sesion</button>
+                    <button mat-menu-item>Inicio</button>
+                    <button mat-menu-item>Promociones</button>
+                    <button mat-menu-item>Eventos</button>
+                    <button mat-menu-item [matMenuTriggerFor]="conf">Idioma</button>
+                    <mat-menu #conf="matMenu">
+                        <button mat-menu-item>Español</button>
+                        <button mat-menu-item>Inglés</button>
                     </mat-menu>
-                </div>
-            </button>
-        </mat-toolbar>
-
-        <div class="scroll">
-            <div class="container-grid">
-                <div *ngFor="let bar of filteredData">
-                    <mat-card>
-                        <mat-card-header class="header">
-                            <img mat-card-avatar #logoBar style="background-image: url('http://localhost:3000/files/logobar/{{bar.logo}}');
-                                background-size: cover;" alt='imagen de {{bar.nombre}}'>
-                            <mat-card-title>{{bar.nombre}}</mat-card-title>
-                            <mat-card-subtitle>{{bar.lema}}</mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-actions>
-                            <button mat-button (click)="openBottomSheet(bar)">Detalles</button>
-                            <button mat-button (click)="goBar(bar.id_bar)">Ingresar</button>
-                        </mat-card-actions>
-                    </mat-card>
-                </div>
+                    <button mat-menu-item *ngIf="loggin" (click)="logOut()">Cerrar sesión</button>
+                </mat-menu>
             </div>
+        </button>
+    </mat-toolbar>
+
+    <div class="container-grid">
+        <div *ngFor="let bar of filteredData">
+            <mat-card>
+                <mat-card-header class="header">
+                    <img mat-card-avatar #logoBar style="background-image: url('http://localhost:3000/files/logobar/{{bar.logo}}');
+                            background-size: cover;" alt='imagen de {{bar.nombre}}'>
+                    <mat-card-title>{{bar.nombre}}</mat-card-title>
+                    <mat-card-subtitle>{{bar.lema}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-actions>
+                    <button mat-button (click)="openBottomSheet(bar)">Detalles</button>
+                    <button mat-button (click)="goBar(bar.id_bar)">Ingresar</button>
+                </mat-card-actions>
+            </mat-card>
         </div>
     </div>
-</mat-drawer-container>
+</div>

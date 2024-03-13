@@ -186,7 +186,7 @@ export class ViewBarComponent implements OnInit {
         this.snacBar.success('Bar deleted', null);
       },
       error: () => {
-        this.snacBar.error('Error in deleted bar', null);
+        this.snacBar.error('El bar contiene registros, no se puede eliminar', null);
       },
     });
   }
