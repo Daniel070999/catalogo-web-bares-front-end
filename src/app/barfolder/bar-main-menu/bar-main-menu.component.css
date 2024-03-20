@@ -2,10 +2,12 @@
     height: 100vh;
 }
 
-.container-main{
+.container-main {
     display: flex;
     flex-direction: column;
+    padding-inline: 150px;
 }
+
 .container-list {
     padding-inline: 5vw;
 }
@@ -19,7 +21,16 @@
 }
 
 .image {
-    background-size: cover;
+    object-fit: contain;
     height: 75px;
     width: 75px;
+}
+
+@media (max-width: 768px) {
+    .descripcion {
+        width: 200px;
+    }
+    .container-main {
+        padding-inline: 0px;
+    }
 }

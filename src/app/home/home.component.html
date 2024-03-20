@@ -1,7 +1,7 @@
 <div class="example-sidenav-content">
     <mat-toolbar>
         <div>
-            <span>Bares y licoreras</span>
+            <span>Establecimientos</span>
         </div>
 
         <span class="example-spacer"></span>
@@ -32,19 +32,21 @@
             </div>
         </button>
     </mat-toolbar>
-
     <div class="container-grid">
         <div *ngFor="let bar of filteredData">
             <mat-card>
                 <mat-card-header class="header">
-                    <img mat-card-avatar #logoBar style="background-image: url('http://localhost:3000/files/logobar/{{bar.logo}}');
-                            background-size: cover;" alt='imagen de {{bar.nombre}}'>
-                    <mat-card-title>{{bar.nombre}}</mat-card-title>
-                    <mat-card-subtitle>{{bar.lema}}</mat-card-subtitle>
+                    <mat-card-title>
+                        <h3>{{bar.nombre}}</h3>
+                    </mat-card-title>
                 </mat-card-header>
+                <img class="img-container" src="http://localhost:3000/files/logobar/{{bar.logo}}" (click)="openFullScreen(bar.logo)">
+                <mat-card-content>
+                    <i style="font-size: medium;">{{bar.lema}}</i>
+                </mat-card-content>
                 <mat-card-actions>
-                    <button mat-button (click)="openBottomSheet(bar)">Detalles</button>
-                    <button mat-button (click)="goBar(bar.id_bar)">Ingresar</button>
+                    <button (click)="openBottomSheet(bar)">Detalles</button>
+                    <button (click)="goBar(bar.id_bar)">Ingresar</button>
                 </mat-card-actions>
             </mat-card>
         </div>

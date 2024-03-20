@@ -9,68 +9,61 @@ export class ServicesService {
 
   constructor(private http: HttpClient) { }
 
-  private authToken: string = '';
-
-  /**
-   * Para solucionar el problema de conexión local por http://localhost:... de CORS usar la extension: 
-   * https://webbrowsertools.com/test-cors/
-   * habilitar la extension y recargar
-   */
   mainUrl = 'http://localhost:3000';
 
   //ruta principal de bar
   barUrl = `${this.mainUrl}/bar`
-  urlBars = `${this.barUrl}/bars`;//ok
-  urlFindBarByIdSession = `${this.barUrl}/barbysessionid`;//ok
-  urlRegisterNewBar = `${this.barUrl}/newbar`;//ok
-  urlFindBarDataById = `${this.barUrl}/allbarbyid`;//ok
-  urlUpdateBar = `${this.barUrl}/update`;//ok
-  urlDeleteBar = `${this.barUrl}/delete`;//ok
+  urlBars = `${this.barUrl}/bars`;
+  urlFindBarByIdSession = `${this.barUrl}/barbysessionid`;
+  urlRegisterNewBar = `${this.barUrl}/newbar`;
+  urlFindBarDataById = `${this.barUrl}/allbarbyid`;
+  urlUpdateBar = `${this.barUrl}/update`;
+  urlDeleteBar = `${this.barUrl}/delete`;
 
   //ruta prnicipal de session
   sessionUrl = `${this.mainUrl}/session`;
-  urlRegister = `${this.sessionUrl}/signup`;//ok
-  urlLogin = `${this.sessionUrl}/login`;//ok
-  urlLogout = `${this.sessionUrl}/logout`;//ok
-  urlDataSession = `${this.sessionUrl}/datasession`;//ok
+  urlRegister = `${this.sessionUrl}/signup`;
+  urlLogin = `${this.sessionUrl}/login`;
+  urlLogout = `${this.sessionUrl}/logout`;
+  urlDataSession = `${this.sessionUrl}/datasession`;
 
   //ruta principal de menu
   menuUrl = `${this.mainUrl}/menu`;
-  urlRegisterNewMenu = `${this.menuUrl}/newmenu`;//ok
-  urlFindMenuById = `${this.menuUrl}/menubybarid`;//ok
-  urlGetMenu = `${this.menuUrl}/menubyid`;//ok
-  urlUpdateMenu = `${this.menuUrl}/update`;//ok
-  urlDeleteMenu = `${this.menuUrl}/delete`;//ok
+  urlRegisterNewMenu = `${this.menuUrl}/newmenu`;
+  urlFindMenuById = `${this.menuUrl}/menubybarid`;
+  urlGetMenu = `${this.menuUrl}/menubyid`;
+  urlUpdateMenu = `${this.menuUrl}/update`;
+  urlDeleteMenu = `${this.menuUrl}/delete`;
 
   //ruta principal de promocion
   promotionUrl = `${this.mainUrl}/promotion`;
-  urlRegisterNewPromotion = `${this.promotionUrl}/newpromotion`;//ok
-  urlFindPromotionById = `${this.promotionUrl}/promotionbybarid`;//ok
-  urlGetPromotion = `${this.promotionUrl}/promotionbyid`;//ok
-  urlUpdatePromotion = `${this.promotionUrl}/update`;//ok
-  urlDeletePromotion = `${this.promotionUrl}/delete`;//ok
+  urlRegisterNewPromotion = `${this.promotionUrl}/newpromotion`;
+  urlFindPromotionById = `${this.promotionUrl}/promotionbybarid`;
+  urlGetPromotion = `${this.promotionUrl}/promotionbyid`;
+  urlUpdatePromotion = `${this.promotionUrl}/update`;
+  urlDeletePromotion = `${this.promotionUrl}/delete`;
 
   //ruta principal de evento
   eventUrl = `${this.mainUrl}/event`;
-  urlRegisterNewEvent = `${this.eventUrl}/newevent`;//ok
-  urlFindEventById = `${this.eventUrl}/eventbybarid`;//ok
+  urlRegisterNewEvent = `${this.eventUrl}/newevent`;
+  urlFindEventById = `${this.eventUrl}/eventbybarid`;
 
   //ruta principal de usuario
   usuarioUrl = `${this.mainUrl}/user`;
-  urlFindAllUser = `${this.usuarioUrl}/getbyrolsessionpermission`;//ok
-  urlUpdateAdminBar = `${this.usuarioUrl}/updateuseradminbarbyrolsessionpermission`;//ok
+  urlFindAllUser = `${this.usuarioUrl}/getbyrolsessionpermission`;
+  urlUpdateAdminBar = `${this.usuarioUrl}/updateuseradminbarbyrolsessionpermission`;
 
   //ruta principal de rol
   rolUrl = `${this.mainUrl}/rol`;
-  urlFindAllRoles = `${this.rolUrl}/getbyrolsessionpermission`;//ok
-  urlFindAllAdminBarRol = `${this.rolUrl}/getbaradminrolsessionpermission`;//ok
+  urlFindAllRoles = `${this.rolUrl}/getbyrolsessionpermission`;
+  urlFindAllAdminBarRol = `${this.rolUrl}/getbaradminrolsessionpermission`;
 
   //ruta principal de registros
   registroUrl = `${this.mainUrl}/register`;
-  urlUpdateAdminRol = `${this.registroUrl}/updateregisteradminrolbyrolsessionpermission`;//ok
+  urlUpdateAdminRol = `${this.registroUrl}/updateregisteradminrolbyrolsessionpermission`;
 
   //Ruta usada por Guard para verificar la sesion activa
-  urlCheck = `${this.mainUrl}/check/verifySession`;//ok
+  urlCheck = `${this.mainUrl}/check/verifySession`;
 
   getBars() {
     return this.http.get(this.urlBars);

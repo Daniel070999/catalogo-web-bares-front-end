@@ -3,6 +3,8 @@ import { ServicesService } from '../services.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
 import { Router } from '@angular/router';
+import { ViewImageComponent } from '../view-image/view-image.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +24,7 @@ export class HomeComponent implements OnInit {
   loggin: boolean = false;
   @ViewChild('logoBar') logoBar?: ElementRef;
 
-  constructor(private service: ServicesService, private btnSheet: MatBottomSheet, private route: Router) { }
+  constructor(private service: ServicesService, private btnSheet: MatBottomSheet, private route: Router,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     let token = sessionStorage.getItem('authToken');
@@ -34,6 +36,13 @@ export class HomeComponent implements OnInit {
 
 
   };
+
+  openFullScreen(imageUrl: any): void {
+    this.dialog.open(ViewImageComponent, {
+      data: { imageUrl: `http://localhost:3000/files/logobar/${imageUrl}` }
+    });
+  }
+
   goLogin() {
     this.route.navigate(['login']);
   }

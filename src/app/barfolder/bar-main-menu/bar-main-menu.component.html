@@ -4,9 +4,9 @@
             <div class="container-register">
                 <span>${{menu.precio}}</span>
                 <div>
-                    <mat-list-item>
+                    <mat-list-item class="descripcion">
                         <span matListItemTitle>{{menu.nombre}}</span>
-                        {{menu.descripcion}}
+                        <span>{{menu.descripcion}}</span>
                     </mat-list-item>
                 </div>
                 <img class="image" src="http://localhost:3000/files/logomenu/{{menu.image}}" alt="{{menu.image}}"
