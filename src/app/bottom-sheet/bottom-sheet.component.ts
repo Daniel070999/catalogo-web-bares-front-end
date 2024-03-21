@@ -19,28 +19,37 @@ export class BottomSheetComponent {
     this.getAllPromotions();
   }
 
+  /**
+   * The `getAllEvents` function asynchronously retrieves event data by ID and assigns it to the
+   * `dataEvent` property.
+   */
   async getAllEvents() {
     await this.servie.getEventDataById(this.dataBar.id_bar).subscribe({
       next: response => {
         const resultsAux: any = response;
         this.dataEvent = resultsAux.message;
       },
-      error: err=>{
+      error: err => {
         console.log(err);
       }
     });
-}
-async getAllPromotions() {
+  }
+
+  /**
+   * The function `getAllPromotions` asynchronously retrieves promotion data based on a bar ID and
+   * assigns it to the `dataPromotion` property.
+   */
+  async getAllPromotions() {
     await this.servie.getPromotionDataById(this.dataBar.id_bar).subscribe({
       next: response => {
         const resultsAux: any = response;
         this.dataPromotion = resultsAux.message;
       },
-      error: err=>{
+      error: err => {
         console.log(err);
       }
     });
-}
+  }
 
   goBar(bar: any) {
     this.route.navigate(['bar', bar]);

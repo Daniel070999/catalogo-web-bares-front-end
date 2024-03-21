@@ -25,6 +25,13 @@ export class CreateBarComponent {
     descripcion: this.ControlDescriptionRegister
   });
 
+  /**
+   * The function `onFileSelected` is used to handle the selection of a file, specifically an image file,
+   * and checks if the image dimensions are 512x512 pixels before assigning it to `this.logoRegister`.
+   * @param {any} event - The `event` parameter in the `onFileSelected` function represents the event
+   * that occurred, such as a user selecting a file using an input element. In this case, it is capturing
+   * the event when a file is selected by the user through an input field.
+   */
   onFileSelected(event: any) {
     const files = event.target.files;
 
@@ -44,8 +51,10 @@ export class CreateBarComponent {
     }
   }
 
-
-
+  /**
+   * The function `registerNew` checks if a form is valid, prompts the user to select an image if
+   * necessary, and then submits the form data to a service for registering a new bar.
+   */
   registerNew() {
     if (this.FormValidaeRegister.status == 'VALID') {
       if (this.logoRegister == undefined) {
@@ -64,6 +73,7 @@ export class CreateBarComponent {
       }
     }
   }
+
   clearFormLogin() {
     this.FormValidaeRegister.reset();
     Object.keys(this.FormValidaeRegister.controls).forEach(key => {

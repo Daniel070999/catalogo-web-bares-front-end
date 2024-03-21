@@ -38,6 +38,10 @@ export class AdminBarRootComponent implements OnInit {
     this.getBarAdminRol();
   }
 
+  /**
+   * The function `initializeFilteredData` initializes the `filteredData` array by mapping and combining
+   * data from `dataBarAdminRol`, `bar`, and `rol` arrays.
+   */
   initializeFilteredData(): void {
     this.filteredData = this.dataBarAdminRol.map((item: any) => ({
       ...item,
@@ -48,6 +52,10 @@ export class AdminBarRootComponent implements OnInit {
     this.filteredData = this.filteredData;
   }
 
+  /**
+   * The search function filters data based on a search query input for id_registro, usuario, and email
+   * fields.
+   */
   search(): void {
     this.filteredData = this.filteredData.filter((item: { id_registro: any; usuario: any; email: any; }) => {
       return (
@@ -58,12 +66,21 @@ export class AdminBarRootComponent implements OnInit {
     });
   }
 
+  /**
+   * The `obtainDataBar` function in TypeScript obtains data from a given `registro` and `bar` object,
+   * then posts the data to update an admin bar using a service.
+   * @param {any} registro - The `registro` parameter seems to represent an object with an `id_registro`
+   * property, and the `bar` parameter represents an object with an `id_bar` property. The
+   * `obtainDataBar` function is creating a `data` object with `id_registro` and `id_bar`
+   * @param {any} bar - The `bar` parameter in the `obtainDataBar` function seems to be an object that
+   * contains information about a bar. The function extracts the `id_bar` property from the `bar` object
+   * and assigns it to the `id_bar` key in the `data` object. If the
+   */
   obtainDataBar(registro: any, bar: any) {
     const data = {
       id_registro: registro.id_registro ?? 'null',
       id_bar: bar.id_bar ?? 'null'
     }
-    console.log(data);
 
     this.service.postUpdateAdminBar(data).subscribe({
       next: response => {
@@ -73,16 +90,25 @@ export class AdminBarRootComponent implements OnInit {
       }
     });
   }
+
+  /**
+   * The function `obtainDataRol` obtains data from a given `registro` and `rol`, then posts the data to
+   * update an admin role.
+   * @param {any} registro - The `registro` parameter seems to be an object with a property
+   * `id_registro`. If the `id_registro` property is not present in the `registro` object, the `??
+   * 'null'` syntax is used to provide a default value of `'null'`.
+   * @param {any} rol - The `rol` parameter in the `obtainDataRol` function seems to represent an object
+   * with a property `rol`. If the `rol` parameter is passed as an argument to the function, it will
+   * access the `rol` property of that object. If the `rol` property is not
+   */
   obtainDataRol(registro: any, rol: any) {
     const data = {
       id_registro: registro.id_registro ?? 'null',
       rol: rol.rol ?? 'null'
     }
-    console.log(data);
 
     this.service.postUpdateAdminRol(data).subscribe({
       next: response => {
-        console.log(response);
       }, error: err => {
         console.log(err);
       }
@@ -99,6 +125,10 @@ export class AdminBarRootComponent implements OnInit {
 
   }
 
+/**
+ * The function `getAllBars` makes an API call to retrieve a list of bars and logs the response to the
+ * console.
+ */
   getAllBars() {
     this.service.getBars().subscribe({
       next: response => {
@@ -110,6 +140,11 @@ export class AdminBarRootComponent implements OnInit {
       }
     });
   }
+
+/**
+ * The `getAllRoles` function makes an API call to retrieve roles and assigns the response to the `rol`
+ * property.
+ */
   getAllRoles() {
     this.service.getRoles().subscribe({
       next: response => {
@@ -121,6 +156,11 @@ export class AdminBarRootComponent implements OnInit {
       }
     });
   }
+
+/**
+ * The function `getBarAdminRol` makes an API call to retrieve bar admin roles and initializes filtered
+ * data based on the response.
+ */
   getBarAdminRol() {
     this.service.getBarAdminRol().subscribe({
       next: response => {
@@ -133,8 +173,8 @@ export class AdminBarRootComponent implements OnInit {
         console.log(err);
       }
     });
-
   }
+
   btn_clear() {
     this.initializeFilteredData();
     this.searchUser = "";

@@ -8,6 +8,17 @@ import { ServicesService } from '../services.service';
 export class AuthGuard {
   constructor(private service: ServicesService, private router: Router) { }
 
+  /**
+   * The function `canActivate` checks the user's role based on a token and route configuration, and
+   * redirects to the login page if the user does not have the required role.
+   * @param {ActivatedRouteSnapshot} route - The `canActivate` method in the provided code snippet is a
+   * guard in Angular that determines whether a route can be activated or not based on certain
+   * conditions. The `route` parameter of the `canActivate` method is of type `ActivatedRouteSnapshot`,
+   * which represents the route associated with a component loaded
+   * @returns The `canActivate` method returns a Promise that resolves to a boolean value or a UrlTree.
+   * The method first checks if a token is present in the sessionStorage and if the route matches certain
+   * paths. If the conditions are met, it resolves the Promise with `true`.
+   */
   canActivate(route: ActivatedRouteSnapshot): Promise<boolean | UrlTree> {
 
     const token = sessionStorage.getItem('authToken');

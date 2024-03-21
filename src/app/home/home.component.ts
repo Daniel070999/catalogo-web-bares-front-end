@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   loggin: boolean = false;
   @ViewChild('logoBar') logoBar?: ElementRef;
 
-  constructor(private service: ServicesService, private btnSheet: MatBottomSheet, private route: Router,public dialog: MatDialog) { }
+  constructor(private service: ServicesService, private btnSheet: MatBottomSheet, private route: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     let token = sessionStorage.getItem('authToken');
@@ -37,6 +37,9 @@ export class HomeComponent implements OnInit {
 
   };
 
+  /* The `openFullScreen` method in the `BarMainEventsComponent` class is a function that opens a dialog
+window to view an image. It takes an `imageUrl` parameter, which is the URL of the image to be
+displayed in the dialog. */
   openFullScreen(imageUrl: any): void {
     this.dialog.open(ViewImageComponent, {
       data: { imageUrl: `http://localhost:3000/files/logobar/${imageUrl}` }
@@ -55,6 +58,10 @@ export class HomeComponent implements OnInit {
     this.btnSheet.open(BottomSheetComponent, { data: barData });
   }
 
+  /**
+   * The `loadBars` function in TypeScript loads bars data from a service and assigns it to the `bars`
+   * and `filteredData` properties, with error handling included.
+   */
   loadBars() {
     this.service.getBars().subscribe({
       next: (response) => {
@@ -71,6 +78,10 @@ export class HomeComponent implements OnInit {
 
 
 
+  /**
+   * The `logOut` function logs out the user by sending a POST request to the server, clearing the
+   * session storage, and navigating to the home page while handling any errors that may occur.
+   */
   logOut() {
     this.service.postLogout().subscribe({
       next: response => {
@@ -102,6 +113,9 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  /**
+   * The `btn_search` function filters data based on a search input and updates the filtered data.
+   */
   btn_search() {
     console.log(this.filteredData);
 

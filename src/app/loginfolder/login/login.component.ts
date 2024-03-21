@@ -65,6 +65,10 @@ export class LoginComponent {
 
 
 
+  /**
+   * The `login()` function in TypeScript handles user authentication by sending login data to a service,
+   * processing the response, and redirecting the user based on their role.
+   */
   login() {
 
     const loginData: any = this.FormLoginValidateGroup.value;
@@ -103,6 +107,10 @@ export class LoginComponent {
 
   }
 
+  /**
+   * The `register()` function validates a password input and registers a user if the input meets
+   * specified criteria, displaying appropriate messages and handling errors accordingly.
+   */
   register() {
     const pass: any = this.FormRegisterValidateGroup.value.clave;
 

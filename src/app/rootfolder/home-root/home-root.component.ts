@@ -43,7 +43,6 @@ export class HomeRootComponent implements OnInit {
       },
       error: err => {
         console.log(err);
-
       }
     });
   }
